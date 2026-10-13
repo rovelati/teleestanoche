@@ -26,7 +26,7 @@ const requiredFiles = [
   'robots.txt',
   '_headers',
   'llms.txt',
-  'sitemap-index.xml'
+  'sitemap.xml'
 ];
 
 let missing = 0;

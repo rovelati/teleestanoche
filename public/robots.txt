@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.teleestanoche.es/sitemap-index.xml
+Sitemap: https://www.teleestanoche.es/sitemap.xml
