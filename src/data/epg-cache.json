@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T21:08:33.532906+00:00",
+  "updatedAt": "2026-10-13T21:14:06.289661+00:00",
   "channels": [
     {
       "id": "la-1",
@@ -9402,6 +9402,25 @@
       "isTonightPrime": false
     },
     {
+      "id": "energy-1792055400",
+      "channelId": "energy",
+      "channelName": "Energy",
+      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Energy.png",
+      "title": "NCIS: Los Ángeles T7 E21 · La cabeza de la serpiente",
+      "description": "· El equipo del NCIS descubre que el psicológo Nate Getz trabaja con un infame delincuente. Su tapadera se descubre después de que este cometa un error con Hetty durante una operación encubierta contra el crimen organizado.\n· País: Estados Unidos\n· Reparto: Chris O'Donnell, Daniela Ruah, Linda Hunt, Eric Christian Olsen, LL Cool J.\n· Guion: R. Scott Gemmill, Erin Broadhurst.\n· Música: Jay Ferguson.\n· Productora: CBS Television Studios.",
+      "category": "series",
+      "categoryEs": "Series",
+      "startTime": "2026-10-15T11:10:00+02:00",
+      "stopTime": "2026-10-15T12:00:00+02:00",
+      "startMadrid": "11:10",
+      "stopMadrid": "12:00",
+      "startCanarias": "10:10",
+      "stopCanarias": "11:00",
+      "durationMinutes": 50,
+      "icon": "https://www.movistarplus.es/recorte/n/dispficha/MENERGYP1281630",
+      "isTonightPrime": false
+    },
+    {
       "id": "divinity-1791902700",
       "channelId": "divinity",
       "channelName": "Divinity",
@@ -10368,25 +10387,6 @@
       "stopCanarias": "10:45",
       "durationMinutes": 60,
       "icon": "https://www.movistarplus.es/recorte/n/dispficha/MDIVINIP584836",
-      "isTonightPrime": false
-    },
-    {
-      "id": "be-mad-1791898440",
-      "channelId": "be-mad",
-      "channelName": "Be Mad",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Be%20Mad.png",
-      "title": "Soldados de fortuna",
-      "description": "· Hombres adinerados buscan emociones fuertes y pagan enormes cantidades para poder participar en aventuras militares. Pero esta vez las cosas no salen exactamente como esperaban.\n· País: Estados Unidos y Rusia\n· Dirección: Maksim Korostyshevsky, Maxim Korostyshevsky.\n· Reparto: Nikolay Sileverstov, Rydell Danzie, Jeff Hamilton, Brett Lynch, Jon Barton, Irina Ponomaryova.\n· Guion: Robert Crombie, Joe Kelbley, Alexandre Coscas.\n· Productora: Most / Rice Films, Crombie Film, Jeff Most Productions, Globus Film, Natalya Smirnova, Jeff Most.",
-      "category": "movies",
-      "categoryEs": "Cine",
-      "startTime": "2026-10-13T15:34:00+02:00",
-      "stopTime": "2026-10-13T17:14:00+02:00",
-      "startMadrid": "15:34",
-      "stopMadrid": "17:14",
-      "startCanarias": "14:34",
-      "stopCanarias": "16:14",
-      "durationMinutes": 100,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/F4484437",
       "isTonightPrime": false
     },
     {
@@ -14244,25 +14244,6 @@
       "stopCanarias": "11:09",
       "durationMinutes": 62,
       "icon": "https://www.movistarplus.es/recorte/n/dispficha/MTENP1729832",
-      "isTonightPrime": false
-    },
-    {
-      "id": "teledeporte-1791903360",
-      "channelId": "teledeporte",
-      "channelName": "Teledeporte",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Teledeporte.png",
-      "title": "Resúmenes LALIGA HyperMotion T26/27 · Jornada 9: Real Oviedo - SD Eibar",
-      "description": "· El mejor resumen con lo más destacado de cada uno de los partidos de Segunda División. Las mejores jugadas, goles e imágenes de los encuentros que se disputan cada jornada en la competición de plata del fútbol español.\n· País: España",
-      "category": "sports",
-      "categoryEs": "Deportes",
-      "startTime": "2026-10-13T16:56:00+02:00",
-      "stopTime": "2026-10-13T17:09:00+02:00",
-      "startMadrid": "16:56",
-      "stopMadrid": "17:09",
-      "startCanarias": "15:56",
-      "stopCanarias": "16:09",
-      "durationMinutes": 13,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/F4489807",
       "isTonightPrime": false
     },
     {
@@ -22888,6 +22869,25 @@
       "startCanarias": "10:05",
       "stopCanarias": "10:10",
       "durationMinutes": 5,
+      "icon": "https://www.movistarplus.es/recorte/n/dispficha/MBOINGP1787651",
+      "isTonightPrime": false
+    },
+    {
+      "id": "boing-1792055400",
+      "channelId": "boing",
+      "channelName": "Boing",
+      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Boing.png",
+      "title": "El show de Tom y Jerry",
+      "description": "· Tom y Jerry, la popular pareja formada por un gato y un ratón, ha pasado a la historia de comedias de persecución, sin decir nunca ni una sola palabra. Aunque el gato, Tom, es más grande, el ratón, Jerry, se sale siempre con la suya.\n· País: Estados Unidos\n· Dirección: Darrell van Citters.\n· Reparto: Cree Summer, Kath Soucie, Rachael MacFarlane, Rick Zieff, Stephen Stanton, Rene Mujica, Joey D'Auria, Alicyn Packard, Sam Kwasman, Grey DeLisle Griffin.\n· Productora: Slap Happy Cartoons, MGM Television, Hanna-Barbera Productions, Warner Bros. Animation.",
+      "category": "kids",
+      "categoryEs": "Infantil",
+      "startTime": "2026-10-15T11:10:00+02:00",
+      "stopTime": "2026-10-15T11:30:00+02:00",
+      "startMadrid": "11:10",
+      "stopMadrid": "11:30",
+      "startCanarias": "10:10",
+      "stopCanarias": "10:30",
+      "durationMinutes": 20,
       "icon": "https://www.movistarplus.es/recorte/n/dispficha/MBOINGP1787651",
       "isTonightPrime": false
     }
