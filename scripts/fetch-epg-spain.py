@@ -79,21 +79,64 @@ def parse_xmltv_date(date_str):
         return base_dt.replace(tzinfo=timezone.utc)
 
 def categorize(title, desc, cat_raw, channel_id):
-    combined = f"{title} {desc} {cat_raw}".lower()
-
-    if any(k in combined for k in ["película", "pelicula", "cine", "film", "largometraje"]) or channel_id == "be-mad":
-        return ("movies", "Cine")
-
-    if any(k in combined for k in ["fútbol", "futbol", "baloncesto", "tenis", "ciclismo", "deporte", "sports", "liga", "champions", "copa"]) or channel_id in ["teledeporte", "gol-play", "real-madrid-tv"]:
-        return ("sports", "Deportes")
-
-    if any(k in combined for k in ["serie", "telenovela", "temporada", "capítulo", "capitulo", "episodio"]) or channel_id in ["atreseries", "fdf", "energy", "nova"]:
+    # Thematic channel overrides
+    if channel_id in ["fdf", "atreseries", "energy", "nova"]:
+        if any(k in f"{title} {desc}".lower() for k in ["película", "pelicula", "cine", "film", "largometraje"]):
+            return ("movies", "Cine")
         return ("series", "Series")
 
-    if any(k in combined for k in ["telediario", "noticias", "informativo", "el tiempo", "actualidad", "al rojo vivo", "debate"]) or channel_id == "24h":
+    if channel_id == "be-mad":
+        return ("movies", "Cine")
+
+    if channel_id in ["clan", "boing"]:
+        return ("kids", "Infantil")
+
+    if channel_id == "24h":
         return ("news", "Informativo")
 
-    if any(k in combined for k in ["dibujos", "animación", "animacion", "infantil", "peppa pig", "bob esponja", "pocoyó"]) or channel_id in ["clan", "boing"]:
+    if channel_id in ["teledeporte", "gol-play", "real-madrid-tv"]:
+        return ("sports", "Deportes")
+
+    t_lower = title.lower()
+    d_lower = desc.lower()
+    c_lower = cat_raw.lower()
+    combined = f"{t_lower} {d_lower} {c_lower}"
+
+    # 1. First priority: Check TITLE explicitly
+    # News / Information in title
+    if re.search(r"\b(telediario|noticias|informativo|el tiempo|actualidad|al rojo vivo|la noche en 24h|debate)\b", t_lower):
+        return ("news", "Informativo")
+
+    # Movies in title or category
+    if re.search(r"\b(película|pelicula|cine|film|largometraje)\b", t_lower) or "cine" in c_lower or "película" in c_lower:
+        return ("movies", "Cine")
+
+    # Sports in title or category
+    if re.search(r"\b(fútbol|futbol|baloncesto|basket|tenis|ciclismo|deportes|deporte|champions|copa del rey|laliga|la liga|motogp|f1|fórmula 1|padel|pádel|atletismo)\b", t_lower) or "deporte" in c_lower:
+        return ("sports", "Deportes")
+
+    # Series in title or category
+    if re.search(r"\b(serie|series|telenovela|temporada|capítulo|capitulo|episodio)\b", t_lower) or "serie" in c_lower:
+        return ("series", "Series")
+
+    # Kids in title or category
+    if re.search(r"\b(dibujos|animación|animacion|infantil|peppa pig|bob esponja|pocoyó|patrulla canina)\b", t_lower) or "infantil" in c_lower:
+        return ("kids", "Infantil")
+
+    # 2. Secondary check on combined description
+    if re.search(r"\b(telediario|noticias|informativo)\b", combined):
+        return ("news", "Informativo")
+
+    if re.search(r"\b(película|pelicula|cine|largometraje)\b", combined):
+        return ("movies", "Cine")
+
+    if re.search(r"\b(serie|telenovela|temporada|capítulo|capitulo|episodio|ficción|sitcom)\b", combined):
+        return ("series", "Series")
+
+    if re.search(r"\b(partido|retransmisión deportiva|la liga ea sports|liga endesa|champions league|vuelta a españa|tour de francia|roland garros)\b", combined):
+        return ("sports", "Deportes")
+
+    if re.search(r"\b(dibujos animados|serie de animación|infantil)\b", combined):
         return ("kids", "Infantil")
 
     return ("entertainment", "Entretenimiento")
@@ -188,7 +231,7 @@ def main():
                         "startCanarias": start_canarias,
                         "stopCanarias": stop_canarias,
                         "durationMinutes": duration,
-                        "icon": icon_url or target_ch["logo"],
+                        "icon": icon_url,
                         "isTonightPrime": is_tonight_prime
                     })
                     count += 1

@@ -45,6 +45,7 @@
       <div class="absolute bottom-4 left-6 flex items-center gap-3">
         <div class="w-10 h-10 bg-slate-950/90 rounded-xl p-1.5 flex items-center justify-center border border-slate-700/60">
           <img id="modal-channel-logo" src="" alt="" class="max-w-full max-h-full object-contain" />
+          <span id="modal-channel-fallback" class="hidden font-bold text-xs text-amber-400 font-mono">TV</span>
         </div>
         <div>
           <span id="modal-channel-name" class="font-bold text-white text-sm drop-shadow block"></span>
@@ -137,7 +138,7 @@
   const CATEGORY_FALLBACKS = {
     'Cine': 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80',
     'Series': 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=800&q=80',
-    'Deportes': 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
+    'Deportes': 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80',
     'Informativo': 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=800&q=80',
     'Infantil': 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80',
     'Entretenimiento': 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80'
@@ -165,15 +166,35 @@
     document.getElementById('modal-description').textContent = desc;
     document.getElementById('modal-category').textContent = cat;
     document.getElementById('modal-channel-name').textContent = chName;
-    document.getElementById('modal-channel-logo').src = chLogo;
+
+    // Channel Logo with resilient fallback
+    const logoEl = document.getElementById('modal-channel-logo');
+    const logoFallback = document.getElementById('modal-channel-fallback');
+    if (logoEl) {
+      logoEl.style.display = 'block';
+      if (logoFallback) {
+        logoFallback.classList.add('hidden');
+        logoFallback.textContent = chName.slice(0, 3);
+      }
+      logoEl.src = chLogo;
+      logoEl.onerror = function() {
+        this.style.display = 'none';
+        if (logoFallback) logoFallback.classList.remove('hidden');
+      };
+    }
 
     // Photo banner with fallback
     const imgEl = document.getElementById('modal-image');
     const fallbackPhoto = CATEGORY_FALLBACKS[cat] || CATEGORY_FALLBACKS['Entretenimiento'];
+    imgEl.style.opacity = '1';
     imgEl.src = img || fallbackPhoto;
     imgEl.onerror = function() {
-      this.onerror = null;
-      this.src = fallbackPhoto;
+      if (this.src !== fallbackPhoto) {
+        this.src = fallbackPhoto;
+      } else {
+        this.onerror = null;
+        this.style.opacity = '0';
+      }
     };
 
     // Watch Live Button

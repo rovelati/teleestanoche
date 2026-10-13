@@ -62,7 +62,15 @@ const jsonLd = {
       
       <!-- Big Logo -->
       <div class="w-24 h-24 bg-slate-950 rounded-2xl p-3 flex items-center justify-center border border-slate-800 shrink-0">
-        <img src={channel.logo} alt={channel.name} class="max-h-full max-w-full object-contain" />
+        <img 
+          src={channel.logo} 
+          alt={channel.name} 
+          class="max-h-full max-w-full object-contain" 
+          onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');"
+        />
+        <span class="hidden font-bold text-xl text-amber-400 font-mono">
+          {channel.name}
+        </span>
       </div>
 
       <div class="flex-1 text-center md:text-left space-y-2">
@@ -150,7 +158,13 @@ const jsonLd = {
               <div class="flex-1 flex items-start gap-4">
                 {p.icon && (
                   <div class="w-16 h-12 sm:w-20 sm:h-14 rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shrink-0 hidden sm:block">
-                    <img src={p.icon} alt={p.title} class="w-full h-full object-cover" loading="lazy" />
+                    <img 
+                      src={p.icon} 
+                      alt={p.title} 
+                      class="w-full h-full object-cover" 
+                      loading="lazy" 
+                      onerror="this.onerror=null; this.parentElement.style.display='none';"
+                    />
                   </div>
                 )}
                 <div class="space-y-1 min-w-0 flex-1">

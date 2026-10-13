@@ -25,7 +25,7 @@ const badgeClass = program ? (categoryColors[program.category] || categoryColors
 const CATEGORY_FALLBACKS: Record<string, string> = {
   movies: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80',
   series: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=600&q=80',
-  sports: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80',
+  sports: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80',
   news: 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=600&q=80',
   kids: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=600&q=80',
   entertainment: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80'
@@ -54,7 +54,11 @@ const photoUrl = program?.icon || (program ? CATEGORY_FALLBACKS[program.category
               alt={channel.name} 
               class="max-h-full max-w-full object-contain"
               loading="lazy"
+              onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');"
             />
+            <span class="hidden font-bold text-xs text-amber-400 font-mono">
+              {channel.name.slice(0, 3)}
+            </span>
           </div>
           <div>
             <div class="flex items-center gap-1.5">
@@ -101,7 +105,7 @@ const photoUrl = program?.icon || (program ? CATEGORY_FALLBACKS[program.category
               alt={program.title} 
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
-              onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS[program.category] || CATEGORY_FALLBACKS.entertainment}';`}
+              onerror={`this.onerror=function(){this.style.opacity='0';}; this.src='${CATEGORY_FALLBACKS[program.category] || CATEGORY_FALLBACKS.entertainment}';`}
             />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
 
@@ -196,7 +200,16 @@ const photoUrl = program?.icon || (program ? CATEGORY_FALLBACKS[program.category
       <div class="flex items-center justify-between md:justify-start gap-3 md:w-48 shrink-0">
         <a href={`/${channel.id}/`} class="flex items-center gap-2.5 group">
           <div class="w-10 h-10 bg-slate-950 rounded-xl p-1.5 flex items-center justify-center border border-slate-800 shrink-0">
-            <img src={channel.logo} alt={channel.name} class="max-h-full max-w-full object-contain" loading="lazy" />
+            <img 
+              src={channel.logo} 
+              alt={channel.name} 
+              class="max-h-full max-w-full object-contain" 
+              loading="lazy" 
+              onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');"
+            />
+            <span class="hidden font-bold text-xs text-amber-400 font-mono">
+              {channel.name.slice(0, 3)}
+            </span>
           </div>
           <div>
             <div class="flex items-center gap-1.5">
@@ -236,7 +249,7 @@ const photoUrl = program?.icon || (program ? CATEGORY_FALLBACKS[program.category
               alt={program.title} 
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
-              onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS[program.category] || CATEGORY_FALLBACKS.entertainment}';`}
+              onerror={`this.onerror=function(){this.style.opacity='0';}; this.src='${CATEGORY_FALLBACKS[program.category] || CATEGORY_FALLBACKS.entertainment}';`}
             />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
             <span class={`absolute bottom-1 left-1 text-[8px] font-bold uppercase tracking-wider px-1.5 py-0.2 rounded border ${badgeClass}`}>
