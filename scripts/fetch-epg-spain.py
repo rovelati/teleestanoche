@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 fetch-epg-spain.py
-Downloads Spanish EPG XMLTV (EPG_dobleM with TDTChannels fallback),
+Downloads Spanish EPG XMLTV (EPG_dobleM with TDTChannels fallback for missing channels like GOL PLAY),
 filters target channels for teleestanoche.es, converts timezones,
 categorizes genres, and writes src/data/epg-cache.json.
 """
@@ -35,29 +35,20 @@ def load_channels():
     with open(CHANNELS_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
-def download_xmltv():
-    urls = [PRIMARY_EPG_URL, FALLBACK_EPG_URL]
-    data = None
-    for url in urls:
-        try:
-            print(f"[fetch-epg-spain] Downloading XMLTV from {url}...")
-            req = urllib.request.Request(
-                url,
-                headers={"User-Agent": "TeleEstaNoche-Bot/1.0 (+https://www.teleestanoche.es)"}
-            )
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                raw = resp.read()
-                # Decompress if gzipped
-                if url.endswith(".gz") or raw[:2] == b'\x1f\x8b':
-                    data = gzip.decompress(raw)
-                else:
-                    data = raw
-                print(f"[fetch-epg-spain] Downloaded and decompressed {len(data)} bytes")
-                return data
-        except Exception as e:
-            print(f"[fetch-epg-spain] Failed downloading {url}: {e}")
-            continue
-    raise RuntimeError("Could not download any Spanish XMLTV feed.")
+def download_feed(url):
+    print(f"[fetch-epg-spain] Downloading XMLTV from {url}...")
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "TeleEstaNoche-Bot/1.0 (+https://www.teleestanoche.es)"}
+    )
+    with urllib.request.urlopen(req, timeout=35) as resp:
+        raw = resp.read()
+        if url.endswith(".gz") or raw[:2] == b'\x1f\x8b':
+            data = gzip.decompress(raw)
+        else:
+            data = raw
+        print(f"[fetch-epg-spain] Downloaded and decompressed {len(data)} bytes from {url}")
+        return data
 
 def parse_xmltv_date(date_str):
     # Formats: "20261013075000 +0200" or "20261013075000"
@@ -75,7 +66,6 @@ def parse_xmltv_date(date_str):
         offset = timezone(sign * timedelta(hours=tz_hours, minutes=tz_mins))
         return base_dt.replace(tzinfo=offset)
     else:
-        # Default UTC
         return base_dt.replace(tzinfo=timezone.utc)
 
 def categorize(title, desc, cat_raw, channel_id):
@@ -95,6 +85,8 @@ def categorize(title, desc, cat_raw, channel_id):
         return ("news", "Informativo")
 
     if channel_id in ["teledeporte", "gol-play", "real-madrid-tv"]:
+        if any(k in f"{title} {desc}".lower() for k in ["película", "pelicula", "cine", "film", "largometraje"]):
+            return ("movies", "Cine")
         return ("sports", "Deportes")
 
     t_lower = title.lower()
@@ -112,7 +104,7 @@ def categorize(title, desc, cat_raw, channel_id):
         return ("movies", "Cine")
 
     # Sports in title or category
-    if re.search(r"\b(fútbol|futbol|baloncesto|basket|tenis|ciclismo|deportes|deporte|champions|copa del rey|laliga|la liga|motogp|f1|fórmula 1|padel|pádel|atletismo)\b", t_lower) or "deporte" in c_lower:
+    if re.search(r"\b(fútbol|futbol|baloncesto|basket|tenis|ciclismo|deportes|deporte|champions|copa del rey|laliga|la liga|motogp|f1|fórmula 1|padel|pádel|atletismo|boxeo)\b", t_lower) or "deporte" in c_lower:
         return ("sports", "Deportes")
 
     # Series in title or category
@@ -141,34 +133,46 @@ def categorize(title, desc, cat_raw, channel_id):
 
     return ("entertainment", "Entretenimiento")
 
-def main():
-    channels = load_channels()
+def extract_programs_from_xml(xml_bytes, target_channels, min_time, max_time):
     xmltv_to_channel = {}
-    for ch in channels:
+    for ch in target_channels:
         xmltv_to_channel[ch["xmltvId"].lower()] = ch
         xmltv_to_channel[ch["name"].lower()] = ch
         xmltv_to_channel[ch["id"].lower()] = ch
+        
+        # Channel-specific aliases across providers
+        if ch["id"] == "gol-play":
+            xmltv_to_channel["gol.tv"] = ch
+            xmltv_to_channel["gol play"] = ch
+            xmltv_to_channel["golstadium bar"] = ch
+            xmltv_to_channel["gol"] = ch
+        elif ch["id"] == "la-1":
+            xmltv_to_channel["la 1"] = ch
+            xmltv_to_channel["la 1 hd"] = ch
+        elif ch["id"] == "la-2":
+            xmltv_to_channel["la 2"] = ch
+        elif ch["id"] == "antena-3":
+            xmltv_to_channel["antena 3"] = ch
+            xmltv_to_channel["antena 3 hd"] = ch
+        elif ch["id"] == "cuatro":
+            xmltv_to_channel["cuatro"] = ch
+            xmltv_to_channel["cuatro hd"] = ch
+        elif ch["id"] == "telecinco":
+            xmltv_to_channel["telecinco"] = ch
+            xmltv_to_channel["telecinco hd"] = ch
+        elif ch["id"] == "lasexta":
+            xmltv_to_channel["la sexta"] = ch
+            xmltv_to_channel["la sexta hd"] = ch
+            xmltv_to_channel["lasexta"] = ch
 
-    xml_bytes = download_xmltv()
-    print("[fetch-epg-spain] Parsing XML...")
-    
-    now_utc = datetime.now(timezone.utc)
-    # Window: from 6 hours ago to 36 hours ahead
-    min_time = now_utc - timedelta(hours=6)
-    max_time = now_utc + timedelta(hours=36)
-    
     programs = []
-    
-    # Fast iterparse to keep memory light
     context = ET.iterparse(io.BytesIO(xml_bytes), events=("end",))
     
-    count = 0
     for event, elem in context:
         if elem.tag == "programme":
-            ch_attr = elem.get("channel", "")
-            ch_lower = ch_attr.lower()
+            ch_attr = elem.get("channel", "").lower()
+            target_ch = xmltv_to_channel.get(ch_attr)
             
-            target_ch = xmltv_to_channel.get(ch_lower)
             if target_ch:
                 start_raw = elem.get("start", "")
                 stop_raw = elem.get("stop", "")
@@ -203,11 +207,10 @@ def main():
                     duration = max(1, int((dt_stop - dt_start).total_seconds() / 60))
                     cat_slug, cat_es = categorize(title, desc, cat_raw, target_ch["id"])
                     
-                    # Prime time in Spain: starts between 21:15 and 23:15, or is active at 22:15
+                    # Prime time in Spain: starts between 21:15 and 23:15, or active around 22:15
                     madrid_hour = dt_madrid_start.hour + dt_madrid_start.minute / 60.0
                     madrid_stop_hour = dt_madrid_stop.hour + dt_madrid_stop.minute / 60.0
                     
-                    # If stops next day morning
                     if dt_madrid_stop.date() > dt_madrid_start.date():
                         madrid_stop_hour += 24.0
                     
@@ -234,20 +237,63 @@ def main():
                         "icon": icon_url,
                         "isTonightPrime": is_tonight_prime
                     })
-                    count += 1
                     
             elem.clear()
 
+    return programs
+
+def main():
+    channels = load_channels()
+    now_utc = datetime.now(timezone.utc)
+    min_time = now_utc - timedelta(hours=6)
+    max_time = now_utc + timedelta(hours=36)
+    
+    all_programs = []
+    
+    # 1. Primary EPG extraction
+    try:
+        primary_bytes = download_feed(PRIMARY_EPG_URL)
+        print("[fetch-epg-spain] Parsing Primary XML...")
+        all_programs = extract_programs_from_xml(primary_bytes, channels, min_time, max_time)
+        print(f"[fetch-epg-spain] Primary feed returned {len(all_programs)} programs")
+    except Exception as e:
+        print(f"[fetch-epg-spain] Primary feed error: {e}")
+
+    # 2. Check for channels with 0 programs (e.g. GOL PLAY)
+    found_channel_ids = set(p["channelId"] for p in all_programs)
+    missing_channels = [ch for ch in channels if ch["id"] not in found_channel_ids]
+
+    if missing_channels:
+        print(f"[fetch-epg-spain] Missing programs for {len(missing_channels)} channels: {[ch['name'] for ch in missing_channels]}")
+        try:
+            fallback_bytes = download_feed(FALLBACK_EPG_URL)
+            print("[fetch-epg-spain] Parsing Fallback XML for missing channels...")
+            fallback_progs = extract_programs_from_xml(fallback_bytes, missing_channels, min_time, max_time)
+            print(f"[fetch-epg-spain] Fallback feed returned {len(fallback_progs)} programs")
+            all_programs.extend(fallback_progs)
+        except Exception as e:
+            print(f"[fetch-epg-spain] Fallback feed error: {e}")
+
+    # Deduplicate by (channelId, startTime)
+    seen_keys = set()
+    deduped_programs = []
+    for p in all_programs:
+        key = (p["channelId"], p["startTime"])
+        if key not in seen_keys:
+            seen_keys.add(key)
+            deduped_programs.append(p)
+
     # Sort programs by channel order, then start time
     ch_order = {ch["id"]: i for i, ch in enumerate(channels)}
-    programs.sort(key=lambda p: (ch_order.get(p["channelId"], 99), p["startTime"]))
+    deduped_programs.sort(key=lambda p: (ch_order.get(p["channelId"], 99), p["startTime"]))
     
-    print(f"[fetch-epg-spain] Extracted {len(programs)} programs across {len(channels)} target channels")
+    covered_ids = set(p["channelId"] for p in deduped_programs)
+    print(f"[fetch-epg-spain] Final: {len(deduped_programs)} programs across {len(covered_ids)}/{len(channels)} channels")
     
     cache_data = {
         "updatedAt": now_utc.isoformat(),
         "channels": channels,
-        "programs": programs
+        "programs": deduped_programs
     }
     
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
