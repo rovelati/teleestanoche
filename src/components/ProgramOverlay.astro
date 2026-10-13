@@ -1,0 +1,318 @@
+---
+/**
+ * ProgramOverlay component for teleestanoche.es
+ * Complete interactive modal:
+ * 1. Program photo and backdrop
+ * 2. Complete synopsis, actors, channel info, and timing
+ * 3. Watch Live (Ver en directo) official broadcaster stream link
+ * 4. Add to Calendar (Guardar en calendario / recordatorio Google Calendar & Apple iCal)
+ * 5. Share program
+ */
+---
+
+<div 
+  id="program-modal" 
+  class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 transition-opacity duration-200"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+>
+  <div 
+    class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-transform duration-200 scale-95 flex flex-col max-h-[92vh]"
+    id="program-modal-card"
+  >
+    <!-- Modal Photo Banner -->
+    <div class="relative h-52 bg-slate-950 overflow-hidden flex-shrink-0">
+      <img 
+        id="modal-image" 
+        src="" 
+        alt="" 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+
+      <!-- Close Button -->
+      <button 
+        type="button" 
+        onclick="closeProgramModal()"
+        class="absolute top-4 right-4 bg-slate-950/70 hover:bg-slate-800 text-slate-300 hover:text-white w-9 h-9 rounded-full flex items-center justify-center border border-slate-700/60 transition-colors z-10"
+        aria-label="Cerrar ventana"
+      >
+        ✕
+      </button>
+
+      <!-- Channel Badge -->
+      <div class="absolute bottom-4 left-6 flex items-center gap-3">
+        <div class="w-10 h-10 bg-slate-950/90 rounded-xl p-1.5 flex items-center justify-center border border-slate-700/60">
+          <img id="modal-channel-logo" src="" alt="" class="max-w-full max-h-full object-contain" />
+        </div>
+        <div>
+          <span id="modal-channel-name" class="font-bold text-white text-sm drop-shadow block"></span>
+          <span class="text-[10px] text-slate-300 font-medium">TDT España</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Content -->
+    <div class="p-6 overflow-y-auto flex-1 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center gap-2 mb-2 flex-wrap">
+          <span id="modal-time" class="text-xs font-mono font-bold bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-lg">
+            --:--
+          </span>
+          <span id="modal-category" class="text-xs font-semibold px-2 py-0.5 rounded-md bg-slate-800 text-slate-300">
+            Entretenimiento
+          </span>
+        </div>
+
+        <h3 id="modal-title" class="text-xl sm:text-2xl font-extrabold text-white mb-3">
+        </h3>
+
+        <p id="modal-description" class="text-xs sm:text-sm text-slate-300 leading-relaxed max-h-48 overflow-y-auto pr-1 whitespace-pre-line">
+        </p>
+      </div>
+
+      <!-- Actions -->
+      <div class="mt-6 pt-4 border-t border-slate-800 space-y-3">
+        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+          
+          <!-- Watch Live (Ver en directo) -->
+          <a 
+            id="modal-watch-live-btn"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-red-600 hover:bg-red-500 active:bg-red-700 text-white font-bold rounded-2xl transition-colors text-xs sm:text-sm shadow-md group"
+          >
+            <span class="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
+            <span id="modal-watch-label">Ver en directo</span>
+            <span class="text-xs opacity-75 group-hover:translate-x-0.5 transition-transform">↗</span>
+          </a>
+
+          <!-- Add to Calendar (Salva in rubrica / Promemoria calendario) -->
+          <button 
+            type="button"
+            id="modal-calendar-btn"
+            onclick="handleAddToCalendar()"
+            class="w-full sm:flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold rounded-2xl border border-slate-700 transition-colors text-xs sm:text-sm"
+            title="Guardar en Google Calendar o descargar para Apple/Outlook"
+          >
+            <span>📅</span>
+            <span id="modal-cal-label">Guardar recordatorio</span>
+          </button>
+
+          <!-- Share Button -->
+          <button 
+            type="button"
+            id="modal-share-btn"
+            onclick="handleShareProgram()"
+            class="p-3 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-2xl border border-slate-700 transition-colors shrink-0"
+            title="Compartir programa"
+            aria-label="Compartir programa"
+          >
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] text-slate-500 font-medium px-1 pt-1">
+          <span>Tele Esta Noche • Emisión oficial TDT</span>
+          <button 
+            type="button"
+            onclick="closeProgramModal()"
+            class="hover:text-slate-400 transition-colors underline"
+          >
+            Cerrar ficha
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  let activeProgram = null;
+
+  const CATEGORY_FALLBACKS = {
+    'Cine': 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80',
+    'Series': 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=800&q=80',
+    'Deportes': 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
+    'Informativo': 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=800&q=80',
+    'Infantil': 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80',
+    'Entretenimiento': 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80'
+  };
+
+  function openProgramModal(el) {
+    const modal = document.getElementById('program-modal');
+    const card = document.getElementById('program-modal-card');
+    if (!modal) return;
+
+    const channelSlug = el.getAttribute('data-channel-slug') || '';
+    const chName = el.getAttribute('data-channel-name') || '';
+    const chLogo = el.getAttribute('data-channel-logo') || '';
+    const title = el.getAttribute('data-title') || '';
+    const desc = el.getAttribute('data-desc') || 'Sin descripción disponible para este programa.';
+    const cat = el.getAttribute('data-category') || 'Entretenimiento';
+    const startIso = el.getAttribute('data-start') || '';
+    const endIso = el.getAttribute('data-end') || '';
+    const img = el.getAttribute('data-image') || '';
+    const streamUrl = el.getAttribute('data-stream-url') || '';
+
+    activeProgram = { channelSlug, chName, chLogo, title, desc, cat, startIso, endIso, img, streamUrl };
+
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-description').textContent = desc;
+    document.getElementById('modal-category').textContent = cat;
+    document.getElementById('modal-channel-name').textContent = chName;
+    document.getElementById('modal-channel-logo').src = chLogo;
+
+    // Photo banner with fallback
+    const imgEl = document.getElementById('modal-image');
+    const fallbackPhoto = CATEGORY_FALLBACKS[cat] || CATEGORY_FALLBACKS['Entretenimiento'];
+    imgEl.src = img || fallbackPhoto;
+    imgEl.onerror = function() {
+      this.onerror = null;
+      this.src = fallbackPhoto;
+    };
+
+    // Watch Live Button
+    const watchBtn = document.getElementById('modal-watch-live-btn');
+    const watchLabel = document.getElementById('modal-watch-label');
+    if (streamUrl) {
+      watchBtn.href = streamUrl;
+      watchBtn.classList.remove('hidden');
+      watchLabel.textContent = `Ver en directo en ${chName}`;
+    } else {
+      watchBtn.classList.add('hidden');
+    }
+
+    // Format timing according to user preference (Península vs Canarias)
+    const savedTz = localStorage.getItem('teleestanoche_tz') || 'madrid';
+    const tzTarget = savedTz === 'canarias' ? 'Atlantic/Canary' : 'Europe/Madrid';
+    
+    try {
+      const dStart = new Date(startIso);
+      const startFmt = new Intl.DateTimeFormat('es-ES', { timeZone: tzTarget, hour: '2-digit', minute: '2-digit', hour12: false }).format(dStart);
+      let endFmt = '';
+      if (endIso) {
+        const dEnd = new Date(endIso);
+        endFmt = ' - ' + new Intl.DateTimeFormat('es-ES', { timeZone: tzTarget, hour: '2-digit', minute: '2-digit', hour12: false }).format(dEnd);
+      }
+      document.getElementById('modal-time').textContent = startFmt + endFmt;
+    } catch (e) {
+      document.getElementById('modal-time').textContent = '--:--';
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    setTimeout(() => {
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+    }, 10);
+  }
+
+  function closeProgramModal() {
+    const modal = document.getElementById('program-modal');
+    const card = document.getElementById('program-modal-card');
+    if (!modal) return;
+    card.classList.remove('scale-100');
+    card.classList.add('scale-95');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }, 150);
+  }
+
+  function handleAddToCalendar() {
+    if (!activeProgram) return;
+    const prog = activeProgram;
+
+    const startUtc = new Date(prog.startIso).toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+    const endUtc = prog.endIso 
+      ? new Date(prog.endIso).toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z')
+      : startUtc;
+
+    const streamUrl = prog.streamUrl || `https://www.teleestanoche.es/${prog.channelSlug}/`;
+    const details = `${prog.title} en ${prog.chName}\n\n${prog.desc}\n\nVer emisión oficial: ${streamUrl}\nTele Esta Noche: https://www.teleestanoche.es/`;
+
+    const isChrome = /Chrome\//.test(navigator.userAgent) && !/Edg\/|OPR\/|SamsungBrowser/.test(navigator.userAgent);
+
+    if (isChrome) {
+      // Direct Google Calendar Add
+      const params = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: `${prog.title} (${prog.chName})`,
+        dates: `${startUtc}/${endUtc}`,
+        details: details,
+        location: streamUrl,
+      });
+      window.open(`https://calendar.google.com/calendar/render?${params}`, '_blank', 'noopener,noreferrer');
+    } else {
+      // Download Apple / Outlook / iCal standard (.ics)
+      const icsData = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//TeleEstaNoche//ES',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `UID:${Date.now()}@teleestanoche.es`,
+        `DTSTAMP:${startUtc}`,
+        `DTSTART:${startUtc}`,
+        `DTEND:${endUtc}`,
+        `SUMMARY:${prog.title} en ${prog.chName}`,
+        `DESCRIPTION:${details.replace(/\n/g, '\\n')}`,
+        `LOCATION:${streamUrl}`,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${prog.title.replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '_').toLowerCase()}.ics`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+    }
+
+    const label = document.getElementById('modal-cal-label');
+    if (label) {
+      label.textContent = '✓ ¡Guardado!';
+      setTimeout(() => {
+        label.textContent = 'Guardar recordatorio';
+      }, 2500);
+    }
+  }
+
+  function handleShareProgram() {
+    if (!activeProgram) return;
+    const shareData = {
+      title: `${activeProgram.title} en ${activeProgram.chName} | Tele Esta Noche`,
+      text: `Mira ${activeProgram.title} en ${activeProgram.chName} esta noche en la televisión.`,
+      url: `https://www.teleestanoche.es/${activeProgram.channelSlug}/`
+    };
+
+    if (navigator.share) {
+      navigator.share(shareData).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(shareData.url).then(() => {
+        alert('Enlace copiado al portapapeles');
+      });
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeProgramModal();
+  });
+
+  const modalBackdrop = document.getElementById('program-modal');
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeProgramModal();
+    });
+  }
+</script>

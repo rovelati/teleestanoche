@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T12:51:01.608786+00:00",
+  "updatedAt": "2026-10-13T12:58:58.277038+00:00",
   "channels": [
     {
       "id": "la-1",
@@ -1932,25 +1932,6 @@
       "stopCanarias": "02:40",
       "durationMinutes": 75,
       "icon": "https://www.movistarplus.es/recorte/n/dispficha/METB3P4366213",
-      "isTonightPrime": false
-    },
-    {
-      "id": "antena-3-1791864840",
-      "channelId": "antena-3",
-      "channelName": "Antena 3",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Antena%203.png",
-      "title": "Las noticias de la mañana",
-      "description": "· Primer noticiario de la jornada, en el que se ofrece un avance de las principales noticias del día. Manu Sánchez dirige y conduce este informativo matinal. Con la información del tiempo a cargo de Mercedes Martín.\n· País: España\n· Presenta: Manu Sánchez, Noor Ben Yessef.",
-      "category": "news",
-      "categoryEs": "Informativo",
-      "startTime": "2026-10-13T06:14:00+02:00",
-      "stopTime": "2026-10-13T08:55:00+02:00",
-      "startMadrid": "06:14",
-      "stopMadrid": "08:55",
-      "startCanarias": "05:14",
-      "stopCanarias": "07:55",
-      "durationMinutes": 161,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/MNOVAP758281",
       "isTonightPrime": false
     },
     {
@@ -9839,25 +9820,6 @@
       "isTonightPrime": false
     },
     {
-      "id": "divinity-1791873000",
-      "channelId": "divinity",
-      "channelName": "Divinity",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Divinity.png",
-      "title": "Pasión Prohibida T1 E23",
-      "description": "· Bianca Santillana vive con resentimiento hacia su madre tras la muerte de su padre.",
-      "category": "entertainment",
-      "categoryEs": "Entretenimiento",
-      "startTime": "2026-10-13T08:30:00+02:00",
-      "stopTime": "2026-10-13T08:55:00+02:00",
-      "startMadrid": "08:30",
-      "stopMadrid": "08:55",
-      "startCanarias": "07:30",
-      "stopCanarias": "07:55",
-      "durationMinutes": 25,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/MDIVINIP1114142",
-      "isTonightPrime": false
-    },
-    {
       "id": "divinity-1791874500",
       "channelId": "divinity",
       "channelName": "Divinity",
@@ -12898,25 +12860,6 @@
       "isTonightPrime": false
     },
     {
-      "id": "dkiss-1791871860",
-      "channelId": "dkiss",
-      "channelName": "DKISS",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DKISS.png",
-      "title": "Maestros de la restauración T14 · Ricas cosechas",
-      "description": "· Drew visita en Monmouthshire al mayorista de antigüedades ferroviarias más grande del Reino Unido. En Gloucestershire, encuentra una mesa de juego.\n· País: Estados Unidos y Reino Unido\n· Presenta: Drew Pritchard.\n· Reparto: Drew Pritchard.\n· Productora: Cineflix.",
-      "category": "movies",
-      "categoryEs": "Cine",
-      "startTime": "2026-10-13T08:11:00+02:00",
-      "stopTime": "2026-10-13T08:55:00+02:00",
-      "startMadrid": "08:11",
-      "stopMadrid": "08:55",
-      "startCanarias": "07:11",
-      "stopCanarias": "07:55",
-      "durationMinutes": 44,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/F4366305",
-      "isTonightPrime": false
-    },
-    {
       "id": "dkiss-1791874500",
       "channelId": "dkiss",
       "channelName": "DKISS",
@@ -13845,25 +13788,6 @@
       "stopCanarias": "02:22",
       "durationMinutes": 48,
       "icon": "https://www.movistarplus.es/recorte/n/dispficha/MDKISSP1424499",
-      "isTonightPrime": false
-    },
-    {
-      "id": "ten-1791871980",
-      "channelId": "ten",
-      "channelName": "TEN",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TEN.png",
-      "title": "Accidente, suicidio o asesinato E2",
-      "description": "· La serie explora las increíbles historias reales de muertes sospechosas. Cada episodio recorre la investigación de principio a fin, llevando a los espectadores a través de los giros y vueltas de estos casos impactantes.\n· País: Estados Unidos\n· Dirección: Dominik Rausch.",
-      "category": "series",
-      "categoryEs": "Series",
-      "startTime": "2026-10-13T08:13:00+02:00",
-      "stopTime": "2026-10-13T08:57:00+02:00",
-      "startMadrid": "08:13",
-      "stopMadrid": "08:57",
-      "startCanarias": "07:13",
-      "stopCanarias": "07:57",
-      "durationMinutes": 44,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/MTENP1738907",
       "isTonightPrime": false
     },
     {
@@ -16619,25 +16543,6 @@
       "stopCanarias": "03:00",
       "durationMinutes": 240,
       "icon": "https://www.movistarplus.es/recorte/n/dispficha/MREALMP1635667",
-      "isTonightPrime": false
-    },
-    {
-      "id": "clan-1791874200",
-      "channelId": "clan",
-      "channelName": "Clan",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Clan.png",
-      "title": "Peppa Pig T11 E17 · Cuidando al abuelo Pig",
-      "description": "· Pepa es una adorable cerdita que vive con su hermanito George, su madre y su padre. Sus actividades preferidas son jugar, disfrazarse y pasarse el día saltando las charcas de barro que rodean su casa.\n· País: Reino Unido\n· Productora: Astley Baker Davies Ltd, Contender Group.",
-      "category": "kids",
-      "categoryEs": "Infantil",
-      "startTime": "2026-10-13T08:50:00+02:00",
-      "stopTime": "2026-10-13T08:55:00+02:00",
-      "startMadrid": "08:50",
-      "stopMadrid": "08:55",
-      "startCanarias": "07:50",
-      "stopCanarias": "07:55",
-      "durationMinutes": 5,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/MCLANTVP4249772",
       "isTonightPrime": false
     },
     {
@@ -19773,25 +19678,6 @@
       "stopCanarias": "02:12",
       "durationMinutes": 46,
       "icon": "https://www.movistarplus.es/recorte/n/dispficha/MCLANTVP3109760",
-      "isTonightPrime": false
-    },
-    {
-      "id": "boing-1791872880",
-      "channelId": "boing",
-      "channelName": "Boing",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Boing.png",
-      "title": "Doraemon",
-      "description": "· Célebre serie de dibujos animados que tiene como protagonista a Doraemon, un gato cósmico enviado desde el siglo XXII para que cuide a Nobita, un niño travieso que no para de meterse en toda clase de líos.\n· País: Japón\n· Dirección: Tsutomu Shibayama, Young Kyun Park, Chan-Young Park.\n· Guion: Munenori Mizuno, Misuzu Chiba, Nobuyuki Fujimoto.\n· Productora: Shin Ei Animation, Shogakukan, TV & BS Asahi, Jonghyeok Lee, KBS, TV Asahi.",
-      "category": "series",
-      "categoryEs": "Series",
-      "startTime": "2026-10-13T08:28:00+02:00",
-      "stopTime": "2026-10-13T08:56:00+02:00",
-      "startMadrid": "08:28",
-      "stopMadrid": "08:56",
-      "startCanarias": "07:28",
-      "stopCanarias": "07:56",
-      "durationMinutes": 28,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/MBOINGP4302568",
       "isTonightPrime": false
     },
     {

@@ -1,5 +1,6 @@
 ---
 import type { Channel, Program } from '../types/epg';
+import BookmarkButton from './BookmarkButton.astro';
 
 interface Props {
   channel: Channel;
@@ -11,24 +12,35 @@ interface Props {
 const { channel, program, nextProgram, showChannelLink = true } = Astro.props;
 
 const categoryColors: Record<string, string> = {
-  movies: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-  sports: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  series: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-  news: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  kids: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
-  entertainment: 'bg-pink-500/10 text-pink-400 border-pink-500/20',
+  movies: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+  sports: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+  series: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+  news: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+  kids: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
+  entertainment: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
 };
 
 const badgeClass = program ? (categoryColors[program.category] || categoryColors.entertainment) : '';
+
+const CATEGORY_FALLBACKS: Record<string, string> = {
+  movies: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80',
+  series: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=600&q=80',
+  sports: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80',
+  news: 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=600&q=80',
+  kids: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=600&q=80',
+  entertainment: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80'
+};
+
+const photoUrl = program?.icon || (program ? CATEGORY_FALLBACKS[program.category] : '');
 ---
 
 <div 
-  class="channel-card group bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-5 transition-all duration-200 flex flex-col justify-between shadow-sm relative overflow-hidden"
+  class="channel-card group bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-3xl p-5 transition-all duration-200 flex flex-col justify-between shadow-lg relative overflow-hidden"
   data-channel-id={channel.id}
   data-category={program?.category || 'entertainment'}
 >
   <div>
-    <!-- Top Bar: Channel Header & Time -->
+    <!-- Top Bar: Channel Header & Bookmark Button -->
     <div class="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800/80">
       
       <!-- Channel Info -->
@@ -39,9 +51,7 @@ const badgeClass = program ? (categoryColors[program.category] || categoryColors
             alt={channel.name} 
             class="max-h-full max-w-full object-contain"
             loading="lazy"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
           />
-          <span class="hidden text-xs font-bold text-slate-300">{channel.name}</span>
         </div>
         <div>
           <div class="flex items-center gap-1.5">
@@ -58,43 +68,80 @@ const badgeClass = program ? (categoryColors[program.category] || categoryColors
         </div>
       </a>
 
-      <!-- Time Badge -->
-      {program && (
-        <div class="text-right shrink-0">
-          <span class="inline-flex items-center gap-1 text-xs font-bold text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded-lg">
-            <span>🕒</span>
-            <span data-time-madrid={`${program.startMadrid} - ${program.stopMadrid}`} data-time-canarias={`${program.startCanarias} - ${program.stopCanarias}`}>
-              {program.startMadrid} - {program.stopMadrid}
-            </span>
-          </span>
-          <span class="text-[10px] text-slate-500 block mt-0.5 font-medium">
-            {program.durationMinutes} min
-          </span>
-        </div>
-      )}
+      <!-- Actions: Bookmark & Time -->
+      <div class="flex items-center gap-1.5">
+        <BookmarkButton channelSlug={channel.id} />
+      </div>
     </div>
 
-    <!-- Program Content -->
+    <!-- Clickable Program Area (Opens Modal) -->
     {program ? (
-      <div class="space-y-2">
-        <div class="flex items-center gap-2">
-          <span class={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md border ${badgeClass}`}>
-            {program.categoryEs}
-          </span>
+      <div 
+        class="program-clickable cursor-pointer block rounded-2xl transition-all"
+        data-channel-slug={channel.id}
+        data-channel-name={channel.name}
+        data-channel-logo={channel.logo}
+        data-title={program.title}
+        data-desc={program.description}
+        data-category={program.categoryEs}
+        data-start={program.startTime}
+        data-end={program.stopTime}
+        data-image={photoUrl}
+        data-stream-url={channel.streamUrl}
+        onclick="openProgramModal(this)"
+        title="Toca para ver detalles completos y guardar recordatorio"
+      >
+        <!-- Program Photo Banner -->
+        <div class="relative h-40 sm:h-44 w-full bg-slate-950 rounded-2xl overflow-hidden mb-3.5 border border-slate-800/80 group-hover:border-slate-700 transition-colors">
+          <img 
+            src={photoUrl} 
+            alt={program.title} 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+            onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS[program.category] || CATEGORY_FALLBACKS.entertainment}';`}
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+
+          <!-- Category Badge on Photo -->
+          <div class="absolute top-2.5 left-2.5">
+            <span class={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg border backdrop-blur-md shadow-sm ${badgeClass}`}>
+              {program.categoryEs}
+            </span>
+          </div>
+
+          <!-- Time Badge on Photo -->
+          <div class="absolute bottom-2.5 right-2.5">
+            <span class="inline-flex items-center gap-1 text-xs font-mono font-bold text-amber-300 bg-slate-950/90 border border-slate-700/80 px-2.5 py-1 rounded-lg backdrop-blur-md shadow">
+              <span>🕒</span>
+              <span data-time-madrid={`${program.startMadrid} - ${program.stopMadrid}`} data-time-canarias={`${program.startCanarias} - ${program.stopCanarias}`}>
+                {program.startMadrid} - {program.stopMadrid}
+              </span>
+            </span>
+          </div>
         </div>
 
-        <h3 class="text-base font-bold text-white leading-snug line-clamp-2 group-hover:text-amber-300 transition-colors">
-          {program.title}
-        </h3>
+        <!-- Title & Synopsis -->
+        <div class="space-y-1.5">
+          <h3 class="text-base font-bold text-white leading-snug line-clamp-2 group-hover:text-amber-300 transition-colors">
+            {program.title}
+          </h3>
 
-        {program.description && (
-          <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">
-            {program.description}
-          </p>
-        )}
+          {program.description && (
+            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+              {program.description}
+            </p>
+          )}
+
+          <div class="pt-1 flex items-center justify-between text-[11px] text-amber-400 font-medium">
+            <span class="flex items-center gap-1">
+              <span>🔍</span> Ver ficha y recordatorio
+            </span>
+            <span class="text-slate-500 font-normal">{program.durationMinutes} min</span>
+          </div>
+        </div>
       </div>
     ) : (
-      <div class="py-6 text-center text-xs text-slate-500">
+      <div class="py-12 text-center text-xs text-slate-500">
         Información de emisión no disponible
       </div>
     )}
@@ -113,7 +160,7 @@ const badgeClass = program ? (categoryColors[program.category] || categoryColors
   </div>
 
   <!-- Bottom Action Buttons -->
-  <div class="mt-5 pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+  <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
     {showChannelLink && (
       <a 
         href={`/${channel.id}/`} 
@@ -128,7 +175,7 @@ const badgeClass = program ? (categoryColors[program.category] || categoryColors
       href={channel.streamUrl} 
       target="_blank" 
       rel="noopener noreferrer" 
-      class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-colors border border-slate-700/60"
+      class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-colors border border-slate-700/60"
       title={`Ver ${channel.name} en directo en su web oficial`}
     >
       <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>

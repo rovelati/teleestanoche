@@ -28,6 +28,7 @@ const siteUrl = 'https://www.teleestanoche.es';
 const ogImageUrl = `${siteUrl}/og-image.png`;
 
 import '../styles/global.css';
+import ProgramOverlay from '../components/ProgramOverlay.astro';
 ---
 
 <!doctype html>
@@ -95,5 +96,6 @@ import '../styles/global.css';
   
   <body class="min-h-screen flex flex-col bg-slate-950 font-sans selection:bg-amber-400 selection:text-slate-950">
     <slot />
+    <ProgramOverlay />
   </body>
 </html>

@@ -1,0 +1,62 @@
+---
+/**
+ * BookmarkButton component for teleestanoche.es
+ * Saves favourite channels to localStorage
+ */
+interface Props {
+  channelSlug: string;
+}
+
+const { channelSlug } = Astro.props;
+---
+
+<button
+  type="button"
+  class="bookmark-btn p-1.5 rounded-lg text-slate-500 hover:text-amber-400 hover:bg-slate-800 transition-colors"
+  data-channel-slug={channelSlug}
+  aria-label="Añadir canal a favoritos"
+  title="Añadir a canales favoritos"
+>
+  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+    <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+  </svg>
+</button>
+
+<script is:inline>
+  (function() {
+    function initBookmarks() {
+      const saved = JSON.parse(localStorage.getItem('teleestanoche_fav_channels') || '[]');
+      document.querySelectorAll('.bookmark-btn').forEach(btn => {
+        const slug = btn.getAttribute('data-channel-slug');
+        if (saved.includes(slug)) {
+          btn.classList.add('text-amber-400');
+          btn.classList.remove('text-slate-500');
+        } else {
+          btn.classList.remove('text-amber-400');
+          btn.classList.add('text-slate-500');
+        }
+
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          let current = JSON.parse(localStorage.getItem('teleestanoche_fav_channels') || '[]');
+          if (current.includes(slug)) {
+            current = current.filter(s => s !== slug);
+            btn.classList.remove('text-amber-400');
+            btn.classList.add('text-slate-500');
+          } else {
+            current.push(slug);
+            btn.classList.add('text-amber-400');
+            btn.classList.remove('text-slate-500');
+          }
+          localStorage.setItem('teleestanoche_fav_channels', JSON.stringify(current));
+        };
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBookmarks);
+    } else {
+      initBookmarks();
+    }
+  })();
+</script>
