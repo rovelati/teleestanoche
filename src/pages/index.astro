@@ -58,8 +58,17 @@ const jsonLd = {
           </p>
         </div>
 
-        <!-- Right: View Mode Switcher -->
-        <div class="flex items-center gap-2 self-start sm:self-auto">
+        <!-- Right: Live Clock & View Mode Switcher -->
+        <div class="flex flex-wrap items-center gap-2.5 self-start sm:self-auto">
+          <!-- Live Local Clock -->
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl px-3 py-1.5 flex items-center gap-2 shadow-sm" title="Hora local actual">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-xs font-mono font-bold text-amber-400 dynamic-live-clock">
+              --:--:--
+            </span>
+          </div>
+
+          <!-- View Mode Switcher -->
           <div class="flex items-center gap-1 bg-slate-900 border border-slate-800 p-1 rounded-2xl shadow-sm" id="view-mode-selector">
             <button 
               type="button" 

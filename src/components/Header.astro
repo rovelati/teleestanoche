@@ -88,19 +88,30 @@ const { activeTab = 'tonight' } = Astro.props;
         </a>
       </nav>
 
-      <!-- Timezone / Region Selector (Península vs Canarias) -->
-      <div class="flex items-center gap-2">
-        <label for="tz-selector" class="hidden sm:inline-block text-xs font-medium text-slate-400">
-          📍 Horario:
-        </label>
-        <select 
-          id="tz-selector" 
-          class="bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg px-2.5 py-1.5 border border-slate-700 hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-400 cursor-pointer"
-          aria-label="Selecciona zona horaria de España"
-        >
-          <option value="madrid">Península y Baleares (CET)</option>
-          <option value="canarias">Islas Canarias (-1h)</option>
-        </select>
+      <!-- Timezone & Live Local Clock -->
+      <div class="flex items-center gap-2.5">
+        <!-- Live Clock Badge -->
+        <div class="flex items-center gap-1.5 bg-slate-800/90 border border-slate-700/80 px-2.5 py-1.5 rounded-xl shadow-sm" title="Hora local en España">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-xs font-mono font-bold text-amber-400" id="header-live-clock">
+            --:--:--
+          </span>
+        </div>
+
+        <!-- Timezone Selector -->
+        <div class="flex items-center gap-1.5">
+          <label for="tz-selector" class="hidden xl:inline-block text-xs font-medium text-slate-400">
+            📍 Horario:
+          </label>
+          <select 
+            id="tz-selector" 
+            class="bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg px-2.5 py-1.5 border border-slate-700 hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-400 cursor-pointer"
+            aria-label="Selecciona zona horaria de España"
+          >
+            <option value="madrid">Península (CET)</option>
+            <option value="canarias">Canarias (-1h)</option>
+          </select>
+        </div>
       </div>
 
     </div>
@@ -164,17 +175,20 @@ const { activeTab = 'tonight' } = Astro.props;
 <script is:inline>
   (function() {
     const tzSelect = document.getElementById('tz-selector');
-    if (!tzSelect) return;
+    const headerClock = document.getElementById('header-live-clock');
 
-    const savedTz = localStorage.getItem('teleestanoche_tz') || 'madrid';
-    tzSelect.value = savedTz;
-    applyTimezone(savedTz);
+    let currentTz = localStorage.getItem('teleestanoche_tz') || 'madrid';
+    if (tzSelect) {
+      tzSelect.value = currentTz;
+      applyTimezone(currentTz);
 
-    tzSelect.addEventListener('change', (e) => {
-      const val = e.target.value;
-      localStorage.setItem('teleestanoche_tz', val);
-      applyTimezone(val);
-    });
+      tzSelect.addEventListener('change', (e) => {
+        currentTz = e.target.value;
+        localStorage.setItem('teleestanoche_tz', currentTz);
+        applyTimezone(currentTz);
+        updateLiveClock();
+      });
+    }
 
     function applyTimezone(tz) {
       document.querySelectorAll('[data-time-madrid]').forEach(el => {
@@ -182,5 +196,20 @@ const { activeTab = 'tonight' } = Astro.props;
         if (time) el.textContent = time;
       });
     }
+
+    function updateLiveClock() {
+      const now = new Date();
+      const tzTarget = currentTz === 'canarias' ? 'Atlantic/Canary' : 'Europe/Madrid';
+      if (headerClock) {
+        headerClock.textContent = now.toLocaleTimeString('es-ES', { timeZone: tzTarget, hour12: false });
+      }
+      const otherClocks = document.querySelectorAll('.dynamic-live-clock');
+      otherClocks.forEach(c => {
+        c.textContent = now.toLocaleTimeString('es-ES', { timeZone: tzTarget, hour12: false });
+      });
+    }
+
+    updateLiveClock();
+    setInterval(updateLiveClock, 1000);
   })();
 </script>
