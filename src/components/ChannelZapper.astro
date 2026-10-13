@@ -1,0 +1,63 @@
+---
+import { getAllChannels } from '../utils/epg';
+
+const channels = getAllChannels();
+---
+
+<div class="channel-zapper-container bg-slate-900/90 backdrop-blur border border-slate-800 rounded-2xl p-2.5 mb-6 shadow-sm">
+  <div class="flex items-center justify-between mb-2 px-1 text-xs">
+    <div class="flex items-center gap-1.5 font-bold text-slate-300">
+      <span class="text-amber-400">📱</span>
+      <span>Mando Rápido TDT</span>
+      <span class="text-[10px] text-slate-500 font-normal hidden sm:inline">• Salta directamente al canal</span>
+    </div>
+    <span class="text-[10px] text-slate-500 font-medium">Pulsa el canal para saltar</span>
+  </div>
+
+  <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar scroll-smooth py-0.5" id="zapper-strip">
+    {channels.map((ch) => (
+      <button
+        type="button"
+        class="zapper-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-xs font-bold text-slate-300 hover:text-amber-400 shrink-0 transition-all active:scale-95 group"
+        data-target={`channel-card-${ch.id}`}
+        title={`Saltar a ${ch.name} (Canal ${ch.number})`}
+        aria-label={`Saltar a canal ${ch.name}`}
+      >
+        <span class="w-5 h-5 bg-slate-900 rounded-md p-0.5 flex items-center justify-center shrink-0 border border-slate-800">
+          <img src={ch.logo} alt="" class="max-w-full max-h-full object-contain" loading="lazy" />
+        </span>
+        <span class="text-amber-400 font-mono">#{ch.number}</span>
+        <span class="text-[11px] font-medium text-slate-300 group-hover:text-white truncate max-w-[70px]">
+          {ch.name}
+        </span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    function initZapper() {
+      document.querySelectorAll('.zapper-btn').forEach(btn => {
+        btn.onclick = () => {
+          const targetId = btn.getAttribute('data-target');
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Brief highlight effect
+            targetEl.classList.add('ring-2', 'ring-amber-400');
+            setTimeout(() => {
+              targetEl.classList.remove('ring-2', 'ring-amber-400');
+            }, 1200);
+          }
+        };
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initZapper);
+    } else {
+      initZapper();
+    }
+  })();
+</script>

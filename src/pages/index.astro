@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ChannelCard from '../components/ChannelCard.astro';
+import ChannelZapper from '../components/ChannelZapper.astro';
 import { getTonightPrimePrograms } from '../utils/epg';
 
 const primeItems = getTonightPrimePrograms();
@@ -42,8 +43,8 @@ const jsonLd = {
   <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
     
     <!-- Hero / Intro -->
-    <div class="mb-8">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800 pb-6">
+    <div class="mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800 pb-5">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-semibold mb-3">
             <span>🌙</span>
@@ -57,15 +58,38 @@ const jsonLd = {
           </p>
         </div>
 
-        <!-- Quick filter / count -->
-        <div class="shrink-0 flex items-center gap-2 text-xs text-slate-400 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 self-start sm:self-auto">
-          <span>📡</span>
-          <span><strong>24</strong> canales analizados</span>
+        <!-- Right: View Mode Switcher -->
+        <div class="flex items-center gap-2 self-start sm:self-auto">
+          <div class="flex items-center gap-1 bg-slate-900 border border-slate-800 p-1 rounded-2xl shadow-sm" id="view-mode-selector">
+            <button 
+              type="button" 
+              id="view-btn-list" 
+              class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 bg-amber-400 text-slate-950 shadow-sm"
+              title="Vista en lista compacta (rápida para escanear)"
+            >
+              <span>☰</span>
+              <span>Lista rápida</span>
+            </button>
+            <button 
+              type="button" 
+              id="view-btn-grid" 
+              class="px-3 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white transition-all flex items-center gap-1.5"
+              title="Vista en cuadrícula con fotos grandes"
+            >
+              <span>⊞</span>
+              <span>Cuadrícula</span>
+            </button>
+          </div>
         </div>
       </div>
 
+      <!-- Quick Zapper (Telecomando Virtual con salto a canales) -->
+      <div class="mt-4">
+        <ChannelZapper />
+      </div>
+
       <!-- Category Filter Pills (Client-side fast filter) -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-4" id="category-filters">
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-2" id="category-filters">
         <button data-cat="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-400 text-slate-950 shadow-sm transition-colors whitespace-nowrap">
           Todos los canales
         </button>
@@ -87,8 +111,8 @@ const jsonLd = {
       </div>
     </div>
 
-    <!-- Channels Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="channels-grid">
+    <!-- Channels Container (Toggles between view-list and view-grid) -->
+    <div class="view-list flex flex-col gap-3 transition-all duration-200" id="channels-grid">
       {primeItems.map(({ channel, program, nextProgram }) => (
         <ChannelCard 
           channel={channel} 
@@ -118,6 +142,7 @@ const jsonLd = {
 
 <script is:inline>
   (function() {
+    // 1. Category Filtering
     const buttons = document.querySelectorAll('#category-filters .filter-btn');
     const cards = document.querySelectorAll('.channel-card');
 
@@ -135,12 +160,44 @@ const jsonLd = {
         cards.forEach(card => {
           const cardCat = card.getAttribute('data-category');
           if (cat === 'all' || cardCat === cat) {
-            card.style.display = 'flex';
+            card.style.display = '';
           } else {
             card.style.display = 'none';
           }
         });
       });
     });
+
+    // 2. View Mode Toggle (Cuadrícula vs Lista rápida)
+    const btnList = document.getElementById('view-btn-list');
+    const btnGrid = document.getElementById('view-btn-grid');
+    const container = document.getElementById('channels-grid');
+
+    function applyViewMode(mode) {
+      if (!container) return;
+      if (mode === 'grid') {
+        container.className = 'view-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-200';
+        btnGrid.classList.add('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+        btnGrid.classList.remove('text-slate-400', 'font-medium');
+        btnList.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+        btnList.classList.add('text-slate-400', 'font-medium');
+      } else {
+        container.className = 'view-list flex flex-col gap-3 transition-all duration-200';
+        btnList.classList.add('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+        btnList.classList.remove('text-slate-400', 'font-medium');
+        btnGrid.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+        btnGrid.classList.add('text-slate-400', 'font-medium');
+      }
+      localStorage.setItem('teleestanoche_view', mode);
+    }
+
+    if (btnList && btnGrid) {
+      btnList.addEventListener('click', () => applyViewMode('list'));
+      btnGrid.addEventListener('click', () => applyViewMode('grid'));
+
+      // Check saved preference, default to 'list'
+      const savedView = localStorage.getItem('teleestanoche_view') || 'list';
+      applyViewMode(savedView);
+    }
   })();
 </script>
