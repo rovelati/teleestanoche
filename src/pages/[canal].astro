@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getAllChannels, getProgramsForChannel } from '../utils/epg';
+import type { Channel, Program } from '../types/epg';
+
+export async function getStaticPaths() {
+  const channels = getAllChannels();
+  return channels.map((channel) => ({
+    params: { canal: channel.id },
+    props: { channel },
+  }));
+}
+
+interface Props {
+  channel: Channel;
+}
+
+const { channel } = Astro.props;
+const allChannelPrograms = getProgramsForChannel(channel.id);
+
+// Filter: Only current day's programs (with overnight overflow until 04:00 next day)
+const now = new Date();
+const todayDateStr = now.toISOString().split('T')[0];
+
+const programs = allChannelPrograms.filter(p => {
+  // Keep if starts today, or if started yesterday late night, or stops today
+  return p.startTime.startsWith(todayDateStr) || p.stopTime.startsWith(todayDateStr);
+});
+
+const pageTitle = `Programación ${channel.name} hoy | Parrilla TV completa en directo`;
+const pageDesc = `Consulta la programación completa de ${channel.name} para hoy. Horarios de emisión, qué están echando ahora y películas de esta noche en ${channel.name} en la TDT.`;
+const keywords = `programacion ${channel.name} hoy, que echan en ${channel.name}, horario ${channel.name} hoy, guia tv ${channel.name}, ver ${channel.name} en directo`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BroadcastService",
+  "name": channel.name,
+  "broadcastDisplayName": channel.name,
+  "url": `https://www.teleestanoche.es/${channel.id}/`,
+  "inLanguage": "es-ES",
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  },
+  "hasBroadcastChannel": {
+    "@type": "BroadcastChannel",
+    "broadcastChannelId": String(channel.number),
+    "broadcastServiceTier": "Free to Air TDT"
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
+  <Header />
+
+  <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    
+    <!-- Channel Header Card -->
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 mb-8 flex flex-col md:flex-row items-center md:items-start gap-6">
+      
+      <!-- Big Logo -->
+      <div class="w-24 h-24 bg-slate-950 rounded-2xl p-3 flex items-center justify-center border border-slate-800 shrink-0">
+        <img src={channel.logo} alt={channel.name} class="max-h-full max-w-full object-contain" />
+      </div>
+
+      <div class="flex-1 text-center md:text-left space-y-2">
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+          <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-400 text-slate-950">
+            Canal #{channel.number} TDT
+          </span>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+            En abierto
+          </span>
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white">
+          Programación de {channel.name} hoy
+        </h1>
+
+        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-2xl">
+          {channel.description}
+        </p>
+
+        <!-- Direct Stream Link -->
+        <div class="pt-2 flex justify-center md:justify-start">
+          <a 
+            href={channel.streamUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 transition-colors shadow-sm"
+          >
+            <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+            <span>Ver {channel.name} en directo en su web oficial</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Programs Timeline -->
+    <div class="space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span>🕒</span>
+          <span>Parrilla del Día • {programs.length} emisiones</span>
+        </h2>
+        <span class="text-xs text-slate-400">Hora Peninsular (Canarias -1h)</span>
+      </div>
+
+      {programs.length > 0 ? (
+        <div class="divide-y divide-slate-800/80 bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden">
+          {programs.map((p) => (
+            <div class={`p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors hover:bg-slate-900 ${
+              p.isTonightPrime ? 'bg-amber-400/[0.04] border-l-4 border-l-amber-400' : ''
+            }`}>
+              
+              <!-- Left: Time + Prime Badge -->
+              <div class="sm:w-36 shrink-0">
+                <span class="font-mono text-sm font-bold text-amber-400" data-time-madrid={p.startMadrid} data-time-canarias={p.startCanarias}>
+                  {p.startMadrid}
+                </span>
+                <span class="text-xs text-slate-500 font-mono" data-time-madrid={` - ${p.stopMadrid}`} data-time-canarias={` - ${p.stopCanarias}`}>
+                  - {p.stopMadrid}
+                </span>
+                
+                {p.isTonightPrime && (
+                  <span class="block mt-1 text-[10px] font-bold text-amber-400 uppercase tracking-wider">
+                    🌙 Prime Time
+                  </span>
+                )}
+              </div>
+
+              <!-- Center: Details -->
+              <div class="flex-1 space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                    {p.categoryEs}
+                  </span>
+                  <span class="text-xs text-slate-500">{p.durationMinutes} min</span>
+                </div>
+
+                <h3 class="text-base font-bold text-white">
+                  {p.title}
+                </h3>
+
+                {p.description && (
+                  <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">
+                    {p.description}
+                  </p>
+                )}
+              </div>
+
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="py-12 text-center text-slate-500">
+          No hay programas registrados para hoy en este canal.
+        </div>
+      )}
+    </div>
+
+  </main>
+
+  <Footer />
+</BaseLayout>

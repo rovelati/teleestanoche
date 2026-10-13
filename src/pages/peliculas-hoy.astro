@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ChannelCard from '../components/ChannelCard.astro';
+import { getMoviesToday } from '../utils/epg';
+
+const movies = getMoviesToday();
+
+const pageTitle = "Películas hoy en TV | Cine en abierto en la TDT";
+const pageDesc = "Descubre todas las películas que echan hoy en la televisión en abierto en España. Horarios de cine para esta noche en La 1, Antena 3, Telecinco, Cuatro, laSexta, Be Mad y TRECE.";
+const keywords = "peliculas hoy en tv, cine hoy en la tele, peliculas esta noche tv, peliculas tdt hoy, que pelicula ver hoy en la tele espana";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Películas hoy en la televisión - TDT España",
+  "url": "https://www.teleestanoche.es/peliculas-hoy/",
+  "description": pageDesc,
+  "inLanguage": "es-ES",
+  "spatialCoverage": {
+    "@type": "Country",
+    "name": "España",
+    "identifier": "ES"
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
+  <Header activeTab="movies" />
+
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    
+    <!-- Hero -->
+    <div class="mb-8 border-b border-slate-800 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-semibold mb-3">
+          <span>🍿</span>
+          <span>Cine en Abierto</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Películas hoy en TV
+        </h1>
+        <p class="text-sm sm:text-base text-slate-400 mt-2 max-w-2xl">
+          Todas las películas programadas para hoy y esta noche en los canales de televisión en abierto en España.
+        </p>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-300 self-start sm:self-auto font-medium">
+        🎬 <strong>{movies.length}</strong> películas hoy
+      </div>
+    </div>
+
+    <!-- Movies Grid -->
+    {movies.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {movies.map(({ channel, program }) => (
+          <ChannelCard 
+            channel={channel} 
+            program={program} 
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="py-16 text-center text-slate-400 bg-slate-900/40 rounded-2xl border border-slate-800">
+        <span class="text-4xl block mb-2">🍿</span>
+        <h3 class="text-base font-bold text-white mb-1">No hay películas registradas en esta franja</h3>
+        <p class="text-xs text-slate-500">Consulta la sección <a href="/" class="text-amber-400 underline">Esta Noche</a> para ver la programación estelar.</p>
+      </div>
+    )}
+
+  </main>
+
+  <Footer />
+</BaseLayout>

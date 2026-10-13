@@ -1,0 +1,74 @@
+---
+import { getAllChannels } from '../utils/epg';
+
+const channels = getAllChannels();
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-slate-900 border-t border-slate-800 text-slate-400 text-xs mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Channels Quick Grid -->
+    <div class="mb-10 pb-8 border-b border-slate-800">
+      <h3 class="text-slate-200 font-semibold mb-4 text-sm flex items-center gap-2">
+        <span>📺</span> Canales de la TDT en Abierto
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2">
+        {channels.map((ch) => (
+          <a 
+            href={`/${ch.id}/`} 
+            class="text-slate-400 hover:text-amber-400 transition-colors py-1 truncate"
+            title={`Programación de ${ch.name}`}
+          >
+            {ch.name}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Quick Sections -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xl">🇪🇸</span>
+          <span class="text-base font-bold text-white">Tele Esta Noche</span>
+        </div>
+        <p class="leading-relaxed text-slate-400">
+          La guía rápida de televisión para saber qué echan hoy en la tele en España. Consulta al instante el prime time de las 22:00, películas, partidos de fútbol y qué hay en directo en la TDT.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-slate-200 font-semibold mb-3 text-sm">Secciones Populares</h4>
+        <ul class="space-y-1.5">
+          <li><a href="/" class="hover:text-amber-400 transition-colors">🌙 Esta Noche en TV (22:00)</a></li>
+          <li><a href="/ahora/" class="hover:text-amber-400 transition-colors">🔴 Ahora en TV - En Directo</a></li>
+          <li><a href="/peliculas-hoy/" class="hover:text-amber-400 transition-colors">🍿 Películas de Hoy en Abierto</a></li>
+          <li><a href="/deportes-hoy/" class="hover:text-amber-400 transition-colors">⚽ Fútbol y Deportes Hoy</a></li>
+          <li><a href="/series-hoy/" class="hover:text-amber-400 transition-colors">📺 Series y Telenovelas</a></li>
+          <li><a href="/manana/" class="hover:text-amber-400 transition-colors">📅 Parrilla de Mañana</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-slate-200 font-semibold mb-3 text-sm">Información Legal</h4>
+        <ul class="space-y-1.5">
+          <li><a href="/politica-de-privacidad/" class="hover:text-amber-400 transition-colors">Política de Privacidad y Cookies</a></li>
+          <li><a href="/aviso-legal/" class="hover:text-amber-400 transition-colors">Aviso Legal y Condiciones</a></li>
+          <li><a href="mailto:info@teleestanoche.es" class="hover:text-amber-400 transition-colors">Contacto: info@teleestanoche.es</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Disclaimer & Copyright -->
+    <div class="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+      <p>
+        © {currentYear} teleestanoche.es • Todos los derechos reservados.
+      </p>
+      <p class="text-center sm:text-right max-w-xl">
+        Aviso: teleestanoche.es es una guía informativa independiente. Todas las marcas, logotipos y contenidos de televisión pertenecen a RTVE, Atresmedia, Mediaset España y demás operadores de TDT.
+      </p>
+    </div>
+
+  </div>
+</footer>

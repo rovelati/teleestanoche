@@ -1,0 +1,242 @@
+[
+  {
+    "id": "la-1",
+    "xmltvId": "La 1 HD",
+    "name": "La 1",
+    "number": 1,
+    "group": "general",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/La%201.png",
+    "streamUrl": "https://www.rtve.es/play/videos/directo/canales-lineales/la-1/",
+    "description": "Primer canal generalista de Televisión Española (RTVE). Ofrece grandes series españolas, cine de estreno sin cortes publicitarios, informativos Telediario y programas de máxima audiencia como La Revuelta y MasterChef."
+  },
+  {
+    "id": "la-2",
+    "xmltvId": "La 2",
+    "name": "La 2",
+    "number": 2,
+    "group": "general",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/La%202.png",
+    "streamUrl": "https://www.rtve.es/play/videos/directo/canales-lineales/la-2/",
+    "description": "Canal cultural y divulgativo de RTVE. Reconocido por sus documentales de naturaleza de sobremesa, cine clásico y de autor en Versión Española y Días de Cine, y espacios de debate cultural."
+  },
+  {
+    "id": "antena-3",
+    "xmltvId": "Antena 3 HD",
+    "name": "Antena 3",
+    "number": 3,
+    "group": "general",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Antena%203.png",
+    "streamUrl": "https://www.atresplayer.com/directos/antena3/",
+    "description": "Canal generalista líder de Atresmedia Televisión. Destaca por el liderazgo de Antena 3 Noticias, programas estrella como El Hormiguero, Pasapalabra, La Ruleta de la Suerte y exitosas series de ficción."
+  },
+  {
+    "id": "cuatro",
+    "xmltvId": "Cuatro HD",
+    "name": "Cuatro",
+    "number": 4,
+    "group": "general",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Cuatro.png",
+    "streamUrl": "https://www.mitele.es/directo/cuatro/",
+    "description": "Cadena de Mediaset España orientada a un público joven y dinámico. Famosa por First Dates en access prime time, formatos de actualidad y reportajes de investigación como En el Punto de Mira y Todo es Mentira."
+  },
+  {
+    "id": "telecinco",
+    "xmltvId": "Telecinco HD",
+    "name": "Telecinco",
+    "number": 5,
+    "group": "general",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Telecinco.png",
+    "streamUrl": "https://www.mitele.es/directo/telecinco/",
+    "description": "Canal insignia de Mediaset España especializado en entretenimiento masivo, grandes realities en directo (Supervivientes, Gran Hermano), magazines de tarde y noches de debate y ficción."
+  },
+  {
+    "id": "lasexta",
+    "xmltvId": "La Sexta HD",
+    "name": "laSexta",
+    "number": 6,
+    "group": "general",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/La%20Sexta.png",
+    "streamUrl": "https://www.atresplayer.com/directos/lasexta/",
+    "description": "Canal de Atresmedia centrado en la actualidad política, el periodismo incisivo, el debate y el humor inteligente. Destaca por El Intermedio, Al Rojo Vivo, laSexta Noticias y Equipo de Investigación."
+  },
+  {
+    "id": "fdf",
+    "xmltvId": "Factoría de Ficción",
+    "name": "FDF",
+    "number": 7,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/FDF.png",
+    "streamUrl": "https://www.mitele.es/directo/fdf/",
+    "description": "Factoría de Ficción es el canal temático de series y comedia de Mediaset. Emite maratones de grandes éxitos de la ficción española como La que se avecina y Aída, junto a comedias internacionales."
+  },
+  {
+    "id": "neox",
+    "xmltvId": "Neox",
+    "name": "Neox",
+    "number": 8,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Neox.png",
+    "streamUrl": "https://www.atresplayer.com/directos/neox/",
+    "description": "Canal temático juvenil de Atresmedia. Hogar de las mejores sitcoms y comedias estadounidenses como Los Simpson, Friends, Big Bang Theory, Modern Family y cine de acción y aventuras."
+  },
+  {
+    "id": "nova",
+    "xmltvId": "Nova",
+    "name": "Nova",
+    "number": 9,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Nova.png",
+    "streamUrl": "https://www.atresplayer.com/directos/nova/",
+    "description": "Referente absoluto en España de grandes telenovelas y dramas internacionales (éxitos turcos y latinoamericanos), novelas de época y cine romántico y familiar."
+  },
+  {
+    "id": "mega",
+    "xmltvId": "Mega",
+    "name": "Mega",
+    "number": 10,
+    "group": "tematico",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Mega.png",
+    "streamUrl": "https://www.atresplayer.com/directos/mega/",
+    "description": "Canal de Atresmedia dirigido al público masculino y aficionado al deporte y docurrealities. Emite cada medianoche la tertulia deportiva líder El Chiringuito de Jugones, documentales y cine bélico y de acción."
+  },
+  {
+    "id": "atreseries",
+    "xmltvId": "Atreseries",
+    "name": "Atreseries",
+    "number": 11,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Atreseries.png",
+    "streamUrl": "https://www.atresplayer.com/directos/atreseries/",
+    "description": "El único canal en abierto en alta definición 100% dedicado a la ficción y a las mejores series policiacas, de suspense y procedimentales de Atresmedia y productoras internacionales."
+  },
+  {
+    "id": "energy",
+    "xmltvId": "Energy",
+    "name": "Energy",
+    "number": 12,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Energy.png",
+    "streamUrl": "https://www.mitele.es/directo/energy/",
+    "description": "Canal temático de Mediaset dedicado a series policiales de investigación forense y acción internacional de primer nivel, incluyendo franquicias como CSI, Mentes Criminales y NCIS."
+  },
+  {
+    "id": "divinity",
+    "xmltvId": "Divinity",
+    "name": "Divinity",
+    "number": 13,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Divinity.png",
+    "streamUrl": "https://www.mitele.es/directo/divinity/",
+    "description": "Canal de Mediaset enfocado al público femenino, con series dramáticas de éxito, comedia romántica, telenovelas internacionales y programas de reformas y estilo de vida."
+  },
+  {
+    "id": "be-mad",
+    "xmltvId": "Be Mad",
+    "name": "Be Mad",
+    "number": 14,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Be%20Mad.png",
+    "streamUrl": "https://www.mitele.es/directo/bemad/",
+    "description": "El canal temático en abierto de Mediaset dedicado exclusivamente al cine en alta definición, emitiendo clásicos del cine contemporáneo, películas taquilleras de Hollywood y ciclos de cine por géneros."
+  },
+  {
+    "id": "trece",
+    "xmltvId": "TRECE",
+    "name": "TRECE",
+    "number": 15,
+    "group": "general",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TRECE.png",
+    "streamUrl": "https://www.trecetv.es/directo",
+    "description": "Cadena generalista en abierto con una sólida oferta de cine clásico de Hollywood (westerns, aventuras, comedias de época), espacios de análisis sociopolítico y programas religiosos."
+  },
+  {
+    "id": "dmax",
+    "xmltvId": "DMAX",
+    "name": "DMAX",
+    "number": 16,
+    "group": "tematico",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DMAX.png",
+    "streamUrl": "https://dmax.marca.com/en-directo/",
+    "description": "Canal de factual de Warner Bros. Discovery en abierto. Emite formatos de ingeniería, supervivencia, misterios de la historia, ciencia, naturaleza extrema y grandes eventos deportivos."
+  },
+  {
+    "id": "dkiss",
+    "xmltvId": "DKISS",
+    "name": "DKISS",
+    "number": 17,
+    "group": "tematico",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DKISS.png",
+    "streamUrl": "https://dkiss.es/directo/",
+    "description": "Canal temático enfocado en documentales de crimen real y sucesos, programas de medicina y salud, reformas del hogar, bodas y entretenimiento familiar curioso."
+  },
+  {
+    "id": "ten",
+    "xmltvId": "Ten",
+    "name": "TEN",
+    "number": 18,
+    "group": "tematico",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TEN.png",
+    "streamUrl": "https://tentv.es/directo/",
+    "description": "Canal en abierto que combina espacios de investigación policial, crónica negra, sucesos (Caso Cerrado) y entretenimiento diario sin filtro."
+  },
+  {
+    "id": "teledeporte",
+    "xmltvId": "Teledeporte",
+    "name": "Teledeporte",
+    "number": 19,
+    "group": "deportes-noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Teledeporte.png",
+    "streamUrl": "https://www.rtve.es/play/videos/directo/canales-lineales/teledeporte/",
+    "description": "El canal de deportes por excelencia de RTVE (TDP). Retransmite en directo citas olímpicas, ciclismo (Tour de Francia, Vuelta a España), tenis, baloncesto, fútbol femenino, atletismo y motor."
+  },
+  {
+    "id": "gol-play",
+    "xmltvId": "GolStadium BAR",
+    "name": "GOL PLAY",
+    "number": 20,
+    "group": "deportes-noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/GolStadium%20BAR.png",
+    "streamUrl": "https://goltelevision.com/en-directo",
+    "description": "Canal de deportes y cine de acción en abierto de Mediapro. Emite partidos de fútbol en directo, resúmenes completos de LaLiga EA Sports, deportes de contacto, series y cine de aventuras."
+  },
+  {
+    "id": "24h",
+    "xmltvId": "24 Horas",
+    "name": "Canal 24 Horas",
+    "number": 21,
+    "group": "deportes-noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/24%20Horas.png",
+    "streamUrl": "https://www.rtve.es/play/videos/directo/canales-lineales/24h/",
+    "description": "Canal de noticias ininterrumpidas de RTVE con boletines informativos continuos, directos especiales ante eventos de última hora y cobertura geopolítica nacional e internacional."
+  },
+  {
+    "id": "real-madrid-tv",
+    "xmltvId": "Real Madrid TV",
+    "name": "Real Madrid TV",
+    "number": 22,
+    "group": "deportes-noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Real%20Madrid%20TV.png",
+    "streamUrl": "https://www.realmadrid.com/es-ES/rm-tv",
+    "description": "Canal oficial del club blanco en la TDT. Emite ruedas de prensa en directo, partidos de categorías inferiores, entrenamientos, tertulias previas y postpartido, y cine nocturno."
+  },
+  {
+    "id": "clan",
+    "xmltvId": "Clan",
+    "name": "Clan",
+    "number": 23,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Clan.png",
+    "streamUrl": "https://www.rtve.es/play/videos/directo/canales-lineales/clan/",
+    "description": "Canal infantil y juvenil de RTVE líder en España. Programación educativa y de animación segura para niños con series míticas como Peppa Pig, Bob Esponja, Pocoyó y La Patrulla Canina."
+  },
+  {
+    "id": "boing",
+    "xmltvId": "Boing",
+    "name": "Boing",
+    "number": 24,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Boing.png",
+    "streamUrl": "https://www.mitele.es/directo/boing/",
+    "description": "Canal infantil temático de Mediaset y Warner Bros. Discovery con las series animadas de Cartoon Network más populares: Doraemon, Ben 10, Teen Titans Go! y El asombroso mundo de Gumball."
+  }
+]

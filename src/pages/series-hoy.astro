@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ChannelCard from '../components/ChannelCard.astro';
+import { getSeriesToday } from '../utils/epg';
+
+const series = getSeriesToday();
+
+const pageTitle = "Series hoy en TV | Ficción y telenovelas en la TDT";
+const pageDesc = "Descubre las series, telenovelas y ficciones que echan hoy en la televisión española: Atreseries, FDF, Energy, Nova, Divinity, La 1 y Antena 3.";
+const keywords = "series hoy en tv, series tdt hoy, telenovelas hoy espana, capitulos series hoy tv, atreseries programacion, fdf series hoy";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Series y Ficción hoy en la televisión - TDT España",
+  "url": "https://www.teleestanoche.es/series-hoy/",
+  "description": pageDesc,
+  "inLanguage": "es-ES",
+  "spatialCoverage": {
+    "@type": "Country",
+    "name": "España",
+    "identifier": "ES"
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
+  <Header activeTab="shows" />
+
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    
+    <!-- Hero -->
+    <div class="mb-8 border-b border-slate-800 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold mb-3">
+          <span>📺</span>
+          <span>Ficción & Telenovelas</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Series hoy en TV
+        </h1>
+        <p class="text-sm sm:text-base text-slate-400 mt-2 max-w-2xl">
+          Capítulos, maratones y estrenos de series de producción española, éxitos internacionales y novelas en emisión hoy.
+        </p>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-300 self-start sm:self-auto font-medium">
+        🎬 <strong>{series.length}</strong> episodios programados
+      </div>
+    </div>
+
+    <!-- Series Grid -->
+    {series.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {series.map(({ channel, program }) => (
+          <ChannelCard 
+            channel={channel} 
+            program={program} 
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="py-16 text-center text-slate-400 bg-slate-900/40 rounded-2xl border border-slate-800">
+        <span class="text-4xl block mb-2">📺</span>
+        <h3 class="text-base font-bold text-white mb-1">No hay series catalogadas en esta sección</h3>
+        <p class="text-xs text-slate-500">Revisa la parrilla de <a href="/atreseries/" class="text-amber-400 underline">Atreseries</a> o <a href="/fdf/" class="text-amber-400 underline">FDF</a>.</p>
+      </div>
+    )}
+
+  </main>
+
+  <Footer />
+</BaseLayout>

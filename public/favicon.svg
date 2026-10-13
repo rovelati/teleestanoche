@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="8" fill="#020617"/>
+  <rect x="2" y="2" width="28" height="28" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
+  <!-- TV Antenna -->
+  <path d="M12 8L16 12L20 8" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Screen -->
+  <rect x="6" y="12" width="20" height="14" rx="3" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <!-- Spanish Flag Accent in screen -->
+  <rect x="8" y="15" width="16" height="2.5" fill="#ef4444"/>
+  <rect x="8" y="17.5" width="16" height="3" fill="#fbbf24"/>
+  <rect x="8" y="20.5" width="16" height="2.5" fill="#ef4444"/>
+</svg>

@@ -1,0 +1,23 @@
+# Tele Esta Noche (teleestanoche.es)
+> Guía de televisión de España para la TDT en abierto. Información en tiempo real sobre qué echan hoy en la tele, el Prime Time de las 22:00, cine, deportes y series.
+
+## Información General
+- **Nombre:** Tele Esta Noche
+- **URL Oficial:** https://www.teleestanoche.es/
+- **País:** España (ES)
+- **Idioma:** Español (es-ES)
+- **Zona Horaria:** Europa/Madrid (CET/CEST) con soporte para Islas Canarias (WET/WEST, -1 hora)
+
+## Canales Cubiertos de la TDT
+- **Generalistas Nacionales:** La 1 (RTVE), La 2 (RTVE), Antena 3 (Atresmedia), Cuatro (Mediaset), Telecinco (Mediaset), laSexta (Atresmedia).
+- **Cine y Series:** Factoría de Ficción (FDF), Neox, Nova, Mega, Atreseries, Energy, Divinity, Be Mad, TRECE.
+- **Deportes y Factual:** Teledeporte (TDP), GOL PLAY, Real Madrid TV, DMAX, DKISS, TEN.
+- **Noticias e Infantil:** Canal 24 Horas, Clan, Boing.
+
+## Secciones Principales
+- **Esta Noche (Prime Time):** https://www.teleestanoche.es/ (Programas estelares a partir de las 22:00)
+- **Ahora en TV (Directo):** https://www.teleestanoche.es/ahora/ (Emisiones en curso con barra de progreso)
+- **Películas de Hoy:** https://www.teleestanoche.es/peliculas-hoy/ (Cine en abierto en todos los canales)
+- **Deportes de Hoy:** https://www.teleestanoche.es/deportes-hoy/ (Fútbol, baloncesto, tenis y ciclismo)
+- **Series de Hoy:** https://www.teleestanoche.es/series-hoy/ (Ficción y telenovelas)
+- **Parrilla de Mañana:** https://www.teleestanoche.es/manana/ (Adelanto del prime time de mañana)

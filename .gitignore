@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.local
+.cloudflare-token
+.new-server-passwd
+NUOVO-SERVER.ssh
+.DS_Store
+*.log

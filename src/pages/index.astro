@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ChannelCard from '../components/ChannelCard.astro';
+import { getTonightPrimePrograms } from '../utils/epg';
+
+const primeItems = getTonightPrimePrograms();
+
+const pageTitle = "Qué echan hoy en la tele | Esta Noche en TV (Prime Time 22:00)";
+const pageDesc = "Consulta qué echan hoy en la tele en España. La programación completa de la TDT para esta noche (22:00): La 1, Antena 3, Telecinco, Cuatro, laSexta, cine y series.";
+const keywords = "que echan hoy en la tele, que echan esta noche en tv, programacion tv hoy, guia tv hoy, parrilla tv espana, que ver esta noche tv, peliculas hoy tv, tdt espana";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TVGuide",
+  "name": "Tele Esta Noche - Guía TV TDT España",
+  "url": "https://www.teleestanoche.es/",
+  "description": pageDesc,
+  "inLanguage": "es-ES",
+  "spatialCoverage": {
+    "@type": "Country",
+    "name": "España",
+    "identifier": "ES"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "España",
+    "identifier": "ES"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Tele Esta Noche",
+    "url": "https://www.teleestanoche.es"
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
+  <Header activeTab="tonight" />
+
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    
+    <!-- Hero / Intro -->
+    <div class="mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800 pb-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-semibold mb-3">
+            <span>🌙</span>
+            <span>Prime Time en Abierto • 22:00</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            ¿Qué echan hoy en la tele?
+          </h1>
+          <p class="text-sm sm:text-base text-slate-400 mt-2 max-w-2xl">
+            Parrilla de televisión de España para esta noche. Descubre las películas de estreno, las mejores series y los programas estelares en los 24 canales de la TDT.
+          </p>
+        </div>
+
+        <!-- Quick filter / count -->
+        <div class="shrink-0 flex items-center gap-2 text-xs text-slate-400 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 self-start sm:self-auto">
+          <span>📡</span>
+          <span><strong>24</strong> canales analizados</span>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills (Client-side fast filter) -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-4" id="category-filters">
+        <button data-cat="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-400 text-slate-950 shadow-sm transition-colors whitespace-nowrap">
+          Todos los canales
+        </button>
+        <button data-cat="movies" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
+          🍿 Películas
+        </button>
+        <button data-cat="series" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
+          📺 Series
+        </button>
+        <button data-cat="sports" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
+          ⚽ Deportes
+        </button>
+        <button data-cat="entertainment" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
+          🎭 Entretenimiento
+        </button>
+        <button data-cat="news" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
+          📰 Informativos
+        </button>
+      </div>
+    </div>
+
+    <!-- Channels Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="channels-grid">
+      {primeItems.map(({ channel, program, nextProgram }) => (
+        <ChannelCard 
+          channel={channel} 
+          program={program} 
+          nextProgram={nextProgram} 
+        />
+      ))}
+    </div>
+
+    <!-- SEO Informational Block -->
+    <article class="mt-16 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 text-slate-400 text-xs leading-relaxed space-y-4">
+      <h2 class="text-base sm:text-lg font-bold text-white">
+        Guía de Televisión en España: Horarios y Franjas de la TDT
+      </h2>
+      <p>
+        A diferencia de otros países europeos, en España el <strong>Prime Time</strong> televisivo arranca habitualmente entre las <strong>21:45 y las 22:45</strong>. Tras los informativos de sobremesa y de noche, las principales cadenas generalistas (La 1 de RTVE, Antena 3, Telecinco, Cuatro y laSexta) programan espacios de gran impacto como <em>El Hormiguero</em>, <em>La Revuelta</em>, <em>First Dates</em> o <em>El Intermedio</em> antes de dar paso a las grandes películas y series de la noche.
+      </p>
+      <p>
+        En <strong>Tele Esta Noche</strong> puedes consultar de un vistazo toda la parrilla actualizada en tiempo real para la Península y Baleares, con adaptación horaria automática para las Islas Canarias.
+      </p>
+    </article>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const buttons = document.querySelectorAll('#category-filters .filter-btn');
+    const cards = document.querySelectorAll('.channel-card');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-cat');
+
+        buttons.forEach(b => {
+          b.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold');
+          b.classList.add('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800');
+        });
+        btn.classList.add('bg-amber-400', 'text-slate-950', 'font-bold');
+        btn.classList.remove('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800');
+
+        cards.forEach(card => {
+          const cardCat = card.getAttribute('data-category');
+          if (cat === 'all' || cardCat === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>

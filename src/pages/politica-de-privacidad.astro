@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Política de Privacidad y Cookies | Tele Esta Noche";
+const pageDesc = "Política de Privacidad y Cookies de teleestanoche.es conforme al Reglamento General de Protección de Datos (RGPD) y a la AEPD en España.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Política de Privacidad y Cookies",
+  "url": "https://www.teleestanoche.es/politica-de-privacidad/",
+  "description": pageDesc,
+  "inLanguage": "es-ES",
+  "spatialCoverage": {
+    "@type": "Country",
+    "name": "España"
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} jsonLd={jsonLd}>
+  <Header />
+
+  <main class="flex-1 max-w-4xl mx-auto px-4 py-12 text-slate-300">
+    <div class="border-b border-slate-800 pb-6 mb-8">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Política de Privacidad y Cookies
+      </h1>
+      <p class="text-sm text-slate-400 mt-2">
+        Última actualización: Octubre de 2026 • teleestanoche.es
+      </p>
+    </div>
+
+    <div class="space-y-8 text-sm leading-relaxed">
+      
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">1. Responsable del Tratamiento</h2>
+        <p>
+          En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), le informamos de que el sitio web <strong>teleestanoche.es</strong> es una guía de programación televisiva de libre acceso que no requiere registro de usuario ni recopila datos personales identificativos (como nombres, direcciones o datos bancarios).
+        </p>
+        <p>
+          Para cualquier consulta relativa a la privacidad, puede dirigirse al correo: <a href="mailto:info@teleestanoche.es" class="text-amber-400 hover:underline">info@teleestanoche.es</a>.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">2. Almacenamiento Local (LocalStorage)</h2>
+        <p>
+          Este sitio web utiliza la tecnología estándar de <strong>HTML5 LocalStorage</strong> en su navegador únicamente con fines funcionales para recordar sus preferencias de navegación:
+        </p>
+        <ul class="list-disc list-inside space-y-1 pl-2 text-slate-300">
+          <li><strong>Zona horaria seleccionada:</strong> Para mostrar los horarios de emisión en hora peninsular (CET) o de las Islas Canarias (WET).</li>
+          <li><strong>Canales favoritos:</strong> En caso de fijar canales para acceso rápido.</li>
+        </ul>
+        <p class="text-xs text-slate-400">
+          Esta información permanece almacenada exclusivamente en su propio dispositivo y nunca es transmitida ni compartida con nuestros servidores ni con terceros.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">3. Política de Cookies</h2>
+        <p>
+          Las cookies son pequeños archivos de texto que se instalan en su navegador al visitar sitios web.
+        </p>
+        <div class="space-y-3 mt-2">
+          <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800/80">
+            <h3 class="font-bold text-white text-sm mb-1">A. Cookies Técnicas y Estrictamente Necesarias</h3>
+            <p class="text-xs text-slate-400">
+              Proporcionadas por la red de entrega de contenidos (Cloudflare CDN) para garantizar la seguridad del sitio web, protección contra ataques de denegación de servicio (DDoS) y entrega rápida de archivos. No almacenan datos de identificación personal.
+            </p>
+          </div>
+          <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800/80">
+            <h3 class="font-bold text-white text-sm mb-1">B. Métricas de Audiencia y Analítica</h3>
+            <p class="text-xs text-slate-400">
+              Podemos utilizar herramientas analíticas con anonimización de IP para medir el volumen global de visitas y mejorar la estabilidad de la guía de televisión.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">4. Enlaces Externos a Plataformas de Emisión Oficial</h2>
+        <p>
+          Nuestro portal incluye enlaces directos a las plataformas oficiales de vídeo bajo demanda y directos en línea de los operadores audiovisuales españoles (RTVE Play, Atresplayer, Mitele, etc.). Al hacer clic en dichos enlaces externos, el usuario pasa a regirse por las políticas de privacidad y términos de servicio de los respectivos prestadores.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

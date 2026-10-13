@@ -1,0 +1,99 @@
+---
+/**
+ * BaseLayout for teleestanoche.es
+ */
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  keywords?: string;
+  author?: string;
+  publisher?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl = Astro.url.href,
+  keywords = "que echan hoy en la tele, que echan esta noche en tv, programacion tv hoy, guia tv hoy, parrilla tv hoy, que ver en la tele hoy, peliculas hoy tv, series tv hoy, tdt espana",
+  author = "Tele Esta Noche",
+  publisher = "Tele Esta Noche",
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const siteUrl = 'https://www.teleestanoche.es';
+const ogImageUrl = `${siteUrl}/og-image.png`;
+
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="es-ES" class="bg-slate-950 text-slate-100 antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
+    <meta name="author" content={author} />
+    <meta name="publisher" content={publisher} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es-ES" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    <meta http-equiv="content-language" content="es-ES" />
+
+    <!-- Microsoft Edge, Windows & Bing Verification -->
+    <meta name="application-name" content="Tele Esta Noche" />
+    <meta name="theme-color" content="#020617" />
+    <meta name="msapplication-TileColor" content="#020617" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- Spain Geo Targeting & Regional Signals -->
+    <meta name="geo.region" content="ES" />
+    <meta name="geo.country" content="España" />
+    <meta name="geo.placename" content="España (Madrid, Barcelona, Valencia, Sevilla, Canarias)" />
+    <meta name="geo.position" content="40.4168;-3.7038" />
+    <meta name="ICBM" content="40.4168, -3.7038" />
+    <meta name="coverage" content="España" />
+    <meta name="target" content="España" />
+    <meta name="distribution" content="Spain" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content="Tele Esta Noche" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:country_name" content="España" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Favicons & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+
+    <!-- Preconnect for fast loading -->
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
+    <link rel="preconnect" href="https://www.movistarplus.es" crossorigin />
+
+    <!-- Structured Data (JSON-LD) -->
+    {jsonLd ? (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    ) : null}
+  </head>
+  
+  <body class="min-h-screen flex flex-col bg-slate-950 font-sans selection:bg-amber-400 selection:text-slate-950">
+    <slot />
+  </body>
+</html>

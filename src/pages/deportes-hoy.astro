@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ChannelCard from '../components/ChannelCard.astro';
+import { getSportsToday } from '../utils/epg';
+
+const sports = getSportsToday();
+
+const pageTitle = "Fútbol y Deportes hoy en TV | Guía deportiva en abierto";
+const pageDesc = "Horarios y canales de fútbol y deportes hoy en televisión en abierto en España: Teledeporte (TDP), GOL PLAY, Real Madrid TV, La 1 y más.";
+const keywords = "futbol hoy en tv, deportes hoy tv, partidos hoy tdt, futbol en abierto hoy espana, guia teledeporte hoy, gol play hoy";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Deportes y Fútbol hoy en la televisión - TDT España",
+  "url": "https://www.teleestanoche.es/deportes-hoy/",
+  "description": pageDesc,
+  "inLanguage": "es-ES",
+  "spatialCoverage": {
+    "@type": "Country",
+    "name": "España",
+    "identifier": "ES"
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
+  <Header activeTab="sports" />
+
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    
+    <!-- Hero -->
+    <div class="mb-8 border-b border-slate-800 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-3">
+          <span>⚽</span>
+          <span>Deporte en Abierto</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Fútbol y Deportes hoy en TV
+        </h1>
+        <p class="text-sm sm:text-base text-slate-400 mt-2 max-w-2xl">
+          Retransmisiones deportivas en directo, partidos de fútbol, ciclismo, baloncesto, tenis y resúmenes de LaLiga en la TDT.
+        </p>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-300 self-start sm:self-auto font-medium">
+        🏆 <strong>{sports.length}</strong> emisiones deportivas
+      </div>
+    </div>
+
+    <!-- Sports Grid -->
+    {sports.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sports.map(({ channel, program }) => (
+          <ChannelCard 
+            channel={channel} 
+            program={program} 
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="py-16 text-center text-slate-400 bg-slate-900/40 rounded-2xl border border-slate-800">
+        <span class="text-4xl block mb-2">⚽</span>
+        <h3 class="text-base font-bold text-white mb-1">No hay retransmisiones deportivas activas</h3>
+        <p class="text-xs text-slate-500">Revisa la programación de <a href="/teledeporte/" class="text-amber-400 underline">Teledeporte</a> o <a href="/gol-play/" class="text-amber-400 underline">GOL PLAY</a>.</p>
+      </div>
+    )}
+
+  </main>
+
+  <Footer />
+</BaseLayout>

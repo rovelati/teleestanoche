@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Página no encontrada (404) | Tele Esta Noche";
+const pageDesc = "La página solicitada no existe o ha sido movida. Consulta qué echan hoy en la tele en teleestanoche.es.";
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} noindex={true}>
+  <Header />
+
+  <main class="flex-1 max-w-3xl mx-auto px-4 py-20 text-center">
+    <div class="space-y-4">
+      <span class="text-6xl block">📺</span>
+      <h1 class="text-4xl font-extrabold text-white tracking-tight">404</h1>
+      <h2 class="text-xl font-bold text-slate-300">Página no encontrada</h2>
+      <p class="text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
+        El canal o programa que buscas no se encuentra en esta dirección. Vuelve a la guía de programación para ver qué echan en la tele.
+      </p>
+
+      <div class="pt-6 flex flex-wrap items-center justify-center gap-3">
+        <a 
+          href="/" 
+          class="px-5 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs hover:bg-amber-300 transition-colors shadow-sm"
+        >
+          🌙 Ver Esta Noche en TV
+        </a>
+        <a 
+          href="/ahora/" 
+          class="px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white font-medium text-xs hover:bg-slate-800 transition-colors"
+        >
+          🔴 Ver Ahora en directo
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

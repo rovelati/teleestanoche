@@ -1,0 +1,186 @@
+---
+interface Props {
+  activeTab?: 'tonight' | 'now' | 'movies' | 'sports' | 'shows' | 'tomorrow';
+}
+
+const { activeTab = 'tonight' } = Astro.props;
+---
+
+<header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      
+      <!-- Brand Logo / Title -->
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <span class="text-2xl" aria-hidden="true">🇪🇸</span>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">
+              Tele <span class="text-amber-400">Esta Noche</span>
+            </span>
+            <span class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">TDT España</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-1 font-medium text-sm">
+        <a 
+          href="/" 
+          class={`px-3 py-2 rounded-lg transition-colors ${
+            activeTab === 'tonight' 
+              ? 'bg-amber-400 text-slate-950 font-bold shadow-sm' 
+              : 'text-slate-300 hover:text-white hover:bg-slate-800'
+          }`}
+        >
+          🌙 Esta Noche (22:00)
+        </a>
+        <a 
+          href="/ahora/" 
+          class={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 ${
+            activeTab === 'now' 
+              ? 'bg-amber-400 text-slate-950 font-bold shadow-sm' 
+              : 'text-slate-300 hover:text-white hover:bg-slate-800'
+          }`}
+        >
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Ahora en TV
+        </a>
+        <a 
+          href="/peliculas-hoy/" 
+          class={`px-3 py-2 rounded-lg transition-colors ${
+            activeTab === 'movies' 
+              ? 'bg-amber-400 text-slate-950 font-bold shadow-sm' 
+              : 'text-slate-300 hover:text-white hover:bg-slate-800'
+          }`}
+        >
+          🍿 Películas
+        </a>
+        <a 
+          href="/deportes-hoy/" 
+          class={`px-3 py-2 rounded-lg transition-colors ${
+            activeTab === 'sports' 
+              ? 'bg-amber-400 text-slate-950 font-bold shadow-sm' 
+              : 'text-slate-300 hover:text-white hover:bg-slate-800'
+          }`}
+        >
+          ⚽ Deportes
+        </a>
+        <a 
+          href="/series-hoy/" 
+          class={`px-3 py-2 rounded-lg transition-colors ${
+            activeTab === 'shows' 
+              ? 'bg-amber-400 text-slate-950 font-bold shadow-sm' 
+              : 'text-slate-300 hover:text-white hover:bg-slate-800'
+          }`}
+        >
+          📺 Series
+        </a>
+        <a 
+          href="/manana/" 
+          class={`px-3 py-2 rounded-lg transition-colors ${
+            activeTab === 'tomorrow' 
+              ? 'bg-amber-400 text-slate-950 font-bold shadow-sm' 
+              : 'text-slate-300 hover:text-white hover:bg-slate-800'
+          }`}
+        >
+          📅 Mañana
+        </a>
+      </nav>
+
+      <!-- Timezone / Region Selector (Península vs Canarias) -->
+      <div class="flex items-center gap-2">
+        <label for="tz-selector" class="hidden sm:inline-block text-xs font-medium text-slate-400">
+          📍 Horario:
+        </label>
+        <select 
+          id="tz-selector" 
+          class="bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg px-2.5 py-1.5 border border-slate-700 hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-400 cursor-pointer"
+          aria-label="Selecciona zona horaria de España"
+        >
+          <option value="madrid">Península y Baleares (CET)</option>
+          <option value="canarias">Islas Canarias (-1h)</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- Mobile Sub-Navigation -->
+    <div class="flex md:hidden items-center justify-between overflow-x-auto no-scrollbar py-2 border-t border-slate-800/80 text-xs font-medium gap-1 px-1">
+      <a 
+        href="/" 
+        class={`px-2.5 py-1.5 rounded-md whitespace-nowrap ${
+          activeTab === 'tonight' ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300'
+        }`}
+      >
+        🌙 Esta Noche
+      </a>
+      <a 
+        href="/ahora/" 
+        class={`px-2.5 py-1.5 rounded-md whitespace-nowrap flex items-center gap-1 ${
+          activeTab === 'now' ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300'
+        }`}
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        Ahora
+      </a>
+      <a 
+        href="/peliculas-hoy/" 
+        class={`px-2.5 py-1.5 rounded-md whitespace-nowrap ${
+          activeTab === 'movies' ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300'
+        }`}
+      >
+        🍿 Cine
+      </a>
+      <a 
+        href="/deportes-hoy/" 
+        class={`px-2.5 py-1.5 rounded-md whitespace-nowrap ${
+          activeTab === 'sports' ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300'
+        }`}
+      >
+        ⚽ Deportes
+      </a>
+      <a 
+        href="/series-hoy/" 
+        class={`px-2.5 py-1.5 rounded-md whitespace-nowrap ${
+          activeTab === 'shows' ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300'
+        }`}
+      >
+        📺 Series
+      </a>
+      <a 
+        href="/manana/" 
+        class={`px-2.5 py-1.5 rounded-md whitespace-nowrap ${
+          activeTab === 'tomorrow' ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300'
+        }`}
+      >
+        📅 Mañana
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<script is:inline>
+  (function() {
+    const tzSelect = document.getElementById('tz-selector');
+    if (!tzSelect) return;
+
+    const savedTz = localStorage.getItem('teleestanoche_tz') || 'madrid';
+    tzSelect.value = savedTz;
+    applyTimezone(savedTz);
+
+    tzSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      localStorage.setItem('teleestanoche_tz', val);
+      applyTimezone(val);
+    });
+
+    function applyTimezone(tz) {
+      document.querySelectorAll('[data-time-madrid]').forEach(el => {
+        const time = tz === 'canarias' ? el.getAttribute('data-time-canarias') : el.getAttribute('data-time-madrid');
+        if (time) el.textContent = time;
+      });
+    }
+  })();
+</script>

@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Aviso Legal | Tele Esta Noche";
+const pageDesc = "Aviso legal y condiciones de uso del sitio web teleestanoche.es conforme a la Ley de Servicios de la Sociedad de la Información (LSSI-CE).";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Aviso Legal",
+  "url": "https://www.teleestanoche.es/aviso-legal/",
+  "description": pageDesc,
+  "inLanguage": "es-ES",
+  "spatialCoverage": {
+    "@type": "Country",
+    "name": "España"
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} jsonLd={jsonLd}>
+  <Header />
+
+  <main class="flex-1 max-w-4xl mx-auto px-4 py-12 text-slate-300">
+    <div class="border-b border-slate-800 pb-6 mb-8">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Aviso Legal
+      </h1>
+      <p class="text-sm text-slate-400 mt-2">
+        En cumplimiento del artículo 10 de la Ley 34/2002 (LSSI-CE) • teleestanoche.es
+      </p>
+    </div>
+
+    <div class="space-y-8 text-sm leading-relaxed">
+      
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">1. Información General</h2>
+        <p>
+          El presente aviso legal regula el uso del portal web <strong>teleestanoche.es</strong>, un servicio informativo digital dedicado a la difusión y consulta pública de los horarios y programación de los canales de la Televisión Digital Terrestre (TDT) en España.
+        </p>
+        <p>
+          Correo de contacto: <a href="mailto:info@teleestanoche.es" class="text-amber-400 hover:underline">info@teleestanoche.es</a>.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">2. Propiedad Intelectual e Industrial</h2>
+        <p>
+          Los logotipos, marcas comerciales, nombres de canales (incluyendo La 1, La 2, Antena 3, Cuatro, Telecinco, laSexta, entre otros) y sinopsis de programas que aparecen en este sitio pertenecen a sus legítimos propietarios y operadores de comunicación audiovisual (RTVE, Atresmedia Corporación, Mediaset España Comunicación, etc.).
+        </p>
+        <p>
+          Su uso en <strong>teleestanoche.es</strong> se realiza con carácter estrictamente informativo y divulgativo para el usuario final, al amparo del derecho a la información.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">3. Exclusión de Responsabilidad</h2>
+        <p>
+          Los horarios y parrillas de televisión son facilitados por guías electrónicas públicas (EPG) y pueden verse sujetos a modificaciones de última hora por decisión de las cadenas emisoras (cambios de programación, eventos deportivos en directo, etc.). teleestanoche.es no se responsabiliza de las posibles discrepancias entre la programación anunciada y la emisión final.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
