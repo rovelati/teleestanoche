@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T21:14:06.289661+00:00",
+  "updatedAt": "2026-10-13T21:17:12.750672+00:00",
   "channels": [
     {
       "id": "la-1",
@@ -7654,25 +7654,6 @@
       "isTonightPrime": false
     },
     {
-      "id": "atreseries-1791901080",
-      "channelId": "atreseries",
-      "channelName": "Atreseries",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Atreseries.png",
-      "title": "Los misterios de Murdoch T2 E6 · Tonos de gris",
-      "description": "· Segunda temporada de la serio en la que el inspector de policía William Murdoch utiliza técnicas forenses totalmente revolucionarias en aquella época. Cono ese enfoco será capaz de resolver los casos de homicidio más famosos de la ciudad.\n· País: Canadá y Reino Unido\n· Dirección: Don McBrearty.\n· Reparto: Rebecca Williams, Alex Paxton-Beesley, Vickie Papavs, Ian D Clark, Steven McCarthy, Anthony Lemke, Yannick Bisson, Jonny Harris, Lachlan Murdoch, Thomas Craig, Helene Joy.\n· Guion: Laura Phillips.\n· Productora: Noel Hedges, Christina Jennings, Peter Mitchell, Shaftesbury Films, Bell Broadcast and New Media Fund.",
-      "category": "movies",
-      "categoryEs": "Cine",
-      "startTime": "2026-10-13T16:18:00+02:00",
-      "stopTime": "2026-10-13T17:16:00+02:00",
-      "startMadrid": "16:18",
-      "stopMadrid": "17:16",
-      "startCanarias": "15:18",
-      "stopCanarias": "16:16",
-      "durationMinutes": 58,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/MATRESSP1390080",
-      "isTonightPrime": false
-    },
-    {
       "id": "atreseries-1791904560",
       "channelId": "atreseries",
       "channelName": "Atreseries",
@@ -13407,6 +13388,25 @@
       "startCanarias": "09:29",
       "stopCanarias": "10:15",
       "durationMinutes": 46,
+      "icon": "https://www.movistarplus.es/recorte/n/dispficha/MDKISSP4254478",
+      "isTonightPrime": false
+    },
+    {
+      "id": "dkiss-1792055700",
+      "channelId": "dkiss",
+      "channelName": "DKISS",
+      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DKISS.png",
+      "title": "¿Pero por qué me compré esta casa?",
+      "description": "· Kim Wolfe aborda uno de los sentimientos más comunes y estresantes del mercado inmobiliario: el arrepentimiento del comprador. Se enfoca en familias que compraron una casa impulsadas por la emoción, la ubicación o un detalle superficial.\n· País: Estados Unidos\n· Dirección: Kim Spradlin Wolfe.\n· Productora: High Noon Entertainment.",
+      "category": "entertainment",
+      "categoryEs": "Entretenimiento",
+      "startTime": "2026-10-15T11:15:00+02:00",
+      "stopTime": "2026-10-15T12:03:00+02:00",
+      "startMadrid": "11:15",
+      "stopMadrid": "12:03",
+      "startCanarias": "10:15",
+      "stopCanarias": "11:03",
+      "durationMinutes": 48,
       "icon": "https://www.movistarplus.es/recorte/n/dispficha/MDKISSP4254478",
       "isTonightPrime": false
     },
@@ -19716,25 +19716,6 @@
       "stopCanarias": "10:31",
       "durationMinutes": 23,
       "icon": "https://www.movistarplus.es/recorte/n/dispficha/F4447823",
-      "isTonightPrime": false
-    },
-    {
-      "id": "boing-1791903360",
-      "channelId": "boing",
-      "channelName": "Boing",
-      "channelLogo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Boing.png",
-      "title": "El asombroso mundo de Gumball T1 · El Asombroso Mundo de Gumball",
-      "description": "· Una familia urbana \"normal\" en un pueblo extraordinario. Gumball, su hermana Anaís, sus padres y su amigo Darwin viven asombrosas aventuras cada día.\n· País: Alemania, Estados Unidos, Irlanda y Reino Unido\n· Reparto: Jacob Hopkins, Terrell Ransom Jr, Dan Russell, Kyla Kowalewski, Teresa Gallagher.\n· Productora: Cartoon Network, Cartoon Network Development Studio Europe, Boulder Media, Studio Soi.",
-      "category": "kids",
-      "categoryEs": "Infantil",
-      "startTime": "2026-10-13T16:56:00+02:00",
-      "stopTime": "2026-10-13T17:15:00+02:00",
-      "startMadrid": "16:56",
-      "stopMadrid": "17:15",
-      "startCanarias": "15:56",
-      "stopCanarias": "16:15",
-      "durationMinutes": 19,
-      "icon": "https://www.movistarplus.es/recorte/n/dispficha/F4195039",
       "isTonightPrime": false
     },
     {
