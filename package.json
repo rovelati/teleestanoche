@@ -11,6 +11,9 @@
     "prebuild": "python3 scripts/fetch-epg-spain.py || true",
     "build": "astro build",
     "postbuild": "node scripts/verify-build.mjs",
+    "ping:indexnow": "node scripts/ping-indexnow.mjs",
+    "ping:google": "python3 scripts/push-google-indexing.py",
+    "ping": "npm run ping:indexnow && npm run ping:google || true",
     "preview": "astro preview",
     "typecheck": "astro check --no-watch"
   },
