@@ -3,6 +3,15 @@ import { getAllChannels } from '../utils/epg';
 
 const channels = getAllChannels();
 const currentYear = new Date().getFullYear();
+
+const INTERNATIONAL_SITES = [
+  { name: 'inTVstasera.it', flag: '🇮🇹', url: 'https://www.intvstasera.it/' },
+  { name: 'ProgrammeCeSoir.fr', flag: '🇫🇷', url: 'https://programmecesoir.fr/' },
+  { name: 'FernsehHeute.de', flag: '🇩🇪', url: 'https://fernsehheute.de/' },
+  { name: 'UKTVTonight.co.uk', flag: '🇬🇧', url: 'https://uktvtonight.co.uk/' },
+  { name: 'AussieTVTonight.com', flag: '🇦🇺', url: 'https://aussietvtonight.com/' },
+  { name: 'TVWieczor.pl', flag: '🇵🇱', url: 'https://tvwieczor.pl/' },
+];
 ---
 
 <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 text-xs mt-16">
@@ -58,6 +67,19 @@ const currentYear = new Date().getFullYear();
           <li><a href="mailto:info@teleestanoche.es" class="hover:text-amber-400 transition-colors">Contacto: info@teleestanoche.es</a></li>
         </ul>
       </div>
+    </div>
+
+    <!-- Guías de TV Internacionales -->
+    <div class="mb-8 pt-6 border-t border-slate-800">
+      <h4 class="text-slate-200 font-semibold mb-3 text-sm">Guías de TV Internacionales</h4>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-xs" aria-label="Guías de TV Internacionales">
+        {INTERNATIONAL_SITES.map(site => (
+          <a href={site.url} class="inline-flex items-center gap-1.5 hover:text-amber-400 transition-colors">
+            <span>{site.flag}</span>
+            <span>{site.name}</span>
+          </a>
+        ))}
+      </nav>
     </div>
 
     <!-- Disclaimer & Copyright -->
