@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Sobre Nosotros — Quiénes Somos y Misión Editorial | Tele Esta Noche";
+const pageDescription = "Conoce al equipo editorial de teleestanoche.es, nuestra metodología de actualización de la parrilla de televisión en España (TDT) y nuestro compromiso de independencia.";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Quiénes somos y equipo de Tele Esta Noche",
+    "url": "https://www.teleestanoche.es/sobre-nosotros/",
+    "description": pageDescription,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Tele Esta Noche",
+      "url": "https://www.teleestanoche.es/",
+      "logo": "https://www.teleestanoche.es/favicon.svg"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://www.teleestanoche.es/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sobre Nosotros",
+        "item": "https://www.teleestanoche.es/sobre-nosotros/"
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout 
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl="https://www.teleestanoche.es/sobre-nosotros/"
+  jsonLd={jsonLd}
+>
+  <Header />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-slate-200">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-slate-400 mb-6">
+      <a href="/" class="hover:text-amber-400 transition-colors">Inicio</a>
+      <span>/</span>
+      <span class="text-amber-400 font-medium">Sobre Nosotros</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-12 border-b border-slate-800 pb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-semibold mb-4">
+        <span>🇪🇸</span> Guía Independiente de Televisión
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+        Sobre <span class="text-amber-400">Tele Esta Noche</span>
+      </h1>
+      <p class="text-lg text-slate-300 leading-relaxed max-w-2xl">
+        Nuestra misión es ofrecer la guía de televisión más rápida, clara y precisa de España. Sin saturación de anuncios intrusivos, sin desorden: solo la información exacta de qué ver esta noche en la TDT.
+      </p>
+    </header>
+
+    <!-- Mission Section -->
+    <section class="space-y-6 mb-12">
+      <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+        <span>🎯</span> Nuestra Misión Editorial
+      </h2>
+      <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+        En un ecosistema audiovisual cada vez más fragmentado entre plataformas de streaming y decenas de canales de la Televisión Digital Terrestre (TDT), encontrar una respuesta rápida a la pregunta <strong class="text-white">"¿qué echan hoy en la tele?"</strong> se ha convertido en una tarea sorprendentemente engorrosa.
+      </p>
+      <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+        <strong>teleestanoche.es</strong> nació con un principio claro: priorizar al espectador. Diseñamos una interfaz minimalista, ultrarrápida y optimizada para dispositivos móviles que permite consultar en menos de dos segundos la parrilla del prime time de las 22:00, qué se emite en directo en este instante, o qué películas y eventos deportivos están disponibles en abierto.
+      </p>
+    </section>
+
+    <!-- Team Section -->
+    <section class="mb-12 border-t border-slate-800 pt-10">
+      <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+        <span>👥</span> El Equipo de Redacción
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <article class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold text-lg mb-3">
+              CM
+            </div>
+            <h3 class="font-bold text-white text-base">Carlos Mendoza</h3>
+            <p class="text-amber-400 text-xs font-semibold mb-2">Director Editorial & Audiencias</p>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Periodista especializado en medios audiovisuales y análisis de audiencias de Kantar Media. Supervisa la línea editorial y la cobertura de los grandes eventos televisivos en España.
+            </p>
+          </div>
+        </article>
+
+        <article class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold text-lg mb-3">
+              LG
+            </div>
+            <h3 class="font-bold text-white text-base">Laura Garrido</h3>
+            <p class="text-sky-400 text-xs font-semibold mb-2">Redactora Jefa de Ficción & Cine</p>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Crítica cinematográfica y seguidora de la ficción española. Elabora las fichas de películas en abierto, sinopsis de series y recomendaciones de estreno en La 1, Antena 3 y Telecinco.
+            </p>
+          </div>
+        </article>
+
+        <article class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold text-lg mb-3">
+              AR
+            </div>
+            <h3 class="font-bold text-white text-base">Alejandro Ramos</h3>
+            <p class="text-emerald-400 text-xs font-semibold mb-2">Coordinador de Deportes & EPG</p>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Especialista en retransmisiones deportivas en directo (fútbol, baloncesto, ciclismo y motor) y responsable técnico de la sincronización de las fuentes de datos EPG.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="mb-12 border-t border-slate-800 pt-10">
+      <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+        <span>⚙️</span> Metodología y Actualización de la Parrilla
+      </h2>
+      <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+        <p>
+          En España, los horarios de emisión televisiva están sujetos a fluctuaciones frecuentes debido a la duración variable del <em>access prime time</em> (espacios como <em>El Hormiguero</em>, <em>La Revuelta</em> o <em>First Dates</em>).
+        </p>
+        <p>
+          Para garantizar la máxima fiabilidad:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-slate-300 text-sm">
+          <li><strong>Fuentes Oficiales:</strong> Obtenemos los datos de la Guía Electrónica de Programas (EPG) sincronizados con los emisores oficiales de TDT: RTVE, Atresmedia, Mediaset España, canales autonómicos de la FORTA y cadenas temáticas nacionales.</li>
+          <li><strong>Actualización Continua:</strong> Nuestras parrillas se sincronizan múltiples veces al día para registrar cambios de última hora en películas, especiales informativos o prórrogas deportivas.</li>
+          <li><strong>Doble Huso Horario:</strong> Incorporamos selector directo entre el horario peninsular (CET) y el horario de las Islas Canarias (UTC+0 / WET), evitando confusiones para los espectadores del archipiélago.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Values & Principles -->
+    <section class="mb-12 border-t border-slate-800 pt-10">
+      <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+        <span>🛡️</span> Principios Éticos y Transparencia
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
+          <h3 class="font-bold text-white mb-1">Independencia Total</h3>
+          <p class="text-slate-400">No pertenecemos a ningún grupo de comunicación ni cadena audiovisual. Nuestras valoraciones y selecciones son 100% editoriales y neutrales.</p>
+        </div>
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
+          <h3 class="font-bold text-white mb-1">Privacidad del Usuario</h3>
+          <p class="text-slate-400">Cumplimos estrictamente el RGPD y la LOPDGDD española. No requerimos registro obligatorio y respetamos las preferencias de cookies a través de nuestra plataforma de consentimiento.</p>
+        </div>
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
+          <h3 class="font-bold text-white mb-1">Sin Publicidad Agresiva</h3>
+          <p class="text-slate-400">Rechazamos pop-ups, redirects invasivos o elementos que entorpezcan la lectura. La legibilidad de la guía siempre va por delante.</p>
+        </div>
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
+          <h3 class="font-bold text-white mb-1">Corrección de Errores</h3>
+          <p class="text-slate-400">Si detectas una discrepancia en un horario o título, nuestro equipo revisa y corrige la ficha en minutos tras recibir un aviso.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="border-t border-slate-800 pt-8 text-center bg-slate-900/60 rounded-2xl p-8 border border-slate-800">
+      <h2 class="text-xl font-bold text-white mb-2">¿Tienes alguna sugerencia o quieres contactar con la redacción?</h2>
+      <p class="text-slate-400 text-sm mb-6 max-w-lg mx-auto">
+        Estamos siempre disponibles para atender consultas, propuestas de colaboración o reportes de cambios de programación.
+      </p>
+      <a 
+        href="/contacto/" 
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-400 text-slate-950 font-bold text-sm hover:bg-amber-300 transition shadow-lg shadow-amber-400/20"
+      >
+        <span>Escribir a la Redacción</span>
+        <span>→</span>
+      </a>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>

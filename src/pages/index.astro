@@ -12,29 +12,77 @@ const pageTitle = "¿Qué echan esta noche en la tele? Programación TV hoy en E
 const pageDesc = "Descubre qué echan esta noche en la tele en España. Consulta la programación completa de prime time (22:00) en la TDT: cine, series y programas de hoy en abierto.";
 const keywords = "que echan esta noche en la tele, que echan hoy en la tele, programacion tv esta noche, que ver esta noche en tv, guia tv hoy, parrilla tv espana, peliculas hoy tv, tdt espana";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TVGuide",
-  "name": "Tele Esta Noche - Guía TV TDT España",
-  "url": "https://www.teleestanoche.es/",
-  "description": pageDesc,
-  "inLanguage": "es-ES",
-  "spatialCoverage": {
-    "@type": "Country",
-    "name": "España",
-    "identifier": "ES"
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TVGuide",
+    "name": "Tele Esta Noche - Guía TV TDT España",
+    "url": "https://www.teleestanoche.es/",
+    "description": pageDesc,
+    "inLanguage": "es-ES",
+    "spatialCoverage": {
+      "@type": "Country",
+      "name": "España",
+      "identifier": "ES"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "España",
+      "identifier": "ES"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Tele Esta Noche",
+      "url": "https://www.teleestanoche.es"
+    }
   },
-  "areaServed": {
-    "@type": "Country",
-    "name": "España",
-    "identifier": "ES"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Tele Esta Noche",
-    "url": "https://www.teleestanoche.es"
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿A qué hora empieza realmente el prime time en la televisión de España?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aunque la franja nocturna se denomine genéricamente de las 22:00, en España las grandes ofertas de prime time (películas, series y concursos estelares) arrancan habitualmente entre las 22:45 y las 23:00 horas, justo al finalizar los espacios de access prime time como El Hormiguero, La Revuelta o First Dates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Dónde consultar qué echan esta noche en los principales canales de TDT?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En teleestanoche.es puedes consultar al instante la parrilla unificada de todos los canales en abierto: La 1, Antena 3, Telecinco, Cuatro, laSexta, La 2 y cadenas temáticas, con sinopsis, género y horario ajustado a la península y a Canarias."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo ver los canales de televisión española en directo por internet si no tengo antena?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Todos los canales en abierto disponen de plataformas digitales oficiales y gratuitas donde retransmiten su señal en directo: RTVE Play para La 1 y La 2, Atresplayer para Antena 3 y laSexta, y Mitele para Telecinco y Cuatro."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué diferencia horaria hay con la programación en las Islas Canarias?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En Canarias las emisiones en directo se reciben simultáneamente a las 21:00 horas locales (una hora menos respecto al horario peninsular). Puedes activar el selector horario de Canarias en la cabecera de nuestra web para adaptar automáticamente toda la parrilla."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Con qué frecuencia se actualiza la programación de teleestanoche.es?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nuestros datos de parrilla se sincronizan continuamente con las señales EPG oficiales de los operadores televisivos, reflejando cambios de última hora en películas, especiales de actualidad o prórrogas de eventos deportivos."
+        }
+      }
+    ]
   }
-};
+];
 ---
 
 <BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
@@ -131,17 +179,62 @@ const jsonLd = {
       ))}
     </div>
 
-    <!-- SEO Informational Block -->
-    <article class="mt-16 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 text-slate-400 text-xs leading-relaxed space-y-4">
-      <h2 class="text-base sm:text-lg font-bold text-white">
-        Guía de Televisión en España: Horarios y Franjas de la TDT
-      </h2>
-      <p>
-        A diferencia de otros países europeos, en España el <strong>Prime Time</strong> televisivo arranca habitualmente entre las <strong>21:45 y las 22:45</strong>. Tras los informativos de sobremesa y de noche, las principales cadenas generalistas (La 1 de RTVE, Antena 3, Telecinco, Cuatro y laSexta) programan espacios de gran impacto como <em>El Hormiguero</em>, <em>La Revuelta</em>, <em>First Dates</em> o <em>El Intermedio</em> antes de dar paso a las grandes películas y series de la noche.
-      </p>
-      <p>
-        En <strong>Tele Esta Noche</strong> puedes consultar de un vistazo toda la parrilla actualizada en tiempo real para la Península y Baleares, con adaptación horaria automática para las Islas Canarias.
-      </p>
+    <!-- SEO Informational Block & Editorial Guide -->
+    <article class="mt-16 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 text-slate-300 text-sm leading-relaxed space-y-6">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">
+          Guía de Televisión en España: Horarios y Franjas de la TDT
+        </h2>
+        <p class="text-slate-400">
+          A diferencia de otros países europeos, en España el <strong>Prime Time</strong> televisivo arranca habitualmente entre las <strong>21:45 y las 22:45</strong>. Tras los informativos de sobremesa y de noche, las principales cadenas generalistas (La 1 de RTVE, Antena 3, Telecinco, Cuatro y laSexta) programan espacios de gran impacto como <em>El Hormiguero</em>, <em>La Revuelta</em>, <em>First Dates</em> o <em>El Intermedio</em> antes de dar paso a las grandes películas y series estelares de la noche.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-800">
+        <div>
+          <h3 class="text-base font-semibold text-amber-400 mb-2">📺 Cobertura Completa de Canales</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Sincronizamos al minuto todas las señales en abierto de la Televisión Digital Terrestre (TDT): las cadenas generalistas públicas (La 1, La 2) y privadas (Antena 3, Cuatro, Telecinco, laSexta), los canales temáticos de cine y ficción (FDF, Neox, Energy, BeMad, Paramount Network, Trece) y canales infantiles o documentales (Clan, Boing, DMAX, DKISS).
+          </p>
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-amber-400 mb-2">⏱️ Adaptación Horaria para Canarias</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Los espectadores en las Islas Canarias pueden pulsar el selector <em>"Canarias (WET)"</em> en la barra superior: los horarios se recalculan automáticamente (-1 hora) respecto a la emisión peninsular para que nunca te pierdas el inicio de tu emisión preferida.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Section matching Schema.org FAQPage -->
+      <div class="pt-6 border-t border-slate-800">
+        <h3 class="text-lg font-bold text-white mb-4">Preguntas Frecuentes sobre la Programación TV de Hoy</h3>
+        <dl class="space-y-4">
+          <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800/80">
+            <dt class="font-semibold text-white text-sm">¿A qué hora empieza realmente el prime time en la televisión de España?</dt>
+            <dd class="mt-1 text-slate-400 text-xs leading-relaxed">
+              Aunque la franja nocturna se denomine genéricamente de las 22:00, en España las grandes ofertas de prime time (películas, series y concursos estelares) arrancan habitualmente entre las 22:45 y las 23:00 horas, justo al finalizar los espacios de access prime time como El Hormiguero, La Revuelta o First Dates.
+            </dd>
+          </div>
+          <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800/80">
+            <dt class="font-semibold text-white text-sm">¿Dónde consultar qué echan esta noche en los principales canales de TDT?</dt>
+            <dd class="mt-1 text-slate-400 text-xs leading-relaxed">
+              En teleestanoche.es puedes consultar al instante la parrilla unificada de todos los canales en abierto: La 1, Antena 3, Telecinco, Cuatro, laSexta, La 2 y cadenas temáticas, con sinopsis, género y horario ajustado a la península y a Canarias.
+            </dd>
+          </div>
+          <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800/80">
+            <dt class="font-semibold text-white text-sm">¿Cómo ver los canales de televisión española en directo por internet si no tengo antena?</dt>
+            <dd class="mt-1 text-slate-400 text-xs leading-relaxed">
+              Todos los canales en abierto disponen de plataformas digitales oficiales y gratuitas donde retransmiten su señal en directo: RTVE Play para La 1 y La 2, Atresplayer para Antena 3 y laSexta, y Mitele para Telecinco y Cuatro.
+            </dd>
+          </div>
+          <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800/80">
+            <dt class="font-semibold text-white text-sm">¿Con qué frecuencia se actualiza la programación de teleestanoche.es?</dt>
+            <dd class="mt-1 text-slate-400 text-xs leading-relaxed">
+              Nuestros datos de parrilla se sincronizan continuamente con las señales EPG oficiales de los operadores televisivos, reflejando cambios de última hora en películas, especiales de actualidad o prórrogas de eventos deportivos. Conoce más sobre nuestro proceso en nuestra página de <a href="/sobre-nosotros/" class="text-amber-400 underline hover:text-amber-300">Sobre Nosotros</a> o contáctanos en <a href="/contacto/" class="text-amber-400 underline hover:text-amber-300">Contacto</a>.
+            </dd>
+          </div>
+        </dl>
+      </div>
     </article>
 
   </main>

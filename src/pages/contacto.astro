@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Contacto — Redacción y Soporte | Tele Esta Noche";
+const pageDescription = "Ponte en contacto con el equipo de teleestanoche.es. Buzón de redacción, corrección de parrillas de televisión y propuestas de colaboración.";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Página de Contacto de Tele Esta Noche",
+    "url": "https://www.teleestanoche.es/contacto/",
+    "description": pageDescription,
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Tele Esta Noche",
+      "url": "https://www.teleestanoche.es/",
+      "email": "info@teleestanoche.es",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "editorial",
+          "email": "redaccion@teleestanoche.es"
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "support",
+          "email": "programacion@teleestanoche.es"
+        }
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://www.teleestanoche.es/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contacto",
+        "item": "https://www.teleestanoche.es/contacto/"
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout 
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl="https://www.teleestanoche.es/contacto/"
+  jsonLd={jsonLd}
+>
+  <Header />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-slate-200">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-slate-400 mb-6">
+      <a href="/" class="hover:text-amber-400 transition-colors">Inicio</a>
+      <span>/</span>
+      <span class="text-amber-400 font-medium">Contacto</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-12 border-b border-slate-800 pb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-semibold mb-4">
+        <span>✉️</span> Atención y Consultas
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+        Contacta con <span class="text-amber-400">Tele Esta Noche</span>
+      </h1>
+      <p class="text-lg text-slate-300 leading-relaxed max-w-2xl">
+        ¿Tienes una consulta sobre la programación, has detectado un cambio de última hora en la parrilla o deseas proponer una colaboración? Escríbenos directamente a través de nuestras vías dedicadas.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+      <!-- Contact Desks -->
+      <div class="space-y-6">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <span>📬</span> Buzones Directos por Departamento
+        </h2>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-amber-400 text-sm font-bold mb-1">
+            <span>✍️</span> Redacción & Contenidos
+          </div>
+          <p class="text-xs text-slate-400 mb-2">Para notas de prensa, sugerencias editoriales y artículos de fondo sobre televisión.</p>
+          <a href="mailto:redaccion@teleestanoche.es" class="text-white hover:text-amber-400 font-mono text-xs font-semibold transition">
+            redaccion@teleestanoche.es
+          </a>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-sky-400 text-sm font-bold mb-1">
+            <span>📡</span> Corrección de Parrilla & EPG
+          </div>
+          <p class="text-xs text-slate-400 mb-2">Para notificar modificaciones repentinas en emisiones de RTVE, Atresmedia o Mediaset.</p>
+          <a href="mailto:programacion@teleestanoche.es" class="text-white hover:text-sky-400 font-mono text-xs font-semibold transition">
+            programacion@teleestanoche.es
+          </a>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-emerald-400 text-sm font-bold mb-1">
+            <span>🤝</span> Publicidad & Colaboraciones
+          </div>
+          <p class="text-xs text-slate-400 mb-2">Propuestas comerciales, inserciones y acuerdos con plataformas o distribuidoras.</p>
+          <a href="mailto:publicidad@teleestanoche.es" class="text-white hover:text-emerald-400 font-mono text-xs font-semibold transition">
+            publicidad@teleestanoche.es
+          </a>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-purple-400 text-sm font-bold mb-1">
+            <span>ℹ️</span> Consultas Generales
+          </div>
+          <p class="text-xs text-slate-400 mb-2">Cualquier otra duda, aviso legal o solicitud relacionada con protección de datos.</p>
+          <a href="mailto:info@teleestanoche.es" class="text-white hover:text-purple-400 font-mono text-xs font-semibold transition">
+            info@teleestanoche.es
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+            <span>💬</span> Envíanos un Mensaje
+          </h2>
+          <p class="text-xs text-slate-400 mb-6">
+            Solemos responder en un plazo inferior a 24 horas laborables.
+          </p>
+
+          <form id="contact-form" class="space-y-4" onsubmit="event.preventDefault(); handleContactSubmit();">
+            <div>
+              <label for="contact-name" class="block text-xs font-semibold text-slate-300 mb-1">Nombre o Apodo *</label>
+              <input 
+                type="text" 
+                id="contact-name" 
+                required 
+                placeholder="Tu nombre" 
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition"
+              />
+            </div>
+
+            <div>
+              <label for="contact-email" class="block text-xs font-semibold text-slate-300 mb-1">Correo Electrónico *</label>
+              <input 
+                type="email" 
+                id="contact-email" 
+                required 
+                placeholder="tuemail@ejemplo.com" 
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition"
+              />
+            </div>
+
+            <div>
+              <label for="contact-subject" class="block text-xs font-semibold text-slate-300 mb-1">Motivo de Contacto *</label>
+              <select 
+                id="contact-subject" 
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400 transition"
+              >
+                <option value="reporte">Aviso de cambio en programación</option>
+                <option value="redaccion">Sugerencia para la redacción</option>
+                <option value="publicidad">Publicidad y patrocinios</option>
+                <option value="privacidad">Protección de datos (RGPD)</option>
+                <option value="otro">Otro asunto</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block text-xs font-semibold text-slate-300 mb-1">Mensaje *</label>
+              <textarea 
+                id="contact-message" 
+                rows="4" 
+                required 
+                placeholder="Detalla tu consulta o el canal y horario de la emisión..." 
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition resize-none"
+              ></textarea>
+            </div>
+
+            <div class="text-[11px] text-slate-500">
+              Al enviar este formulario aceptas nuestra <a href="/politica-de-privacidad/" class="underline hover:text-slate-300">política de privacidad</a>. No compartimos tus datos con terceros.
+            </div>
+
+            <button 
+              type="submit" 
+              id="btn-submit"
+              class="w-full py-3 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs hover:bg-amber-300 transition shadow-md shadow-amber-400/20 cursor-pointer"
+            >
+              Enviar Mensaje
+            </button>
+          </form>
+
+          <div id="form-feedback" class="hidden mt-4 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs text-center font-medium">
+            ✓ ¡Mensaje enviado con éxito! Nuestro equipo lo revisará en breve.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="border-t border-slate-800 pt-10">
+      <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <span>❓</span> Preguntas Frecuentes
+      </h2>
+
+      <div class="space-y-4">
+        <details class="bg-slate-900 border border-slate-800 rounded-xl p-4 [&_svg]:open:-rotate-180">
+          <summary class="flex justify-between items-center font-semibold text-sm text-slate-200 cursor-pointer list-none">
+            <span>¿Puedo ver las emisiones de televisión directamente en teleestanoche.es?</span>
+            <span class="transition duration-300">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </span>
+          </summary>
+          <p class="text-xs text-slate-400 mt-3 pt-3 border-t border-slate-800 leading-relaxed">
+            teleestanoche.es es exclusivamente una guía informativa de programación. No retransmitimos señal de vídeo por streaming ni alojamos archivos audiovisuales. Para ver las emisiones en directo, facilitamos enlaces oficiales a las plataformas legales gratuitas de los operadores (RTVE Play, Atresplayer, Mitele).
+          </p>
+        </details>
+
+        <details class="bg-slate-900 border border-slate-800 rounded-xl p-4 [&_svg]:open:-rotate-180">
+          <summary class="flex justify-between items-center font-semibold text-sm text-slate-200 cursor-pointer list-none">
+            <span>¿Por qué a veces un programa empieza más tarde de la hora anunciada?</span>
+            <span class="transition duration-300">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </span>
+          </summary>
+          <p class="text-xs text-slate-400 mt-3 pt-3 border-t border-slate-800 leading-relaxed">
+            En España, los programas principales de prime time suelen arrancar a las 22:45 o 23:00 debido a la extensión del bloque de <em>access prime time</em> (informativos, entrevistas y concursos diarios). Aunque los canales anuncien las 22:00 o 22:10 como referencia, el inicio efectivo suele retrasarse unos minutos.
+          </p>
+        </details>
+
+        <details class="bg-slate-900 border border-slate-800 rounded-xl p-4 [&_svg]:open:-rotate-180">
+          <summary class="flex justify-between items-center font-semibold text-sm text-slate-200 cursor-pointer list-none">
+            <span>¿Cómo puedo sugerir una nueva funcionalidad o canal autonómico?</span>
+            <span class="transition duration-300">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </span>
+          </summary>
+          <p class="text-xs text-slate-400 mt-3 pt-3 border-t border-slate-800 leading-relaxed">
+            Envíanos un correo a <a href="mailto:redaccion@teleestanoche.es" class="text-amber-400 underline">redaccion@teleestanoche.es</a> indicando el canal o la mejora que te gustaría ver. Ampliamos periódicamente nuestra cobertura de canales autonómicos de la FORTA según la demanda de los usuarios.
+          </p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <script is:inline>
+    function handleContactSubmit() {
+      const form = document.getElementById('contact-form');
+      const feedback = document.getElementById('form-feedback');
+      if (form && feedback) {
+        form.reset();
+        feedback.classList.remove('hidden');
+        setTimeout(() => {
+          feedback.classList.add('hidden');
+        }, 5000);
+      }
+    }
+  </script>
+
+  <Footer />
+</BaseLayout>
