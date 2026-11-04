@@ -34,29 +34,11 @@ import ProgramOverlay from '../components/ProgramOverlay.astro';
 <!doctype html>
 <html lang="es-ES" class="bg-slate-950 text-slate-100 antialiased">
   <head>
-    <!-- UniConsent CMP Config Override (Lock language to es, country to ES, brand to Tele Esta Noche) -->
-    <script is:inline>
-      window.__unic_config_v2 = {
-        publisherCountryCode: "ES",
-        unic_language: "es",
-        unic_company: "Tele Esta Noche",
-        site_name: "Tele Esta Noche",
-        site_url: "https://www.teleestanoche.es"
-      };
-    </script>
-    <!-- UniConsent CMP -->
-    <script async fetchpriority="low" src="https://cmp.uniconsent.com/v2/cmp.js" data-license="b039ba7539"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag("consent", "default", {
-        ad_storage: "denied",
-        analytics_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-        wait_for_update: 500
-      });
-    </script>
+    <!-- UniConsent CMP (Official Google-Certified TCF v2.2 & Google Consent Mode v2) -->
+    <script is:inline src="https://cmp.uniconsent.com/v2/cmp.js" data-license="b039bad439"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SFXDPTGVJN"></script>
@@ -71,9 +53,6 @@ import ProgramOverlay from '../components/ProgramOverlay.astro';
     <!-- Google AdSense -->
     <meta name="google-adsense-account" content="ca-pub-2168172914069272" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2168172914069272" crossorigin="anonymous"></script>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <title>{title}</title>
     <meta name="description" content={description} />
