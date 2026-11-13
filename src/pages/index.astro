@@ -2,21 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import ChannelCard from '../components/ChannelCard.astro';
-import ChannelZapper from '../components/ChannelZapper.astro';
+import SpotlightHero from '../components/SpotlightHero.astro';
+import ChannelRow from '../components/ChannelRow.astro';
 import { getTonightPrimePrograms } from '../utils/epg';
 
 const primeItems = getTonightPrimePrograms();
+const firstItem = primeItems[0];
 
-const pageTitle = "¿Qué echan esta noche en la tele? Programación TV hoy en España";
-const pageDesc = "Descubre qué echan esta noche en la tele en España. Consulta la programación completa de prime time (22:00) en la TDT: cine, series y programas de hoy en abierto.";
-const keywords = "que echan esta noche en la tele, que echan hoy en la tele, programacion tv esta noche, que ver esta noche en tv, guia tv hoy, parrilla tv espana, peliculas hoy tv, tdt espana";
+const pageTitle = "¿Qué echan esta noche en la tele? Guía TV y programación TDT en España (200 canales)";
+const pageDesc = "Descubre qué echan esta noche en la tele en España. Consulta la programación completa de Prime Time (22:00) y directo en 200 canales de la TDT y streaming: cine, series, fútbol y programas en abierto.";
+const keywords = "que echan esta noche en la tele, que echan hoy en la tele, programacion tv esta noche, que ver esta noche en tv, guia tv hoy, parrilla tv espana, peliculas hoy tv, tdt espana, 200 canales tv";
 
 const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "TVGuide",
-    "name": "Tele Esta Noche - Guía TV TDT España",
+    "name": "Tele Esta Noche - Guía TV TDT España (200 Canales)",
     "url": "https://www.teleestanoche.es/",
     "description": pageDesc,
     "inLanguage": "es-ES",
@@ -50,10 +51,18 @@ const jsonLd = [
       },
       {
         "@type": "Question",
+        "name": "¿Cuántos canales de televisión incluye teleestanoche.es?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tele Esta Noche incluye una parrilla completa de 200 canales: generalistas nacionales (La 1, Antena 3, Telecinco, Cuatro, laSexta), todos los canales temáticos de la TDT, cadenas autonómicas de toda España (TV3, Telemadrid, Canal Sur, ETB, TVG...), cine, deportes (DAZN, Eurosport, Movistar), documentales e infantiles."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "¿Dónde consultar qué echan esta noche en los principales canales de TDT?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "En teleestanoche.es puedes consultar al instante la parrilla unificada de todos los canales en abierto: La 1, Antena 3, Telecinco, Cuatro, laSexta, La 2 y cadenas temáticas, con sinopsis, género y horario ajustado a la península y a Canarias."
+          "text": "En teleestanoche.es puedes consultar al instante la parrilla unificada de 200 canales con fotos de alta resolución, sinopsis completa, género y horario adaptado tanto a la península (CET) como a las Islas Canarias (WET)."
         }
       },
       {
@@ -61,23 +70,7 @@ const jsonLd = [
         "name": "¿Cómo ver los canales de televisión española en directo por internet si no tengo antena?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Todos los canales en abierto disponen de plataformas digitales oficiales y gratuitas donde retransmiten su señal en directo: RTVE Play para La 1 y La 2, Atresplayer para Antena 3 y laSexta, y Mitele para Telecinco y Cuatro."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué diferencia horaria hay con la programación en las Islas Canarias?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "En Canarias las emisiones en directo se reciben simultáneamente a las 21:00 horas locales (una hora menos respecto al horario peninsular). Puedes activar el selector horario de Canarias en la cabecera de nuestra web para adaptar automáticamente toda la parrilla."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Con qué frecuencia se actualiza la programación de teleestanoche.es?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nuestros datos de parrilla se sincronizan continuamente con las señales EPG oficiales de los operadores televisivos, reflejando cambios de última hora en películas, especiales de actualidad o prórrogas de eventos deportivos."
+          "text": "Todos los canales disponen de botón directo a sus plataformas oficiales y gratuitas: RTVE Play para La 1 y La 2, Atresplayer para Antena 3 y laSexta, Mitele para Telecinco y Cuatro, y los reproductores oficiales de cada cadena autonómica y temática."
         }
       }
     ]
@@ -88,119 +81,205 @@ const jsonLd = [
 <BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
   <Header activeTab="tonight" />
 
-  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
     
-    <!-- Hero / Intro -->
-    <div class="mb-6">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800 pb-5">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-semibold mb-3">
-            <span>🌙</span>
-            <span>Prime Time en Abierto • 22:00</span>
-          </div>
-          <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            ¿Qué echan esta noche en la tele?
-          </h1>
-          <p class="text-sm sm:text-base text-slate-400 mt-2 max-w-2xl">
-            Guía y parrilla de televisión para ver hoy por la noche en España. Consulta las películas de estreno, las mejores series y los programas estelares del Prime Time (22:00) en todos los canales de la TDT.
-          </p>
+    <!-- Top Intro Bar with Clock & Live Badge -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5 pb-4 border-b border-slate-800/80">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-semibold mb-2">
+          <span>🌙</span>
+          <span>Prime Time España • 22:00</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-300 font-mono">200 Canales</span>
         </div>
-
-        <!-- Right: Live Clock & View Mode Switcher -->
-        <div class="flex flex-wrap items-center gap-2.5 self-start sm:self-auto">
-          <!-- Live Local Clock -->
-          <div class="bg-slate-900 border border-slate-800 rounded-2xl px-3 py-1.5 flex items-center gap-2 shadow-sm" title="Hora local actual">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-xs font-mono font-bold text-amber-400 dynamic-live-clock">
-              --:--:--
-            </span>
-          </div>
-
-          <!-- View Mode Switcher -->
-          <div class="flex items-center gap-1 bg-slate-900 border border-slate-800 p-1 rounded-2xl shadow-sm" id="view-mode-selector">
-            <button 
-              type="button" 
-              id="view-btn-list" 
-              class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 bg-amber-400 text-slate-950 shadow-sm"
-              title="Vista en lista compacta (rápida para escanear)"
-            >
-              <span>☰</span>
-              <span>Lista rápida</span>
-            </button>
-            <button 
-              type="button" 
-              id="view-btn-grid" 
-              class="px-3 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white transition-all flex items-center gap-1.5"
-              title="Vista en cuadrícula con fotos grandes"
-            >
-              <span>⊞</span>
-              <span>Cuadrícula</span>
-            </button>
-          </div>
-        </div>
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+          ¿Qué echan esta noche en la tele?
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
+          Parrilla interactiva de televisión para ver hoy en España. Haz clic en cualquier canal para ver su ficha con foto grande, sinopsis completa y enlace a la emisión en directo.
+        </p>
       </div>
 
-      <!-- Quick Zapper (Telecomando Virtual con salto a canales) -->
-      <div class="mt-4">
-        <ChannelZapper />
+      <!-- Live Clock & Canary Time Selector Reminder -->
+      <div class="flex items-center gap-2.5 self-start sm:self-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl px-3.5 py-2 flex items-center gap-2 shadow-sm" title="Hora local actual">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-xs font-mono font-bold text-amber-400 dynamic-live-clock">
+            --:--:--
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. SPOTLIGHT HERO: Big Cinematic Banner & Info (TF1+ Direct Style) -->
+    {firstItem && (
+      <SpotlightHero 
+        initialChannel={firstItem.channel}
+        initialProgram={firstItem.program}
+        initialNextProgram={firstItem.nextProgram}
+        initialCurrentProgram={firstItem.currentProgram}
+        initialProgress={firstItem.progressPercent}
+      />
+    )}
+
+    <!-- 2. CATEGORY PILLS BAR (Horizontal modern filter strip like TF1+) -->
+    <div class="mb-5 space-y-3">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-400 px-1">
+        <span class="flex items-center gap-1.5 uppercase tracking-wider text-[11px] text-slate-400">
+          <span>📂</span> Categorías y canales
+        </span>
+        <span class="text-slate-500 font-normal text-[11px]" id="filtered-channels-count">
+          Mostrando 200 canales
+        </span>
       </div>
 
-      <!-- Category Filter Pills (Client-side fast filter) -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-2" id="category-filters">
-        <button data-cat="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-400 text-slate-950 shadow-sm transition-colors whitespace-nowrap">
-          Todos los canales
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 scroll-smooth" id="category-tabs">
+        <button 
+          data-group="all" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-bold bg-amber-400 text-slate-950 shadow-md transition-all whitespace-nowrap active:scale-95"
+        >
+          ⭐ Todos los Canales (200)
         </button>
-        <button data-cat="movies" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
-          🍿 Películas
+        <button 
+          data-group="general" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          📺 Generalistas Nacionales
         </button>
-        <button data-cat="series" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
-          📺 Series
+        <button 
+          data-group="cine-series" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🍿 Cine & Series
         </button>
-        <button data-cat="sports" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
+        <button 
+          data-group="deportes" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
           ⚽ Deportes
         </button>
-        <button data-cat="entertainment" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
-          🎭 Entretenimiento
+        <button 
+          data-group="autonomica" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🌍 Autonómicas & FORTA
         </button>
-        <button data-cat="news" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors whitespace-nowrap">
-          📰 Informativos
+        <button 
+          data-group="documentales" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🦁 Documentales & Factual
+        </button>
+        <button 
+          data-group="infantil" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🎈 Infantil & Familia
+        </button>
+        <button 
+          data-group="noticias" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          📰 Noticias 24h
+        </button>
+        <button 
+          data-group="musica" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🎵 Música
+        </button>
+        <button 
+          data-group="fast" 
+          class="cat-tab-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          ⚡ FAST & Streaming
         </button>
       </div>
     </div>
 
-    <!-- Channels Container (Toggles between view-list and view-grid) -->
-    <div class="view-list flex flex-col gap-3 transition-all duration-200" id="channels-grid">
-      {primeItems.map(({ channel, program, nextProgram }) => (
-        <ChannelCard 
+    <!-- 3. SEARCH & FRANJA FILTER CONTROLS -->
+    <div class="mb-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3">
+      
+      <!-- Franja Switcher (TF1+ Sub-tabs: EN DIRECT | À SUIVRE | VOTRE SOIRÉE) -->
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <button 
+          type="button" 
+          id="franja-tonight" 
+          class="franja-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-amber-400 text-slate-950 shadow-sm flex items-center gap-1.5 whitespace-nowrap"
+        >
+          <span>🌙</span>
+          <span>Esta Noche (22:00)</span>
+        </button>
+        <button 
+          type="button" 
+          id="franja-live" 
+          class="franja-btn px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white transition-all flex items-center gap-1.5 whitespace-nowrap"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+          <span>En Directo (Ahora)</span>
+        </button>
+      </div>
+
+      <!-- Real-time Live Search Input -->
+      <div class="relative w-full md:w-80">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 text-xs">
+          🔍
+        </span>
+        <input 
+          type="text" 
+          id="channel-search-input" 
+          placeholder="Buscar entre 200 canales o títulos..."
+          class="w-full pl-8 pr-4 py-2 rounded-xl text-xs bg-slate-950 border border-slate-800 focus:border-amber-400 focus:outline-none text-white placeholder-slate-500 transition-colors"
+        />
+      </div>
+
+    </div>
+
+    <!-- 4. CHANNELS ROWS GRID (TF1+ Direct Rows) -->
+    <div class="flex flex-col gap-3 transition-all duration-200" id="channels-container">
+      {primeItems.map(({ channel, program, nextProgram, currentProgram, progressPercent }, idx) => (
+        <ChannelRow 
           channel={channel} 
           program={program} 
           nextProgram={nextProgram} 
+          currentProgram={currentProgram}
+          progressPercent={progressPercent}
+          isActive={idx === 0}
         />
       ))}
     </div>
 
-    <!-- SEO Informational Block & Editorial Guide -->
-    <article class="mt-16 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 text-slate-300 text-sm leading-relaxed space-y-6">
+    <!-- No results message -->
+    <div id="no-results-msg" class="hidden py-16 text-center space-y-3 bg-slate-900/40 border border-slate-800 rounded-3xl mt-4">
+      <div class="text-3xl">🔍</div>
+      <h3 class="text-base font-bold text-white">No se encontraron canales</h3>
+      <p class="text-xs text-slate-400 max-w-sm mx-auto">
+        Prueba con otro término de búsqueda o selecciona "Todos los Canales" en la barra superior.
+      </p>
+    </div>
+
+    <!-- 5. EDITORIAL GUIDE & SEO FAQ BLOCK -->
+    <article class="mt-16 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 text-slate-300 text-sm leading-relaxed space-y-6">
       <div>
         <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">
-          Guía de Televisión en España: Horarios y Franjas de la TDT
+          Guía de Televisión en España: Programación Completa de 200 Canales
         </h2>
-        <p class="text-slate-400">
+        <p class="text-slate-400 text-xs sm:text-sm">
           A diferencia de otros países europeos, en España el <strong>Prime Time</strong> televisivo arranca habitualmente entre las <strong>21:45 y las 22:45</strong>. Tras los informativos de sobremesa y de noche, las principales cadenas generalistas (La 1 de RTVE, Antena 3, Telecinco, Cuatro y laSexta) programan espacios de gran impacto como <em>El Hormiguero</em>, <em>La Revuelta</em>, <em>First Dates</em> o <em>El Intermedio</em> antes de dar paso a las grandes películas y series estelares de la noche.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-800">
         <div>
-          <h3 class="text-base font-semibold text-amber-400 mb-2">📺 Cobertura Completa de Canales</h3>
+          <h3 class="text-base font-semibold text-amber-400 mb-2">📺 200 Canales TDT, Autonómicos y Temáticos</h3>
           <p class="text-slate-400 text-xs leading-relaxed">
-            Sincronizamos al minuto todas las señales en abierto de la Televisión Digital Terrestre (TDT): las cadenas generalistas públicas (La 1, La 2) y privadas (Antena 3, Cuatro, Telecinco, laSexta), los canales temáticos de cine y ficción (FDF, Neox, Energy, BeMad, Paramount Network, Trece) y canales infantiles o documentales (Clan, Boing, DMAX, DKISS).
+            Nuestra guía cubre toda la oferta televisiva de España: desde los generalistas nacionales y temáticos de cine (FDF, Neox, Be Mad, Paramount, TCM, Warner TV, STAR Channel) hasta toda la red autonómica FORTA (TV3, Telemadrid, Canal Sur, ETB, TVG, À Punt, Aragón TV, CMM, IB3, TV Canaria), deportes en directo (DAZN, Eurosport, Movistar), documentales (National Geographic, Discovery, Historia) y canales infantiles.
           </p>
         </div>
         <div>
           <h3 class="text-base font-semibold text-amber-400 mb-2">⏱️ Adaptación Horaria para Canarias</h3>
           <p class="text-slate-400 text-xs leading-relaxed">
-            Los espectadores en las Islas Canarias pueden pulsar el selector <em>"Canarias (WET)"</em> en la barra superior: los horarios se recalculan automáticamente (-1 hora) respecto a la emisión peninsular para que nunca te pierdas el inicio de tu emisión preferida.
+            Los espectadores en las Islas Canarias pueden pulsar el selector <em>"Canarias (WET)"</em> en la cabecera: los horarios se adaptan automáticamente (-1 hora) respecto a la emisión peninsular para que nunca te pierdas el inicio de tu emisión preferida.
           </p>
         </div>
       </div>
@@ -209,28 +288,22 @@ const jsonLd = [
       <div class="pt-6 border-t border-slate-800">
         <h3 class="text-lg font-bold text-white mb-4">Preguntas Frecuentes sobre la Programación TV de Hoy</h3>
         <dl class="space-y-4">
-          <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800/80">
+          <div class="bg-slate-950/50 p-4 rounded-2xl border border-slate-800/80">
             <dt class="font-semibold text-white text-sm">¿A qué hora empieza realmente el prime time en la televisión de España?</dt>
             <dd class="mt-1 text-slate-400 text-xs leading-relaxed">
               Aunque la franja nocturna se denomine genéricamente de las 22:00, en España las grandes ofertas de prime time (películas, series y concursos estelares) arrancan habitualmente entre las 22:45 y las 23:00 horas, justo al finalizar los espacios de access prime time como El Hormiguero, La Revuelta o First Dates.
             </dd>
           </div>
-          <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800/80">
+          <div class="bg-slate-950/50 p-4 rounded-2xl border border-slate-800/80">
             <dt class="font-semibold text-white text-sm">¿Dónde consultar qué echan esta noche en los principales canales de TDT?</dt>
             <dd class="mt-1 text-slate-400 text-xs leading-relaxed">
-              En teleestanoche.es puedes consultar al instante la parrilla unificada de todos los canales en abierto: La 1, Antena 3, Telecinco, Cuatro, laSexta, La 2 y cadenas temáticas, con sinopsis, género y horario ajustado a la península y a Canarias.
+              En teleestanoche.es puedes consultar al instante la parrilla unificada de 200 canales en abierto y temáticos con imágenes de gran formato, sinopsis, género y horario ajustado a la península y a Canarias.
             </dd>
           </div>
-          <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800/80">
+          <div class="bg-slate-950/50 p-4 rounded-2xl border border-slate-800/80">
             <dt class="font-semibold text-white text-sm">¿Cómo ver los canales de televisión española en directo por internet si no tengo antena?</dt>
             <dd class="mt-1 text-slate-400 text-xs leading-relaxed">
-              Todos los canales en abierto disponen de plataformas digitales oficiales y gratuitas donde retransmiten su señal en directo: RTVE Play para La 1 y La 2, Atresplayer para Antena 3 y laSexta, y Mitele para Telecinco y Cuatro.
-            </dd>
-          </div>
-          <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800/80">
-            <dt class="font-semibold text-white text-sm">¿Con qué frecuencia se actualiza la programación de teleestanoche.es?</dt>
-            <dd class="mt-1 text-slate-400 text-xs leading-relaxed">
-              Nuestros datos de parrilla se sincronizan continuamente con las señales EPG oficiales de los operadores televisivos, reflejando cambios de última hora en películas, especiales de actualidad o prórrogas de eventos deportivos. Conoce más sobre nuestro proceso en nuestra página de <a href="/sobre-nosotros/" class="text-amber-400 underline hover:text-amber-300">Sobre Nosotros</a> o contáctanos en <a href="/contacto/" class="text-amber-400 underline hover:text-amber-300">Contacto</a>.
+              Todos los canales en abierto disponen de plataformas digitales oficiales y gratuitas donde retransmiten su señal en directo: RTVE Play para La 1 y La 2, Atresplayer para Antena 3 y laSexta, Mitele para Telecinco y Cuatro, y las plataformas web oficiales de cada cadena autonómica y temática.
             </dd>
           </div>
         </dl>
@@ -244,62 +317,119 @@ const jsonLd = [
 
 <script is:inline>
   (function() {
-    // 1. Category Filtering
-    const buttons = document.querySelectorAll('#category-filters .filter-btn');
-    const cards = document.querySelectorAll('.channel-card');
+    // 1. Channel Row Click Handler (Updates Top Spotlight Hero)
+    window.handleChannelRowClick = function(el) {
+      const row = el.closest('.channel-row');
+      if (!row) return;
 
-    buttons.forEach(btn => {
+      const data = {
+        channelSlug: el.getAttribute('data-channel-slug'),
+        channelName: el.getAttribute('data-channel-name'),
+        channelLogo: el.getAttribute('data-channel-logo'),
+        channelNumber: el.getAttribute('data-channel-number'),
+        streamUrl: el.getAttribute('data-stream-url'),
+        title: el.getAttribute('data-title'),
+        description: el.getAttribute('data-desc'),
+        category: el.getAttribute('data-category'),
+        time: el.getAttribute('data-time'),
+        image: el.getAttribute('data-image'),
+        progress: parseInt(el.getAttribute('data-progress') || '35', 10),
+        isLive: true
+      };
+
+      if (window.updateSpotlightHero) {
+        window.updateSpotlightHero(data);
+      }
+
+      // Update active highlight border on channel box
+      document.querySelectorAll('.channel-box-btn').forEach(box => {
+        box.classList.remove('border-sky-400', 'bg-sky-950/40', 'ring-2', 'ring-sky-400/40', 'shadow-[0_0_20px_rgba(56,189,248,0.25)]');
+        box.classList.add('border-slate-800');
+      });
+
+      const activeBox = row.querySelector('.channel-box-btn');
+      if (activeBox) {
+        activeBox.classList.remove('border-slate-800');
+        activeBox.classList.add('border-sky-400', 'bg-sky-950/40', 'ring-2', 'ring-sky-400/40', 'shadow-[0_0_20px_rgba(56,189,248,0.25)]');
+      }
+    };
+
+    // 2. Category Tab Filtering
+    const tabButtons = document.querySelectorAll('#category-tabs .cat-tab-btn');
+    const rows = document.querySelectorAll('.channel-row');
+    const countEl = document.getElementById('filtered-channels-count');
+    const noResults = document.getElementById('no-results-msg');
+    const searchInput = document.getElementById('channel-search-input');
+
+    let currentCategory = 'all';
+
+    function filterChannels() {
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const group = row.getAttribute('data-channel-group');
+        const textContent = row.textContent.toLowerCase();
+
+        const matchesCategory = (currentCategory === 'all' || group === currentCategory);
+        const matchesSearch = !query || textContent.includes(query);
+
+        if (matchesCategory && matchesSearch) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      if (countEl) {
+        countEl.textContent = `Mostrando ${visibleCount} canales`;
+      }
+
+      if (noResults) {
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    tabButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        const cat = btn.getAttribute('data-cat');
+        currentCategory = btn.getAttribute('data-group') || 'all';
 
-        buttons.forEach(b => {
-          b.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold');
-          b.classList.add('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800');
+        tabButtons.forEach(b => {
+          b.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-md');
+          b.classList.add('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800', 'border', 'border-slate-800');
         });
-        btn.classList.add('bg-amber-400', 'text-slate-950', 'font-bold');
-        btn.classList.remove('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800');
 
-        cards.forEach(card => {
-          const cardCat = card.getAttribute('data-category');
-          if (cat === 'all' || cardCat === cat) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+        btn.classList.add('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-md');
+        btn.classList.remove('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800', 'border-slate-800');
+
+        filterChannels();
       });
     });
 
-    // 2. View Mode Toggle (Cuadrícula vs Lista rápida)
-    const btnList = document.getElementById('view-btn-list');
-    const btnGrid = document.getElementById('view-btn-grid');
-    const container = document.getElementById('channels-grid');
-
-    function applyViewMode(mode) {
-      if (!container) return;
-      if (mode === 'grid') {
-        container.className = 'view-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-200';
-        btnGrid.classList.add('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
-        btnGrid.classList.remove('text-slate-400', 'font-medium');
-        btnList.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
-        btnList.classList.add('text-slate-400', 'font-medium');
-      } else {
-        container.className = 'view-list flex flex-col gap-3 transition-all duration-200';
-        btnList.classList.add('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
-        btnList.classList.remove('text-slate-400', 'font-medium');
-        btnGrid.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
-        btnGrid.classList.add('text-slate-400', 'font-medium');
-      }
-      localStorage.setItem('teleestanoche_view', mode);
+    if (searchInput) {
+      searchInput.addEventListener('input', filterChannels);
     }
 
-    if (btnList && btnGrid) {
-      btnList.addEventListener('click', () => applyViewMode('list'));
-      btnGrid.addEventListener('click', () => applyViewMode('grid'));
+    // 3. Franja Toggle (Tonight vs Live)
+    const btnTonight = document.getElementById('franja-tonight');
+    const btnLive = document.getElementById('franja-live');
 
-      // Check saved preference, default to 'list'
-      const savedView = localStorage.getItem('teleestanoche_view') || 'list';
-      applyViewMode(savedView);
+    if (btnTonight && btnLive) {
+      btnTonight.addEventListener('click', () => {
+        btnTonight.classList.add('bg-amber-400', 'text-slate-950', 'font-bold');
+        btnTonight.classList.remove('text-slate-400');
+        btnLive.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold');
+        btnLive.classList.add('text-slate-400');
+      });
+
+      btnLive.addEventListener('click', () => {
+        btnLive.classList.add('bg-amber-400', 'text-slate-950', 'font-bold');
+        btnLive.classList.remove('text-slate-400');
+        btnTonight.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold');
+        btnTonight.classList.add('text-slate-400');
+      });
     }
+
   })();
 </script>

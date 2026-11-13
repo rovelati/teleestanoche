@@ -1,5 +1,5 @@
 # Tele Esta Noche (teleestanoche.es)
-> Guía de televisión de España para la TDT en abierto. Información en tiempo real sobre qué echan hoy en la tele, el Prime Time de las 22:00, cine, deportes y series.
+> Guía de televisión de España con cobertura de 200 canales de la TDT, cadenas autonómicas y streaming en abierto. Información en tiempo real sobre qué echan hoy en la tele, el Prime Time de las 22:00, cine, deportes y series.
 
 ## Información General
 - **Nombre:** Tele Esta Noche
@@ -7,17 +7,22 @@
 - **País:** España (ES)
 - **Idioma:** Español (es-ES)
 - **Zona Horaria:** Europa/Madrid (CET/CEST) con soporte para Islas Canarias (WET/WEST, -1 hora)
+- **Cobertura:** 200 canales de televisión en directo y parrilla completa
 
-## Canales Cubiertos de la TDT
-- **Generalistas Nacionales:** La 1 (RTVE), La 2 (RTVE), Antena 3 (Atresmedia), Cuatro (Mediaset), Telecinco (Mediaset), laSexta (Atresmedia).
-- **Cine y Series:** Factoría de Ficción (FDF), Neox, Nova, Mega, Atreseries, Energy, Divinity, Be Mad, TRECE.
-- **Deportes y Factual:** Teledeporte (TDP), GOL PLAY, Real Madrid TV, DMAX, DKISS, TEN.
-- **Noticias e Infantil:** Canal 24 Horas, Clan, Boing.
+## Canales Cubiertos (200 Canales)
+- **Generalistas Nacionales:** La 1, La 2, Antena 3, Cuatro, Telecinco, laSexta, TRECE, El Toro TV, Negocios TV, Canal RED.
+- **Cine y Series (TDT y Temáticos):** FDF, Neox, Nova, Mega, Atreseries, Energy, Divinity, Be Mad, Movistar Plus+, M+ Estrenos, M+ Hits, M+ Originales, M+ Clásicos, M+ Acción, M+ Comedia, M+ Drama, M+ Indie, M+ Cine Español, TCM, Canal Hollywood, AMC, Warner TV, STAR Channel, AXN, AXN Movies, Calle 13, Cosmo, Sci-Fi, Comedy Central, DARK, XTRM, Sundance TV, Somos, FlixOlé, BOM Cine, 8madrid TV.
+- **Deportes en Directo:** Teledeporte (TDP), GOL PLAY, Real Madrid TV, Eurosport 1, Eurosport 2, DAZN 1, DAZN 2, DAZN 3, DAZN 4, DAZN F1, DAZN MotoGP, DAZN LaLiga, DAZN Baloncesto, M+ Vamos, M+ LaLiga, M+ Liga de Campeones, M+ Deportes, M+ Golf, LaLiga Hypermotion, Tennis Channel, Betis TV.
+- **Autonómicas FORTA (Toda España):** TV3, 3CatInfo, SX3, Esport 3, Betevé, Telemadrid, La Otra, Canal Sur, Andalucía TV, ETB1, ETB2, TVG, TVG2, À Punt, Aragón TV, CMM TV, Canal Extremadura, TPA7 Asturias, IB3 TV Baleares, TV Canaria, La 7 CyL, La 7 Murcia, Navarra TV.
+- **Documentales, Factual y Cocina:** National Geographic, Nat Geo Wild, Discovery Channel, Canal Historia, Odisea, AMC Crime, AMC Break, Canal Cocina, Decasa/Living, DMAX, DKISS, TEN, BBC Earth, BBC History.
+- **Infantil:** Clan, Boing, Disney Channel, Nickelodeon, Nick Jr., DreamWorks, Baby TV, Pocoyó.
+- **Noticias e Internacional:** Canal 24 Horas, EuroNews, BBC News Europe, CNN International, Al Jazeera, France 24, Bloomberg TV.
+- **FAST y Streaming:** Canales Runtime (Cine, Acción, Comedia, Terror, Crimen, Romance, Clásicos, Familia, Series).
 
 ## Secciones Principales
-- **Esta Noche (Prime Time):** https://www.teleestanoche.es/ (Programas estelares a partir de las 22:00)
+- **Esta Noche (Prime Time 22:00):** https://www.teleestanoche.es/ (Parrilla estelar con fotos grandes y sinopsis)
 - **Ahora en TV (Directo):** https://www.teleestanoche.es/ahora/ (Emisiones en curso con barra de progreso)
 - **Películas de Hoy:** https://www.teleestanoche.es/peliculas-hoy/ (Cine en abierto en todos los canales)
-- **Deportes de Hoy:** https://www.teleestanoche.es/deportes-hoy/ (Fútbol, baloncesto, tenis y ciclismo)
-- **Series de Hoy:** https://www.teleestanoche.es/series-hoy/ (Ficción y telenovelas)
+- **Deportes de Hoy:** https://www.teleestanoche.es/deportes-hoy/ (Fútbol, baloncesto, tenis, F1, MotoGP y ciclismo)
+- **Series de Hoy:** https://www.teleestanoche.es/series-hoy/ (Ficción, series internacionales y telenovelas)
 - **Parrilla de Mañana:** https://www.teleestanoche.es/manana/ (Adelanto del prime time de mañana)

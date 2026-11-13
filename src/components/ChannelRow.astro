@@ -1,0 +1,222 @@
+---
+import type { Channel, Program } from '../types/epg';
+import BookmarkButton from './BookmarkButton.astro';
+
+interface Props {
+  channel: Channel;
+  program?: Program;
+  nextProgram?: Program;
+  currentProgram?: Program;
+  progressPercent?: number;
+  isActive?: boolean;
+}
+
+const { 
+  channel, 
+  program, 
+  nextProgram, 
+  currentProgram,
+  progressPercent = 35,
+  isActive = false 
+} = Astro.props;
+
+const CATEGORY_FALLBACKS: Record<string, string> = {
+  movies: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80',
+  series: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=600&q=80',
+  sports: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80',
+  news: 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=600&q=80',
+  kids: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=600&q=80',
+  entertainment: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80',
+  documentary: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
+  music: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80'
+};
+
+const primePhoto = program?.icon || (program ? CATEGORY_FALLBACKS[program.category] : CATEGORY_FALLBACKS.entertainment);
+const livePhoto = currentProgram?.icon || (currentProgram ? CATEGORY_FALLBACKS[currentProgram.category] : CATEGORY_FALLBACKS.entertainment);
+const nextPhoto = nextProgram?.icon || (nextProgram ? CATEGORY_FALLBACKS[nextProgram.category] : CATEGORY_FALLBACKS.entertainment);
+---
+
+<div 
+  class={`channel-row group/row flex flex-col md:flex-row items-stretch gap-2.5 sm:gap-3.5 transition-all duration-200 scroll-mt-28 ${isActive ? 'is-active-row' : ''}`}
+  id={`channel-row-${channel.id}`}
+  data-channel-id={channel.id}
+  data-channel-group={channel.group}
+  data-prime-category={program?.category || 'entertainment'}
+  data-live-category={currentProgram?.category || 'entertainment'}
+>
+
+  <!-- COL 1: Channel Logo Card (TF1+ Style) -->
+  <div 
+    class={`channel-box-btn relative shrink-0 w-full md:w-36 lg:w-44 bg-slate-900 border rounded-2xl p-3 flex md:flex-col items-center justify-between md:justify-center gap-2 cursor-pointer transition-all duration-200 ${isActive ? 'border-sky-400 bg-sky-950/40 ring-2 ring-sky-400/40 shadow-[0_0_20px_rgba(56,189,248,0.25)]' : 'border-slate-800 hover:border-slate-700 hover:bg-slate-800/80'}`}
+    onclick="handleChannelRowClick(this)"
+    data-channel-slug={channel.id}
+    data-channel-name={channel.name}
+    data-channel-logo={channel.logo}
+    data-channel-number={channel.number}
+    data-stream-url={channel.streamUrl}
+    data-title={program?.title || channel.name}
+    data-desc={program?.description || channel.description}
+    data-category={program?.categoryEs || 'General'}
+    data-time={`${program?.startMadrid || '22:00'} - ${program?.stopMadrid || '23:30'}`}
+    data-image={primePhoto}
+    data-progress={progressPercent}
+  >
+    <div class="flex items-center md:flex-col gap-2.5">
+      <div class="w-10 h-10 sm:w-12 sm:h-12 bg-slate-950 rounded-xl p-1.5 flex items-center justify-center border border-slate-800/80 shrink-0">
+        <img 
+          src={channel.logo} 
+          alt={channel.name} 
+          class="max-h-full max-w-full object-contain"
+          loading="lazy"
+          onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');"
+        />
+        <span class="hidden font-bold text-xs text-amber-400 font-mono">
+          {channel.name.slice(0, 3)}
+        </span>
+      </div>
+
+      <div class="text-left md:text-center">
+        <div class="flex items-center md:justify-center gap-1.5">
+          <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-slate-800 text-slate-400 font-mono">
+            #{channel.number}
+          </span>
+          <span class="font-bold text-white text-xs sm:text-sm group-hover/row:text-amber-300 transition-colors">
+            {channel.name}
+          </span>
+        </div>
+        <span class="text-[10px] text-slate-400 block truncate max-w-[120px] md:max-w-none">
+          {channel.group === 'autonomica' ? 'Autonómica' : 'TDT España'}
+        </span>
+      </div>
+    </div>
+
+    <!-- Quick Bookmark in Header for Desktop -->
+    <div class="flex items-center gap-1 shrink-0" onclick="event.stopPropagation()">
+      <BookmarkButton channelSlug={channel.id} />
+    </div>
+  </div>
+
+  <!-- COL 2: Main Featured Franja Program Card (Prime Time / En Directo) -->
+  {program ? (
+    <div 
+      class="program-main-card flex-1 min-w-0 bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-3 flex items-center gap-3.5 cursor-pointer transition-all duration-200 group/card relative overflow-hidden"
+      onclick="handleChannelRowClick(this)"
+      data-channel-slug={channel.id}
+      data-channel-name={channel.name}
+      data-channel-logo={channel.logo}
+      data-channel-number={channel.number}
+      data-stream-url={channel.streamUrl}
+      data-title={program.title}
+      data-desc={program.description}
+      data-category={program.categoryEs}
+      data-time={`${program.startMadrid} - ${program.stopMadrid}`}
+      data-image={primePhoto}
+      data-progress={progressPercent}
+    >
+      <!-- 16:9 Thumbnail Poster with zoom -->
+      <div class="w-24 sm:w-32 lg:w-36 h-16 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-slate-950 border border-slate-800 relative group/thumb">
+        <img 
+          src={primePhoto} 
+          alt={program.title} 
+          class="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-300"
+          loading="lazy"
+          onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS[program.category] || CATEGORY_FALLBACKS.entertainment}';`}
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+        <span class="absolute bottom-1 left-1.5 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.2 rounded bg-slate-900/90 border border-slate-700/80 text-amber-300">
+          {program.categoryEs}
+        </span>
+      </div>
+
+      <!-- Content Info -->
+      <div class="flex-1 min-w-0 space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-md border border-amber-400/20">
+            <span>🌙</span> Prime Time
+          </span>
+          <span class="text-xs font-mono font-bold text-slate-300" data-time-madrid={`${program.startMadrid} - ${program.stopMadrid}`} data-time-canarias={`${program.startCanarias} - ${program.stopCanarias}`}>
+            {program.startMadrid} - {program.stopMadrid}
+          </span>
+        </div>
+
+        <h3 class="text-sm sm:text-base font-bold text-white group-hover/card:text-amber-300 transition-colors truncate">
+          {program.title}
+        </h3>
+
+        <p class="text-xs text-slate-400 line-clamp-1 leading-relaxed hidden sm:block">
+          {program.description || 'Consulta detalles y ficha del programa'}
+        </p>
+
+        <!-- Dynamic Progress Bar -->
+        <div class="w-full h-1 bg-slate-800 rounded-full overflow-hidden mt-1.5">
+          <div 
+            class="h-full bg-gradient-to-r from-amber-400 via-rose-500 to-pink-500 rounded-full"
+            style={`width: ${progressPercent}%`}
+          ></div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div class="flex-1 bg-slate-900 border border-slate-800 rounded-2xl p-4 text-xs text-slate-500 flex items-center justify-center">
+      Emisión no disponible
+    </div>
+  )}
+
+  <!-- COL 3: Next Program ("A continuación" / "À suivre") -->
+  {nextProgram ? (
+    <div 
+      class="program-next-card flex-1 min-w-0 bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 rounded-2xl p-3 items-center gap-3.5 cursor-pointer transition-all duration-200 group/next hidden md:flex"
+      onclick="handleChannelRowClick(this)"
+      data-channel-slug={channel.id}
+      data-channel-name={channel.name}
+      data-channel-logo={channel.logo}
+      data-channel-number={channel.number}
+      data-stream-url={channel.streamUrl}
+      data-title={nextProgram.title}
+      data-desc={nextProgram.description}
+      data-category={nextProgram.categoryEs}
+      data-time={`${nextProgram.startMadrid} - ${nextProgram.stopMadrid}`}
+      data-image={nextPhoto}
+      data-progress={15}
+    >
+      <!-- 16:9 Thumbnail Poster -->
+      <div class="w-20 lg:w-28 h-16 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-slate-950 border border-slate-800 relative group/thumb">
+        <img 
+          src={nextPhoto} 
+          alt={nextProgram.title} 
+          class="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-300"
+          loading="lazy"
+          onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS[nextProgram.category] || CATEGORY_FALLBACKS.entertainment}';`}
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+        <span class="absolute bottom-1 left-1.5 text-[8px] font-bold uppercase tracking-wider px-1.5 py-0.2 rounded bg-slate-900/90 border border-slate-700/80 text-slate-300">
+          {nextProgram.categoryEs}
+        </span>
+      </div>
+
+      <!-- Next Content Info -->
+      <div class="flex-1 min-w-0 space-y-1">
+        <div class="flex items-center gap-1.5 text-[10px] text-slate-400">
+          <span class="font-bold text-slate-300">A continuación</span>
+          <span>•</span>
+          <span class="font-mono text-slate-400" data-time-madrid={nextProgram.startMadrid} data-time-canarias={nextProgram.startCanarias}>
+            {nextProgram.startMadrid}
+          </span>
+        </div>
+
+        <h4 class="text-xs sm:text-sm font-semibold text-slate-200 group-hover/next:text-white transition-colors truncate">
+          {nextProgram.title}
+        </h4>
+
+        <p class="text-[11px] text-slate-500 line-clamp-1">
+          {nextProgram.description || 'Programación de madrugada'}
+        </p>
+      </div>
+    </div>
+  ) : (
+    <div class="flex-1 bg-slate-900/40 border border-slate-800/40 rounded-2xl p-4 text-xs text-slate-600 hidden md:flex items-center justify-center">
+      Fin de emisión diaria
+    </div>
+  )}
+
+</div>

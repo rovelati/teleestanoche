@@ -1,0 +1,265 @@
+---
+import type { Channel, Program } from '../types/epg';
+import BookmarkButton from './BookmarkButton.astro';
+
+interface Props {
+  initialChannel: Channel;
+  initialProgram?: Program;
+  initialNextProgram?: Program;
+  initialCurrentProgram?: Program;
+  initialProgress?: number;
+}
+
+const { 
+  initialChannel, 
+  initialProgram, 
+  initialNextProgram, 
+  initialCurrentProgram,
+  initialProgress = 0 
+} = Astro.props;
+
+const featuredProg = initialProgram || initialCurrentProgram;
+
+const CATEGORY_FALLBACKS: Record<string, string> = {
+  movies: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80',
+  series: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=1200&q=80',
+  sports: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80',
+  news: 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1200&q=80',
+  kids: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&q=80',
+  entertainment: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80',
+  documentary: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+  music: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80'
+};
+
+const initialImage = featuredProg?.icon || (featuredProg ? CATEGORY_FALLBACKS[featuredProg.category] : CATEGORY_FALLBACKS.entertainment);
+---
+
+<section 
+  id="spotlight-hero" 
+  class="relative mb-8 rounded-3xl bg-slate-900/90 border border-slate-800/90 shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-300"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[380px] sm:min-h-[440px]">
+    
+    <!-- LEFT: Big Cinematic Media Player / Poster Area ("L'immagine grande") -->
+    <div class="lg:col-span-7 relative bg-slate-950 flex items-center justify-center overflow-hidden min-h-[260px] sm:min-h-[360px] lg:min-h-[440px]">
+      
+      <!-- Big Poster Image -->
+      <img 
+        id="hero-image"
+        src={initialImage} 
+        alt={featuredProg?.title || initialChannel.name} 
+        class="w-full h-full object-cover transition-opacity duration-500 will-change-transform"
+        loading="eager"
+        onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS.entertainment}';`}
+      />
+
+      <!-- Dark Vignette Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-slate-950/20 lg:to-slate-950/90 pointer-events-none"></div>
+
+      <!-- Top Badges Overlay -->
+      <div class="absolute top-4 left-4 flex flex-wrap items-center gap-2 z-10">
+        <span 
+          id="hero-live-badge" 
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-red-600/95 text-white shadow-lg backdrop-blur-md"
+        >
+          <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+          <span>EN DIRECTO</span>
+        </span>
+
+        <span 
+          id="hero-category-badge"
+          class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900/90 border border-slate-700/80 text-amber-300 shadow-md backdrop-blur-md"
+        >
+          {featuredProg?.categoryEs || 'Entretenimiento'}
+        </span>
+      </div>
+
+      <!-- Bottom Watermark on Photo for Mobile -->
+      <div class="absolute bottom-3 left-4 lg:hidden z-10 flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-slate-950/90 p-1 border border-slate-700/80 shrink-0 flex items-center justify-center">
+          <img 
+            id="hero-channel-logo-mob" 
+            src={initialChannel.logo} 
+            alt={initialChannel.name} 
+            class="max-h-full max-w-full object-contain"
+          />
+        </div>
+        <span id="hero-channel-name-mob" class="text-xs font-bold text-white shadow-sm">
+          {initialChannel.name}
+        </span>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Channel Branding & Detailed Synopsis -->
+    <div class="lg:col-span-5 p-5 sm:p-7 lg:p-8 flex flex-col justify-between bg-gradient-to-b from-slate-900/95 to-slate-950/95 border-t lg:border-t-0 lg:border-l border-slate-800/80">
+      
+      <div>
+        <!-- Channel Header Row -->
+        <div class="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800/80">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-slate-950 rounded-2xl p-2 flex items-center justify-center border border-slate-800 shrink-0 shadow-inner">
+              <img 
+                id="hero-channel-logo"
+                src={initialChannel.logo} 
+                alt={initialChannel.name} 
+                class="max-h-full max-w-full object-contain"
+              />
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span id="hero-channel-number" class="text-xs font-bold px-2 py-0.5 rounded bg-slate-800 text-amber-400 font-mono">
+                  #{initialChannel.number}
+                </span>
+                <h2 id="hero-channel-name" class="font-bold text-white text-base sm:text-lg">
+                  {initialChannel.name}
+                </h2>
+              </div>
+              <span id="hero-channel-status" class="text-xs text-slate-400 block mt-0.5">
+                Emisión en directo • TDT España
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <BookmarkButton channelSlug={initialChannel.id} />
+          </div>
+        </div>
+
+        <!-- Program Big Title -->
+        <h3 
+          id="hero-title"
+          class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-tight transition-colors"
+        >
+          {featuredProg?.title || 'Programación en directo'}
+        </h3>
+
+        <!-- Full Synopsis / Description -->
+        <p 
+          id="hero-desc"
+          class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-3 line-clamp-3 sm:line-clamp-4"
+        >
+          {featuredProg?.description || initialChannel.description}
+        </p>
+      </div>
+
+      <!-- Schedule, Progress & Actions Bar -->
+      <div class="mt-6 pt-4 border-t border-slate-800/80 space-y-4">
+        
+        <!-- Time Badge & Progress Bar Card -->
+        <div class="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-3.5 space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="inline-flex items-center gap-1.5 font-mono font-bold text-amber-300">
+              <span>🕒</span>
+              <span id="hero-time-badge">
+                {featuredProg?.startMadrid} - {featuredProg?.stopMadrid}
+              </span>
+              <span class="text-slate-500 font-normal">({featuredProg?.durationMinutes || 60} min)</span>
+            </span>
+
+            <span id="hero-progress-label" class="text-[11px] font-semibold text-rose-400">
+              En emisión
+            </span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div 
+              id="hero-progress-bar"
+              class="h-full bg-gradient-to-r from-amber-400 via-rose-500 to-pink-500 rounded-full transition-all duration-300"
+              style={`width: ${initialProgress}%`}
+            ></div>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-wrap items-center gap-3">
+          <a 
+            id="hero-stream-btn"
+            href={initialChannel.streamUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex-1 min-w-[160px] inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 transition-all shadow-lg shadow-amber-400/20 active:scale-95"
+          >
+            <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+            <span>Ver en directo</span>
+            <span class="text-xs">↗</span>
+          </a>
+
+          <a 
+            id="hero-channel-link"
+            href={`/${initialChannel.id}/`} 
+            class="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-colors border border-slate-700/80"
+          >
+            <span>Parrilla canal</span>
+            <span>→</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  /**
+   * Global function called whenever a channel row or card is clicked
+   */
+  window.updateSpotlightHero = function(data) {
+    const hero = document.getElementById('spotlight-hero');
+    if (!hero) return;
+
+    // Elements
+    const imgEl = document.getElementById('hero-image');
+    const titleEl = document.getElementById('hero-title');
+    const descEl = document.getElementById('hero-desc');
+    const timeEl = document.getElementById('hero-time-badge');
+    const catEl = document.getElementById('hero-category-badge');
+    const chLogoEl = document.getElementById('hero-channel-logo');
+    const chLogoMobEl = document.getElementById('hero-channel-logo-mob');
+    const chNameEl = document.getElementById('hero-channel-name');
+    const chNameMobEl = document.getElementById('hero-channel-name-mob');
+    const chNumEl = document.getElementById('hero-channel-number');
+    const streamBtn = document.getElementById('hero-stream-btn');
+    const channelLink = document.getElementById('hero-channel-link');
+    const progBar = document.getElementById('hero-progress-bar');
+    const progLabel = document.getElementById('hero-progress-label');
+
+    // Update with smooth fade
+    if (imgEl && data.image) {
+      imgEl.style.opacity = '0.3';
+      setTimeout(() => {
+        imgEl.src = data.image;
+        imgEl.style.opacity = '1';
+      }, 150);
+    }
+
+    if (titleEl) titleEl.textContent = data.title || '';
+    if (descEl) descEl.textContent = data.description || '';
+    if (timeEl) timeEl.textContent = data.time || '';
+    if (catEl) catEl.textContent = data.category || 'General';
+
+    if (chLogoEl) chLogoEl.src = data.channelLogo || '';
+    if (chLogoMobEl) chLogoMobEl.src = data.channelLogo || '';
+    if (chNameEl) chNameEl.textContent = data.channelName || '';
+    if (chNameMobEl) chNameMobEl.textContent = data.channelName || '';
+    if (chNumEl) chNumEl.textContent = '#' + (data.channelNumber || '');
+
+    if (streamBtn) streamBtn.href = data.streamUrl || '#';
+    if (channelLink) channelLink.href = '/' + (data.channelSlug || '') + '/';
+
+    if (progBar) {
+      progBar.style.width = (data.progress || 35) + '%';
+    }
+    if (progLabel) {
+      progLabel.textContent = data.isLive ? 'En emisión' : 'Prime Time 22:00';
+    }
+
+    // Smoothly scroll into view if user clicked far below on small screens
+    if (window.innerWidth < 1024 && window.scrollY > 500) {
+      hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+</script>

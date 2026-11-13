@@ -2,8 +2,8 @@ export interface Channel {
   id: string;          // slug e.g. "la-1"
   xmltvId: string;     // XMLTV id in guiatv.xml e.g. "La 1 HD"
   name: string;        // "La 1"
-  number: number;      // LCN order (1, 2, 3...)
-  group: 'general' | 'cine-series' | 'tematico' | 'deportes-noticias' | 'infantil';
+  number: number;      // LCN order (1, 2, 3... 200)
+  group: 'general' | 'cine-series' | 'documentales' | 'deportes' | 'noticias' | 'infantil' | 'autonomica' | 'musica' | 'fast';
   logo: string;        // URL or local asset
   streamUrl: string;   // Official live OTT stream URL
   description: string; // Spanish description of the channel
@@ -16,8 +16,8 @@ export interface Program {
   channelLogo: string;
   title: string;
   description: string;
-  category: 'movies' | 'series' | 'sports' | 'news' | 'entertainment' | 'kids';
-  categoryEs: string;  // "Cine", "Series", "Deportes", "Informativo", "Entretenimiento", "Infantil"
+  category: 'movies' | 'series' | 'sports' | 'news' | 'entertainment' | 'kids' | 'documentary' | 'music';
+  categoryEs: string;  // "Cine", "Series", "Deportes", "Informativo", "Entretenimiento", "Infantil", "Documental", "Música"
   startTime: string;   // ISO string UTC
   stopTime: string;    // ISO string UTC
   startMadrid: string; // HH:mm (Europe/Madrid)

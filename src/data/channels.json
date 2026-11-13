@@ -94,7 +94,7 @@
     "xmltvId": "Mega",
     "name": "Mega",
     "number": 10,
-    "group": "tematico",
+    "group": "cine-series",
     "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Mega.png",
     "streamUrl": "https://www.atresplayer.com/directos/mega/",
     "description": "Canal de Atresmedia dirigido al público masculino y aficionado al deporte y docurrealities. Emite cada medianoche la tertulia deportiva líder El Chiringuito de Jugones, documentales y cine bélico y de acción."
@@ -154,7 +154,7 @@
     "xmltvId": "DMAX",
     "name": "DMAX",
     "number": 16,
-    "group": "tematico",
+    "group": "documentales",
     "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DMAX.png",
     "streamUrl": "https://dmax.marca.com/en-directo/",
     "description": "Canal de factual de Warner Bros. Discovery en abierto. Emite formatos de ingeniería, supervivencia, misterios de la historia, ciencia, naturaleza extrema y grandes eventos deportivos."
@@ -164,7 +164,7 @@
     "xmltvId": "DKISS",
     "name": "DKISS",
     "number": 17,
-    "group": "tematico",
+    "group": "documentales",
     "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DKISS.png",
     "streamUrl": "https://dkiss.es/directo/",
     "description": "Canal temático enfocado en documentales de crimen real y sucesos, programas de medicina y salud, reformas del hogar, bodas y entretenimiento familiar curioso."
@@ -174,7 +174,7 @@
     "xmltvId": "Ten",
     "name": "TEN",
     "number": 18,
-    "group": "tematico",
+    "group": "documentales",
     "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Ten.png",
     "streamUrl": "https://tentv.es/directo/",
     "description": "Canal en abierto que combina espacios de investigación policial, crónica negra, sucesos (Caso Cerrado) y entretenimiento diario sin filtro."
@@ -184,7 +184,7 @@
     "xmltvId": "Teledeporte",
     "name": "Teledeporte",
     "number": 19,
-    "group": "deportes-noticias",
+    "group": "deportes",
     "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Teledeporte.png",
     "streamUrl": "https://www.rtve.es/play/videos/directo/canales-lineales/teledeporte/",
     "description": "El canal de deportes por excelencia de RTVE (TDP). Retransmite en directo citas olímpicas, ciclismo (Tour de Francia, Vuelta a España), tenis, baloncesto, fútbol femenino, atletismo y motor."
@@ -194,7 +194,7 @@
     "xmltvId": "GOL.TV",
     "name": "GOL PLAY",
     "number": 20,
-    "group": "deportes-noticias",
+    "group": "deportes",
     "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/GOL%20PLAY.png",
     "streamUrl": "https://goltelevision.com/en-directo",
     "description": "Canal de deportes y cine de acción en abierto de Mediapro. Emite partidos de fútbol en directo, resúmenes completos de LaLiga EA Sports, deportes de contacto, series y cine de aventuras."
@@ -204,7 +204,7 @@
     "xmltvId": "24 Horas",
     "name": "Canal 24 Horas",
     "number": 21,
-    "group": "deportes-noticias",
+    "group": "noticias",
     "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/24%20Horas.png",
     "streamUrl": "https://www.rtve.es/play/videos/directo/canales-lineales/24h/",
     "description": "Canal de noticias ininterrumpidas de RTVE con boletines informativos continuos, directos especiales ante eventos de última hora y cobertura geopolítica nacional e internacional."
@@ -214,7 +214,7 @@
     "xmltvId": "Real Madrid TV",
     "name": "Real Madrid TV",
     "number": 22,
-    "group": "deportes-noticias",
+    "group": "deportes",
     "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Real%20Madrid%20TV.png",
     "streamUrl": "https://www.realmadrid.com/es-ES/rm-tv",
     "description": "Canal oficial del club blanco en la TDT. Emite ruedas de prensa en directo, partidos de categorías inferiores, entrenamientos, tertulias previas y postpartido, y cine nocturno."
@@ -238,5 +238,1765 @@
     "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Boing.png",
     "streamUrl": "https://www.mitele.es/directo/boing/",
     "description": "Canal infantil temático de Mediaset y Warner Bros. Discovery con las series animadas de Cartoon Network más populares: Doraemon, Ben 10, Teen Titans Go! y El asombroso mundo de Gumball."
+  },
+  {
+    "id": "movistar-plus",
+    "xmltvId": "Movistar Plus HD",
+    "name": "Movistar Plus+",
+    "number": 25,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Movistar%20Plus.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Canal insignia de Movistar Plus+ con grandes estrenos de cine, series originales exclusivas y documentales."
+  },
+  {
+    "id": "mplus-estrenos",
+    "xmltvId": "M+ Estrenos HD",
+    "name": "M+ Estrenos",
+    "number": 26,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Estrenos.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Los estrenos cinematográficos más recientes de la cartelera y taquilla mundial sin interrupciones."
+  },
+  {
+    "id": "mplus-hits",
+    "xmltvId": "M+ Hits HD",
+    "name": "M+ Hits",
+    "number": 27,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Hits.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Grandes éxitos taquilleros del cine reciente y películas aclamadas por el público."
+  },
+  {
+    "id": "mplus-originales",
+    "xmltvId": "M+ Originales HD",
+    "name": "M+ Originales",
+    "number": 28,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Originales.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Producción propia de ficción, series y documentales originales galardonados."
+  },
+  {
+    "id": "mplus-clasicos",
+    "xmltvId": "M+ Clásicos HD",
+    "name": "M+ Clásicos",
+    "number": 29,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Cl%C3%A1sicos.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Obras maestras de la historia del cine, directores legendarios y joyas en blanco y negro y color."
+  },
+  {
+    "id": "mplus-accion",
+    "xmltvId": "M+ Acción HD",
+    "name": "M+ Acción",
+    "number": 30,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Acci%C3%B3n.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Adrenalina pura: cine de acción, thrillers policiacos, artes marciales y persecuciones."
+  },
+  {
+    "id": "mplus-comedia",
+    "xmltvId": "M+ Comedia HD",
+    "name": "M+ Comedia",
+    "number": 31,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Comedia.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Las mejores comedias españolas e internacionales, humor inteligente y grandes clásicos cómicos."
+  },
+  {
+    "id": "mplus-drama",
+    "xmltvId": "M+ Drama HD",
+    "name": "M+ Drama",
+    "number": 32,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Drama.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Películas dramáticas conmovedoras, historias humanas intensas y cine de autor."
+  },
+  {
+    "id": "mplus-indie",
+    "xmltvId": "M+ Indie HD",
+    "name": "M+ Indie",
+    "number": 33,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Indie.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Cine independiente, festivales internacionales de Cannes, Sundance, Berlín y Venecia."
+  },
+  {
+    "id": "mplus-cine-espanol",
+    "xmltvId": "M+ Cine Español",
+    "name": "M+ Cine Español",
+    "number": 34,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Cine%20Espa%C3%B1ol.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Homenaje integral al séptimo arte en España, desde los premios Goya hasta el cine clásico español."
+  },
+  {
+    "id": "tcm",
+    "xmltvId": "TCM HD",
+    "name": "TCM",
+    "number": 35,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TCM.png",
+    "streamUrl": "https://www.canaltcm.com/",
+    "description": "Turner Classic Movies: el canal de los cinéfilos con las mejores películas de todos los tiempos en alta definición."
+  },
+  {
+    "id": "canal-hollywood",
+    "xmltvId": "Canal Hollywood HD",
+    "name": "Canal Hollywood",
+    "number": 36,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Canal%20Hollywood.png",
+    "streamUrl": "https://canalhollywood.es/",
+    "description": "El canal líder de cine con los mayores éxitos de las grandes productoras de Hollywood."
+  },
+  {
+    "id": "amc",
+    "xmltvId": "AMC HD",
+    "name": "AMC",
+    "number": 37,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/AMC.png",
+    "streamUrl": "https://amcselekt.es/canales/amc/",
+    "description": "Cine contemporáneo galardonado y series exclusivas de aclamada crítica internacional."
+  },
+  {
+    "id": "warner-tv",
+    "xmltvId": "Warner TV HD",
+    "name": "Warner TV",
+    "number": 38,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Warner%20TV.png",
+    "streamUrl": "https://warnertv.es/",
+    "description": "Series icónicas de Warner Bros, estrenos de ficción y superproducciones cinematográficas."
+  },
+  {
+    "id": "star-channel",
+    "xmltvId": "STAR Channel HD",
+    "name": "STAR Channel",
+    "number": 39,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/STAR%20Channel.png",
+    "streamUrl": "https://starchannel.es/",
+    "description": "El hogar de las grandes series de entretenimiento, acción y los mejores thrillers."
+  },
+  {
+    "id": "axn",
+    "xmltvId": "AXN HD",
+    "name": "AXN",
+    "number": 40,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/AXN.png",
+    "streamUrl": "https://axn.es/",
+    "description": "Series policíacas de investigación, adrenalina, rescates y cine de máxima tensión."
+  },
+  {
+    "id": "axn-movies",
+    "xmltvId": "AXN Movies HD",
+    "name": "AXN Movies",
+    "number": 41,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/AXN%20Movies.png",
+    "streamUrl": "https://axnmovies.es/",
+    "description": "Canal 100% dedicado al cine de acción, aventuras, thriller y ciencia ficción."
+  },
+  {
+    "id": "calle-13",
+    "xmltvId": "Calle 13 HD",
+    "name": "Calle 13",
+    "number": 42,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Calle%2013.png",
+    "streamUrl": "https://calle13.es/",
+    "description": "El canal del crimen, la intriga, la investigación forense y los procedimentales policíacos."
+  },
+  {
+    "id": "cosmo",
+    "xmltvId": "Cosmo HD",
+    "name": "Cosmo",
+    "number": 43,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Cosmo.png",
+    "streamUrl": "https://cosmopolitantv.es/",
+    "description": "Series de éxito internacional, dramas británicos, comedia y lifestyle contemporáneo."
+  },
+  {
+    "id": "sci-fi",
+    "xmltvId": "SciFi HD",
+    "name": "Sci-Fi",
+    "number": 44,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/SciFi.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Ciencia ficción, mundos distópicos, fantasía épica y fenómenos sobrenaturales."
+  },
+  {
+    "id": "comedy-central",
+    "xmltvId": "Comedy Central HD",
+    "name": "Comedy Central",
+    "number": 45,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Comedy%20Central.png",
+    "streamUrl": "https://comedycentral.es/",
+    "description": "El templo del humor: stand-up comedy, monólogos, sitcoms míticas y parodias."
+  },
+  {
+    "id": "dark",
+    "xmltvId": "DARK",
+    "name": "DARK",
+    "number": 46,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DARK.png",
+    "streamUrl": "https://amcselekt.es/canales/dark/",
+    "description": "El único canal en España dedicado 100% al cine de terror, slasher, suspense y gore."
+  },
+  {
+    "id": "xtrm",
+    "xmltvId": "XTRM",
+    "name": "XTRM",
+    "number": 47,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/XTRM.png",
+    "streamUrl": "https://amcselekt.es/canales/xtrm/",
+    "description": "Acción sin límites, artes marciales extremas, westerns modernos y suspense criminal."
+  },
+  {
+    "id": "sundance-tv",
+    "xmltvId": "Sundance TV",
+    "name": "Sundance TV",
+    "number": 48,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Sundance%20TV.png",
+    "streamUrl": "https://sundancetv.es/",
+    "description": "Historias únicas, cine independiente comprometido y series de autor de todo el mundo."
+  },
+  {
+    "id": "somos",
+    "xmltvId": "Somos",
+    "name": "Somos",
+    "number": 49,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Somos.png",
+    "streamUrl": "https://amcselekt.es/canales/somos/",
+    "description": "Canal dedicado íntegramente al cine español de todas las épocas."
+  },
+  {
+    "id": "flixole-1",
+    "xmltvId": "Canal FlixOlé 1",
+    "name": "FlixOlé 1",
+    "number": 50,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Canal%20FlixOl%C3%A9%201.png",
+    "streamUrl": "https://flixole.com/",
+    "description": "La mayor plataforma y canal lineal de cine español restaurado y clásicos en HD."
+  },
+  {
+    "id": "flixole-2",
+    "xmltvId": "Canal FlixOlé 2",
+    "name": "FlixOlé 2",
+    "number": 51,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Canal%20FlixOl%C3%A9%202.png",
+    "streamUrl": "https://flixole.com/",
+    "description": "Segundo canal de FlixOlé con joyas del cine europeo, spaghetti westerns y comedia."
+  },
+  {
+    "id": "bom-cine",
+    "xmltvId": "BOM Cine",
+    "name": "BOM Cine",
+    "number": 52,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/BOM%20Cine.png",
+    "streamUrl": "https://bomcine.com/",
+    "description": "Canal de cine en abierto con ciclos temáticos, cine de aventuras y thrillers."
+  },
+  {
+    "id": "8madrid",
+    "xmltvId": "8madrid TV",
+    "name": "8madrid",
+    "number": 53,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/8madrid%20TV.png",
+    "streamUrl": "https://8madrid.tv/",
+    "description": "Canal de referencia de cine de calidad en la Comunidad de Madrid."
+  },
+  {
+    "id": "cines-verdi-tv",
+    "xmltvId": "Cines Verdi TV",
+    "name": "Cines Verdi TV",
+    "number": 54,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Cines%20Verdi%20TV.png",
+    "streamUrl": "https://cinesverditv.com/",
+    "description": "La programación cinematográfica de las prestigiosas salas Verdi en televisión."
+  },
+  {
+    "id": "cine-feel-good",
+    "xmltvId": "Cine Feel Good",
+    "name": "Cine Feel Good",
+    "number": 55,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Cine%20Feel%20Good.png",
+    "streamUrl": "https://cinefeelgood.com/",
+    "description": "Películas inspiradoras, comedias familiares y cine emotivo."
+  },
+  {
+    "id": "bbc-series",
+    "xmltvId": "BBC Series",
+    "name": "BBC Series",
+    "number": 56,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/BBC%20Series.png",
+    "streamUrl": "https://bbc.com/",
+    "description": "Las aclamadas series de drama, misterio y época de la BBC británica."
+  },
+  {
+    "id": "skyshowtime-1",
+    "xmltvId": "SkyShowtime",
+    "name": "SkyShowtime 1",
+    "number": 57,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/SkyShowtime.png",
+    "streamUrl": "https://skyshowtime.com/",
+    "description": "Canal lineal de SkyShowtime con grandes producciones de Universal, Paramount y Showtime."
+  },
+  {
+    "id": "max-avances",
+    "xmltvId": "HBO Max Avances",
+    "name": "Max Avances",
+    "number": 58,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/HBO%20Max%20Avances.png",
+    "streamUrl": "https://max.com/",
+    "description": "Canal de avances y novedades de las mejores series de HBO y Warner."
+  },
+  {
+    "id": "veo-tv",
+    "xmltvId": "Veo7",
+    "name": "Veo TV",
+    "number": 59,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Veo7.png",
+    "streamUrl": "https://veotv.es/",
+    "description": "Canal de entretenimiento, series y espacios divulgativos en abierto."
+  },
+  {
+    "id": "squirrel-tv",
+    "xmltvId": "Squirrel TV",
+    "name": "Squirrel TV",
+    "number": 60,
+    "group": "cine-series",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Squirrel%20TV.png",
+    "streamUrl": "https://squirrelmedia.es/",
+    "description": "Canal temático de cine y entretenimiento para toda la familia."
+  },
+  {
+    "id": "eurosport-1",
+    "xmltvId": "Eurosport 1 HD",
+    "name": "Eurosport 1",
+    "number": 61,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Eurosport%201.png",
+    "streamUrl": "https://eurosport.es/",
+    "description": "La casa del deporte europeo: Roland Garros, Juegos Olímpicos, ciclismo y deportes de invierno."
+  },
+  {
+    "id": "eurosport-2",
+    "xmltvId": "Eurosport 2",
+    "name": "Eurosport 2",
+    "number": 62,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Eurosport%202.png",
+    "streamUrl": "https://eurosport.es/",
+    "description": "Segundo canal de Eurosport con transmisiones polideportivas exclusivas en directo."
+  },
+  {
+    "id": "dazn-1",
+    "xmltvId": "DAZN 1 HD",
+    "name": "DAZN 1",
+    "number": 63,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%201.png",
+    "streamUrl": "https://dazn.com/es-ES",
+    "description": "Retransmisiones estelares de DAZN: Premier League, MotoGP, boxeo y fútbol femenino."
+  },
+  {
+    "id": "dazn-2",
+    "xmltvId": "DAZN 2 HD",
+    "name": "DAZN 2",
+    "number": 64,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%202.png",
+    "streamUrl": "https://dazn.com/es-ES",
+    "description": "Eventos en directo complementarios de competiciones polideportivas internacionales."
+  },
+  {
+    "id": "dazn-3",
+    "xmltvId": "DAZN 3 HD",
+    "name": "DAZN 3",
+    "number": 65,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%203.png",
+    "streamUrl": "https://dazn.com/es-ES",
+    "description": "Fútbol internacional, baloncesto y copas europeas en directo."
+  },
+  {
+    "id": "dazn-4",
+    "xmltvId": "DAZN 4 HD",
+    "name": "DAZN 4",
+    "number": 66,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%204.png",
+    "streamUrl": "https://dazn.com/es-ES",
+    "description": "Transmisiones simultáneas de grandes jornadas deportivas de DAZN."
+  },
+  {
+    "id": "dazn-f1",
+    "xmltvId": "DAZN F1 HD",
+    "name": "DAZN F1",
+    "number": 67,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%20F1.png",
+    "streamUrl": "https://dazn.com/es-ES",
+    "description": "El canal oficial de la Fórmula 1 en España: entrenamientos, clasificación y carreras en directo."
+  },
+  {
+    "id": "dazn-motogp",
+    "xmltvId": "DAZN MotoGP",
+    "name": "DAZN MotoGP",
+    "number": 68,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%20MotoGP.png",
+    "streamUrl": "https://dazn.com/es-ES",
+    "description": "Toda la emoción del Mundial de Motociclismo: Moto3, Moto2 y MotoGP."
+  },
+  {
+    "id": "dazn-laliga",
+    "xmltvId": "DAZN LaLiga HD",
+    "name": "DAZN LaLiga",
+    "number": 69,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%20LaLiga.png",
+    "streamUrl": "https://dazn.com/es-ES",
+    "description": "Cinco partidos por jornada de LaLiga EA Sports en directo con previa y análisis."
+  },
+  {
+    "id": "dazn-baloncesto",
+    "xmltvId": "DAZN Baloncesto",
+    "name": "DAZN Baloncesto",
+    "number": 70,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%20Baloncesto.png",
+    "streamUrl": "https://dazn.com/es-ES",
+    "description": "Euroliga, EuroCup y las mejores competiciones continentales de baloncesto."
+  },
+  {
+    "id": "mplus-vamos",
+    "xmltvId": "M+ Vamos HD",
+    "name": "M+ Vamos",
+    "number": 71,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Vamos.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Canal polideportivo de Movistar Plus+ con análisis de actualidad, reportajes y directos."
+  },
+  {
+    "id": "mplus-laliga",
+    "xmltvId": "M+ LaLiga HD",
+    "name": "M+ LaLiga",
+    "number": 72,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20LaLiga.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Emisión oficial de LaLiga EA Sports con los mejores partidos y El Clásico."
+  },
+  {
+    "id": "mplus-champions",
+    "xmltvId": "M+ Liga de Campeones HD",
+    "name": "M+ Champions",
+    "number": 73,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Liga%20de%20Campeones.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Toda la UEFA Champions League, Europa League y Conference League en directo."
+  },
+  {
+    "id": "mplus-deportes",
+    "xmltvId": "M+ Deportes HD",
+    "name": "M+ Deportes",
+    "number": 74,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Deportes.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "NBA, rugby Six Nations, atletismo Diamond League y grandes citas mundiales."
+  },
+  {
+    "id": "mplus-deportes-2",
+    "xmltvId": "M+ Deportes 2 HD",
+    "name": "M+ Deportes 2",
+    "number": 75,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Deportes%202.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Eventos polideportivos en directo y retransmisiones multicanal de Movistar."
+  },
+  {
+    "id": "mplus-baloncesto",
+    "xmltvId": "M+ Baloncesto",
+    "name": "M+ Baloncesto",
+    "number": 76,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Baloncesto.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Liga Endesa ACB, Copa del Rey y baloncesto internacional."
+  },
+  {
+    "id": "mplus-golf",
+    "xmltvId": "M+ Golf HD",
+    "name": "M+ Golf",
+    "number": 77,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Golf.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Masters de Augusta, PGA Tour, Ryder Cup y circuito europeo de golf."
+  },
+  {
+    "id": "laliga-hypermotion",
+    "xmltvId": "LaLiga TV Hypermotion HD",
+    "name": "LaLiga Hypermotion",
+    "number": 78,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/LaLiga%20TV%20Hypermotion.png",
+    "streamUrl": "https://laliga.com/",
+    "description": "Todos los partidos de la Segunda División del fútbol español en directo."
+  },
+  {
+    "id": "tennis-channel",
+    "xmltvId": "Tennis Channel",
+    "name": "Tennis Channel",
+    "number": 79,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Tennis%20Channel.png",
+    "streamUrl": "https://tennischannel.com/",
+    "description": "El canal dedicado íntegramente al circuito ATP y WTA de tenis profesional."
+  },
+  {
+    "id": "surf-channel",
+    "xmltvId": "Surf Channel",
+    "name": "Surf Channel",
+    "number": 80,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Surf%20Channel.png",
+    "streamUrl": "https://surfchannel.tv/",
+    "description": "Canal temático dedicado al mundo del surf, olas gigantes y deportes de playa."
+  },
+  {
+    "id": "nautical-channel",
+    "xmltvId": "Nautical Channel",
+    "name": "Nautical Channel",
+    "number": 81,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Nautical%20Channel.png",
+    "streamUrl": "https://nauticalchannel.com/",
+    "description": "Navegación a vela, regatas internacionales, kitesurf y vida marina."
+  },
+  {
+    "id": "motorvision",
+    "xmltvId": "Motorvision",
+    "name": "Motorvision",
+    "number": 82,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Motorvision.png",
+    "streamUrl": "https://motorvision.tv/",
+    "description": "Pruebas de superdeportivos, carreras automovilísticas, tuning y rallies."
+  },
+  {
+    "id": "fast-funbox",
+    "xmltvId": "Fast&FunBox",
+    "name": "Fast & FunBox",
+    "number": 83,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Fast%26FunBox.png",
+    "streamUrl": "https://spain.spiintl.com/",
+    "description": "Deportes de riesgo y acción extrema: motocross, skate, snowboard y BMX."
+  },
+  {
+    "id": "fight-sports",
+    "xmltvId": "FightSports",
+    "name": "Fight Sports",
+    "number": 84,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/FightSports.png",
+    "streamUrl": "https://fightsports.tv/",
+    "description": "Deportes de combate: boxeo de campeonato, MMA, kickboxing y judo."
+  },
+  {
+    "id": "caza-y-pesca",
+    "xmltvId": "Caza y Pesca HD",
+    "name": "Caza y Pesca",
+    "number": 85,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Caza%20y%20Pesca.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Espacios dedicados al respeto por el medio ambiente, la caza deportiva y la pesca fluvial y marítima."
+  },
+  {
+    "id": "iberalia-tv",
+    "xmltvId": "Iberalia TV",
+    "name": "Iberalia TV",
+    "number": 86,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Iberalia%20TV.png",
+    "streamUrl": "https://iberalia.tv/",
+    "description": "Canal de naturaleza, caza, pesca y gestión cinegética en la Península Ibérica."
+  },
+  {
+    "id": "cazavision",
+    "xmltvId": "Cazavisión",
+    "name": "Cazavisión",
+    "number": 87,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Cazavisi%C3%B3n.png",
+    "streamUrl": "https://cazavision.com/",
+    "description": "Canal internacional especializado en documentales de caza y naturaleza salvaje."
+  },
+  {
+    "id": "betis-tv",
+    "xmltvId": "Betis TV",
+    "name": "Betis TV",
+    "number": 88,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Betis%20TV.png",
+    "streamUrl": "https://realbetisbalompie.es/rbb-tv/",
+    "description": "Canal oficial del Real Betis Balompié con partidos, cantera y tertulias verdiblancas."
+  },
+  {
+    "id": "laliga-tv-bar",
+    "xmltvId": "LaLiga TV BAR",
+    "name": "LaLiga TV Bar",
+    "number": 89,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/LaLiga%20TV%20BAR.png",
+    "streamUrl": "https://laligabar.es/",
+    "description": "Canal para establecimientos públicos con la emisión completa del fútbol profesional."
+  },
+  {
+    "id": "primera-federacion",
+    "xmltvId": "Primera Federación",
+    "name": "Primera Federación",
+    "number": 90,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Primera%20Federaci%C3%B3n.png",
+    "streamUrl": "https://rfef.es/",
+    "description": "Emisión de los partidos de la Primera Federación RFEF del fútbol español."
+  },
+  {
+    "id": "mplus-vamos-2",
+    "xmltvId": "M+ Vamos 2",
+    "name": "M+ Vamos 2",
+    "number": 91,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Vamos%202.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Señal complementaria para citas polideportivas simultáneas."
+  },
+  {
+    "id": "mplus-vamos-3",
+    "xmltvId": "M+ Vamos 3",
+    "name": "M+ Vamos 3",
+    "number": 92,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/M%2B%20Vamos%203.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Tercera señal de apoyo deportivo de Movistar Plus+."
+  },
+  {
+    "id": "dazn-bar-1",
+    "xmltvId": "DAZN 1 BAR",
+    "name": "DAZN Bar 1",
+    "number": 93,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%201%20BAR.png",
+    "streamUrl": "https://dazn.com/",
+    "description": "Canal hostelero con competiciones de fútbol inglés y motor de DAZN."
+  },
+  {
+    "id": "dazn-bar-2",
+    "xmltvId": "DAZN 2 BAR",
+    "name": "DAZN Bar 2",
+    "number": 94,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/DAZN%202%20BAR.png",
+    "streamUrl": "https://dazn.com/",
+    "description": "Segunda señal para establecimientos con eventos simultáneos de DAZN."
+  },
+  {
+    "id": "replay-deportes",
+    "xmltvId": "Replay",
+    "name": "Replay Deportes",
+    "number": 95,
+    "group": "deportes",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Replay.png",
+    "streamUrl": "https://ver.movistarplus.es/",
+    "description": "Resúmenes completos y repeticiones de los mejores momentos deportivos."
+  },
+  {
+    "id": "tv3-catalunya",
+    "xmltvId": "TV3",
+    "name": "TV3 Catalunya",
+    "number": 96,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TV3.png",
+    "streamUrl": "https://www.ccma.cat/3cat/directes/tv3/",
+    "description": "Televisió de Catalunya: canal generalista líder en Cataluña con informativos, series y entretenimiento en catalán."
+  },
+  {
+    "id": "3catinfo",
+    "xmltvId": "3CatInfo",
+    "name": "3CatInfo",
+    "number": 97,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/3CatInfo.png",
+    "streamUrl": "https://www.ccma.cat/3cat/directes/3catinfo/",
+    "description": "Canal de noticias e información continua 24 horas de la CCMA en Cataluña."
+  },
+  {
+    "id": "sx3",
+    "xmltvId": "SX3",
+    "name": "SX3",
+    "number": 98,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/SX3.png",
+    "streamUrl": "https://www.ccma.cat/3cat/directes/sx3/",
+    "description": "El canal infantil y juvenil referente de Cataluña con animación y programas divulgativos."
+  },
+  {
+    "id": "esport-3",
+    "xmltvId": "Esport 3",
+    "name": "Esport 3",
+    "number": 99,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Esport%203.png",
+    "streamUrl": "https://www.ccma.cat/3cat/directes/esport3/",
+    "description": "Canal temático deportivo de Cataluña con cobertura de fútbol, baloncesto y polideportivo."
+  },
+  {
+    "id": "beteve",
+    "xmltvId": "Betevé",
+    "name": "Betevé",
+    "number": 100,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Betev%C3%A9.png",
+    "streamUrl": "https://beteve.cat/en-directe/",
+    "description": "Canal público de la ciudad de Barcelona con información de proximidad y cultura local."
+  },
+  {
+    "id": "telemadrid",
+    "xmltvId": "Telemadrid",
+    "name": "Telemadrid",
+    "number": 101,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Telemadrid.png",
+    "streamUrl": "https://www.telemadrid.es/emision-en-directo/",
+    "description": "Canal autonómico público de la Comunidad de Madrid: Telenoticias, debate y tradiciones madrileñas."
+  },
+  {
+    "id": "la-otra",
+    "xmltvId": "La Otra",
+    "name": "La Otra",
+    "number": 102,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/La%20Otra.png",
+    "streamUrl": "https://www.telemadrid.es/emision-en-directo-laotra/",
+    "description": "Segundo canal de Telemadrid enfocado a la cultura, el deporte madrileño y las series."
+  },
+  {
+    "id": "telemadrid-int",
+    "xmltvId": "Telemadrid Internacional",
+    "name": "Telemadrid Int",
+    "number": 103,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Telemadrid%20Internacional.png",
+    "streamUrl": "https://www.telemadrid.es/emision-en-directo/",
+    "description": "Señal exterior de Telemadrid para el seguimiento de la actualidad madrileña en el mundo."
+  },
+  {
+    "id": "canal-sur",
+    "xmltvId": "Canal Sur HD",
+    "name": "Canal Sur",
+    "number": 104,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Canal%20Sur.png",
+    "streamUrl": "https://www.canalsur.es/en-directo-canal-sur-tv-4228.html",
+    "description": "Radio y Televisión de Andalucía (RTVA): actualidad andaluza, folclore, cultura y cercanía."
+  },
+  {
+    "id": "andalucia-tv",
+    "xmltvId": "Andalucía TV",
+    "name": "Andalucía TV",
+    "number": 105,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Andaluc%C3%ADa%20TV.png",
+    "streamUrl": "https://www.canalsur.es/en-directo-andalucia-tv-4230.html",
+    "description": "Segundo canal de la RTVA con espacios temáticos, culturales y divulgativos."
+  },
+  {
+    "id": "canal-sur-sat",
+    "xmltvId": "Canal Sur Andalucía",
+    "name": "Canal Sur SAT",
+    "number": 106,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Canal%20Sur%20Andaluc%C3%ADa.png",
+    "streamUrl": "https://www.canalsur.es/en-directo-canal-sur-andalucia-4229.html",
+    "description": "Señal internacional de Andalucía para comunidades andaluzas en el exterior."
+  },
+  {
+    "id": "etb1",
+    "xmltvId": "etb1",
+    "name": "ETB1",
+    "number": 107,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/etb1.png",
+    "streamUrl": "https://www.eitb.eus/es/television/etb1/",
+    "description": "Canal autonómico generalista de Euskal Telebista íntegramente en euskera."
+  },
+  {
+    "id": "etb2",
+    "xmltvId": "etb2",
+    "name": "ETB2",
+    "number": 108,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/etb2.png",
+    "streamUrl": "https://www.eitb.eus/es/television/etb2/",
+    "description": "Segundo canal de Euskal Telebista en castellano con informativos de referencia y entretenimiento."
+  },
+  {
+    "id": "tvg-galicia",
+    "xmltvId": "TVG",
+    "name": "TVG Galicia",
+    "number": 109,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TVG.png",
+    "streamUrl": "https://www.crtvg.es/en-directo",
+    "description": "Televisión de Galicia: la voz de la comunidad gallega con series, informativos y tradiciones en gallego."
+  },
+  {
+    "id": "tvg2",
+    "xmltvId": "TVG2",
+    "name": "TVG2",
+    "number": 110,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TVG2.png",
+    "streamUrl": "https://www.crtvg.es/en-directo/canle/tvg2",
+    "description": "Segundo canal de la CRTVG enfocado a la cultura, los espacios infantiles y el deporte gallego."
+  },
+  {
+    "id": "tvg-europa",
+    "xmltvId": "TVG Europa HD",
+    "name": "TVG Europa",
+    "number": 111,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TVG%20Europa.png",
+    "streamUrl": "https://www.crtvg.es/en-directo",
+    "description": "Emisión satélite de la TVG dirigida a los gallegos en España y Europa."
+  },
+  {
+    "id": "a-punt",
+    "xmltvId": "À Punt",
+    "name": "À Punt",
+    "number": 112,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/%C3%80%20Punt.png",
+    "streamUrl": "https://www.apuntmedia.es/directe/",
+    "description": "Televisión pública de la Comunitat Valenciana con informativos, cultura y series en valenciano."
+  },
+  {
+    "id": "aragon-tv",
+    "xmltvId": "Aragón TV",
+    "name": "Aragón TV",
+    "number": 113,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Arag%C3%B3n%20TV.png",
+    "streamUrl": "https://www.aragontelevision.es/directo",
+    "description": "Canal autonómico de Aragón con cobertura de las tres provincias y programas de éxito rural."
+  },
+  {
+    "id": "aragon-tv-int",
+    "xmltvId": "Aragón TV Internacional",
+    "name": "Aragón TV Int",
+    "number": 114,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Arag%C3%B3n%20TV%20Internacional.png",
+    "streamUrl": "https://www.aragontelevision.es/directo",
+    "description": "Emisión para el exterior de la televisión pública aragonesa."
+  },
+  {
+    "id": "cmm-tv",
+    "xmltvId": "CMM TV",
+    "name": "CMM TV",
+    "number": 115,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/CMM%20TV.png",
+    "streamUrl": "https://www.cmmedia.es/en-directo/tv",
+    "description": "Castilla-La Mancha Media: información cercana de las comarcas manchegas, folclore y festejos."
+  },
+  {
+    "id": "canal-extremadura",
+    "xmltvId": "Canal Extremadura",
+    "name": "Canal Extremadura",
+    "number": 116,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Canal%20Extremadura.png",
+    "streamUrl": "https://www.canalextremadura.es/directo/tv",
+    "description": "La televisión pública extremeña con magacines comarcales, naturaleza y actualidad de la región."
+  },
+  {
+    "id": "extremadura-sat",
+    "xmltvId": "Canal Extremadura SAT",
+    "name": "Extremadura SAT",
+    "number": 117,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Canal%20Extremadura%20SAT.png",
+    "streamUrl": "https://www.canalextremadura.es/directo/tv",
+    "description": "Señal exterior de Canal Extremadura para el seguimiento de la actualidad autonómica."
+  },
+  {
+    "id": "tpa7",
+    "xmltvId": "TPA7 Asturias",
+    "name": "TPA7",
+    "number": 118,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TPA7%20Asturias.png",
+    "streamUrl": "https://www.rtpa.es/tpa-television",
+    "description": "Televisión del Principado de Asturias con noticias, deportes autóctonos y cultura asturiana."
+  },
+  {
+    "id": "tpa8",
+    "xmltvId": "TPA8 Asturias",
+    "name": "TPA8",
+    "number": 119,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TPA8%20Asturias.png",
+    "streamUrl": "https://www.rtpa.es/tpa-television",
+    "description": "Segunda señal de la RTPA con contenidos complementarios y cultura del Principado."
+  },
+  {
+    "id": "ib3-tv",
+    "xmltvId": "IB3 TV Illes Balears",
+    "name": "IB3 TV",
+    "number": 120,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/IB3%20TV%20Illes%20Balears.png",
+    "streamUrl": "https://ib3.org/directe",
+    "description": "Canal autonómico público de las Islas Baleares (Mallorca, Menorca, Ibiza y Formentera)."
+  },
+  {
+    "id": "tv-canaria",
+    "xmltvId": "TV Canaria",
+    "name": "TV Canaria",
+    "number": 121,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TV%20Canaria.png",
+    "streamUrl": "https://rtvc.es/en-directo/",
+    "description": "Radio Televisión Canaria: información de las ocho islas del archipiélago y tradiciones canarias."
+  },
+  {
+    "id": "la-7-cyl",
+    "xmltvId": "La 7 CyL",
+    "name": "La 7 CyL",
+    "number": 122,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/La%207%20CyL.png",
+    "streamUrl": "https://www.cyltv.es/EnDirecto",
+    "description": "Televisión autonómica privada de Castilla y León con informativos autonómicos y provinciales."
+  },
+  {
+    "id": "la-7-murcia",
+    "xmltvId": "La 7 Murcia",
+    "name": "La 7 Murcia",
+    "number": 123,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/La%207%20Murcia.png",
+    "streamUrl": "https://www.la7tv.es/directo/",
+    "description": "Televisión autonómica pública de la Región de Murcia con informativos y actualidad local."
+  },
+  {
+    "id": "navarra-tv",
+    "xmltvId": "Navarra TV",
+    "name": "Navarra TV",
+    "number": 124,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Navarra%20TV.png",
+    "streamUrl": "https://www.natv.es/directo",
+    "description": "Canal de referencia de la actualidad sociopolítica y cultural de la Comunidad Foral de Navarra."
+  },
+  {
+    "id": "navarra-tv-2",
+    "xmltvId": "Navarra TV 2",
+    "name": "Navarra TV 2",
+    "number": 125,
+    "group": "autonomica",
+    "logo": "https://www.navarratelevision.es/entorno/Cabeceras/CabeceraNATV.png?20250129a",
+    "streamUrl": "https://www.natv.es/directo",
+    "description": "Segunda señal de Navarra TV con espacios divulgativos y deporte navarro."
+  },
+  {
+    "id": "atlantico-tv",
+    "xmltvId": "Atlántico TV",
+    "name": "Atlántico TV",
+    "number": 126,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Atl%C3%A1ntico%20TV.png",
+    "streamUrl": "https://atlanticotv.es/",
+    "description": "Canal local canario con actualidad comarcal de las Islas Canarias."
+  },
+  {
+    "id": "la-ocho-mediterraneo",
+    "xmltvId": "La Ocho Mediterráneo",
+    "name": "La Ocho Mediterráneo",
+    "number": 127,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/La%20Ocho%20Mediterr%C3%A1neo.png",
+    "streamUrl": "https://laocho.tv/",
+    "description": "Televisión de proximidad en la Comunitat Valenciana."
+  },
+  {
+    "id": "7-televalencia",
+    "xmltvId": "7teleValencia",
+    "name": "7 TeleValencia",
+    "number": 128,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/7teleValencia.png",
+    "streamUrl": "https://7televalencia.com/",
+    "description": "Emisión local de las comarcas valencianas y fiestas populares."
+  },
+  {
+    "id": "levante-tv",
+    "xmltvId": "Levante TV",
+    "name": "Levante TV",
+    "number": 129,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Levante%20TV.png",
+    "streamUrl": "https://levantetv.es/",
+    "description": "La televisión comarcal de Valencia vinculada al diario Levante-EMV."
+  },
+  {
+    "id": "informacion-tv",
+    "xmltvId": "Información TV",
+    "name": "Información TV",
+    "number": 130,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Informaci%C3%B3n%20TV.png",
+    "streamUrl": "https://informaciontv.es/",
+    "description": "Canal de proximidad de Alicante y comarcas."
+  },
+  {
+    "id": "popular-tv-cantabria",
+    "xmltvId": "Popular TV Cantabria",
+    "name": "Popular TV Cantabria",
+    "number": 131,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Popular%20TV%20Cantabria.png",
+    "streamUrl": "https://populartvcantabria.com/",
+    "description": "Canal regional de proximidad para Cantabria."
+  },
+  {
+    "id": "popular-tv-murcia",
+    "xmltvId": "Popular TV Región de Murcia",
+    "name": "Popular TV Murcia",
+    "number": 132,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Popular%20TV%20Regi%C3%B3n%20de%20Murcia.png",
+    "streamUrl": "https://populartv.net/",
+    "description": "Canal local con contenidos informativos de la Región de Murcia."
+  },
+  {
+    "id": "rtvce-ceuta",
+    "xmltvId": "Radio Televisión Ceuta",
+    "name": "RTVCE Ceuta",
+    "number": 133,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Radio%20Televisi%C3%B3n%20Ceuta.png",
+    "streamUrl": "https://rtvce.es/",
+    "description": "Televisión pública de la ciudad autónoma de Ceuta."
+  },
+  {
+    "id": "nos-tv",
+    "xmltvId": "Nós Televisión",
+    "name": "Nós TV",
+    "number": 134,
+    "group": "autonomica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/N%C3%B3s%20Televisi%C3%B3n.png",
+    "streamUrl": "https://nos.gal/",
+    "description": "Canal gallego de divulgación cultural y sociedad civil."
+  },
+  {
+    "id": "la-7-rioja",
+    "xmltvId": "La 7 Rioja",
+    "name": "La 7 Rioja",
+    "number": 135,
+    "group": "autonomica",
+    "logo": "https://www.7rioja.tv/entorno/Cabeceras/Cabecera7RIOJA.png",
+    "streamUrl": "https://tvrioja.com/",
+    "description": "Canal autonómico con noticias y actualidad de La Rioja."
+  },
+  {
+    "id": "national-geographic",
+    "xmltvId": "National Geographic HD",
+    "name": "National Geographic",
+    "number": 136,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/National%20Geographic.png",
+    "streamUrl": "https://nationalgeographic.es/",
+    "description": "Exploración científica, misterios del cosmos, arqueología y maravillas del reino animal."
+  },
+  {
+    "id": "nat-geo-wild",
+    "xmltvId": "Nat Geo Wild HD",
+    "name": "Nat Geo Wild",
+    "number": 137,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Nat%20Geo%20Wild.png",
+    "streamUrl": "https://nationalgeographic.es/",
+    "description": "El canal 100% dedicado a la fauna salvaje, grandes depredadores y ecosistemas extremos."
+  },
+  {
+    "id": "discovery-channel",
+    "xmltvId": "Discovery",
+    "name": "Discovery Channel",
+    "number": 138,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Discovery.png",
+    "streamUrl": "https://discoverychannel.es/",
+    "description": "Ingeniería de vanguardia, supervivencia humana extrema, tecnología y ciencia aplicada."
+  },
+  {
+    "id": "canal-historia",
+    "xmltvId": "Historia",
+    "name": "Canal Historia",
+    "number": 139,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Historia.png",
+    "streamUrl": "https://canalhistoria.es/",
+    "description": "Grandes batallas, civilizaciones milenarias, enigmas históricos y líderes mundiales."
+  },
+  {
+    "id": "odisea",
+    "xmltvId": "Odisea",
+    "name": "Odisea",
+    "number": 140,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Odisea.png",
+    "streamUrl": "https://odisea.es/",
+    "description": "Naturaleza en ultra alta definición, tecnología puntera y el futuro de nuestro planeta."
+  },
+  {
+    "id": "amc-crime",
+    "xmltvId": "AMC Crime",
+    "name": "AMC Crime",
+    "number": 141,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/AMC%20Crime.png",
+    "streamUrl": "https://amcselekt.es/canales/amc-crime/",
+    "description": "El único canal dedicado a la criminología, psicología forense e investigaciones reales."
+  },
+  {
+    "id": "amc-break",
+    "xmltvId": "AMC Break",
+    "name": "AMC Break",
+    "number": 142,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/AMC%20Break.png",
+    "streamUrl": "https://amcselekt.es/canales/amc-break/",
+    "description": "Docurrealities extremos, empeños, rescates y desafíos fuera de lo común."
+  },
+  {
+    "id": "canal-cocina",
+    "xmltvId": "Canal Cocina",
+    "name": "Canal Cocina",
+    "number": 143,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Canal%20Cocina.png",
+    "streamUrl": "https://canalcocina.es/",
+    "description": "El canal gastronómico de referencia en España con los mejores chefs y recetas del mundo."
+  },
+  {
+    "id": "decasa-living",
+    "xmltvId": "AMC Living",
+    "name": "Decasa / Living",
+    "number": 144,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/AMC%20Living.png",
+    "streamUrl": "https://amcselekt.es/canales/amc-living/",
+    "description": "Decoración de interiores, reformas espectaculares, jardinería y bienestar."
+  },
+  {
+    "id": "amc-selekt",
+    "xmltvId": "AMC Selekt TV",
+    "name": "AMC Selekt",
+    "number": 145,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/AMC%20Selekt%20TV.png",
+    "streamUrl": "https://amcselekt.es/",
+    "description": "Lo mejor de la oferta temática documental, culinaria y cultural de AMC."
+  },
+  {
+    "id": "bbc-history",
+    "xmltvId": "BBC History",
+    "name": "BBC History",
+    "number": 146,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/BBC%20History.png",
+    "streamUrl": "https://bbc.com/",
+    "description": "Documentales históricos con la inconfundible calidad narrativa de la BBC."
+  },
+  {
+    "id": "bbc-earth",
+    "xmltvId": "BBC Earth",
+    "name": "BBC Earth",
+    "number": 147,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/BBC%20Earth.png",
+    "streamUrl": "https://bbc.com/",
+    "description": "La cúspide del documental de naturaleza con la producción de la unidad de historia natural de la BBC."
+  },
+  {
+    "id": "top-gear-channel",
+    "xmltvId": "BBC Top Gear",
+    "name": "Top Gear Channel",
+    "number": 148,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/BBC%20Top%20Gear.png",
+    "streamUrl": "https://bbc.com/",
+    "description": "El mítico espacio de motor, coches de ensueño y retos hilarantes."
+  },
+  {
+    "id": "bbc-lifestyle",
+    "xmltvId": "BBC Lifestyle",
+    "name": "BBC Lifestyle",
+    "number": 149,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/BBC%20Lifestyle.png",
+    "streamUrl": "https://bbc.com/",
+    "description": "Estilo de vida, moda, tendencias británicas y reformas sorprendentes."
+  },
+  {
+    "id": "bbc-food",
+    "xmltvId": "BBC Food",
+    "name": "BBC Food",
+    "number": 150,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/BBC%20Food.png",
+    "streamUrl": "https://bbc.com/",
+    "description": "Programas culinarios y grandes concursos gastronómicos internacionales."
+  },
+  {
+    "id": "naturetime",
+    "xmltvId": "NatureTime",
+    "name": "NatureTime",
+    "number": 151,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/NatureTime.png",
+    "streamUrl": "https://naturetime.tv/",
+    "description": "Relajación con paisajes naturales, fauna y sonidos de la tierra."
+  },
+  {
+    "id": "historia-y-vida",
+    "xmltvId": "Historia y Vida",
+    "name": "Historia y Vida",
+    "number": 152,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Historia%20y%20Vida.png",
+    "streamUrl": "https://historiayvida.es/",
+    "description": "Divulgación histórica rigurosa basada en la prestigiosa revista española."
+  },
+  {
+    "id": "love-the-planet",
+    "xmltvId": "Love the Planet",
+    "name": "Love the Planet",
+    "number": 153,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Love%20the%20Planet.png",
+    "streamUrl": "https://lovetheplanet.tv/",
+    "description": "Sensibilización medioambiental, biodiversidad y sostenibilidad."
+  },
+  {
+    "id": "love-wine",
+    "xmltvId": "Love Wine",
+    "name": "Love Wine",
+    "number": 154,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Love%20Wine.png",
+    "streamUrl": "https://lovewine.tv/",
+    "description": "Cultura enológica, bodegas emblemáticas y viajes gastronómicos."
+  },
+  {
+    "id": "vintv",
+    "xmltvId": "VinTV",
+    "name": "VinTV",
+    "number": 155,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/VinTV.png",
+    "streamUrl": "https://vintv.es/",
+    "description": "Canal dedicado al mundo del vino y las mejores denominaciones de origen."
+  },
+  {
+    "id": "vivir-con-perros",
+    "xmltvId": "Vivir con perros",
+    "name": "Vivir con perros",
+    "number": 156,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Vivir%20con%20perros.png",
+    "streamUrl": "https://vivirconperros.tv/",
+    "description": "Consejos de adiestramiento, cuidados caninos y razas fascinantes."
+  },
+  {
+    "id": "vivir-con-gatos",
+    "xmltvId": "Vivir con gatos",
+    "name": "Vivir con gatos",
+    "number": 157,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Vivir%20con%20gatos.png",
+    "streamUrl": "https://vivircongatos.tv/",
+    "description": "El canal dedicado a los felinos domésticos y su comportamiento."
+  },
+  {
+    "id": "sangre-fria",
+    "xmltvId": "Sangre Fría",
+    "name": "Sangre Fría",
+    "number": 158,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Sangre%20Fr%C3%ADa.png",
+    "streamUrl": "https://sangrefria.tv/",
+    "description": "Casos policiales sin resolver, crímenes pasionales e intriga."
+  },
+  {
+    "id": "anime-vision",
+    "xmltvId": "Anime Visión",
+    "name": "Anime Visión",
+    "number": 159,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Anime%20Visi%C3%B3n.png",
+    "streamUrl": "https://animevision.tv/",
+    "description": "Canal dedicado a la animación japonesa y la cultura otaku."
+  },
+  {
+    "id": "anime-classics",
+    "xmltvId": "Anime Visión Classics",
+    "name": "Anime Classics",
+    "number": 160,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Anime%20Visi%C3%B3n%20Classics.png",
+    "streamUrl": "https://animevision.tv/",
+    "description": "Series míticas de anime de los años 80 y 90 que marcaron a generaciones."
+  },
+  {
+    "id": "amc-anime",
+    "xmltvId": "AMC Anime",
+    "name": "AMC Anime",
+    "number": 161,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/AMC%20Anime.png",
+    "streamUrl": "https://amcselekt.es/",
+    "description": "Largometrajes de animación japonesa contemporánea."
+  },
+  {
+    "id": "amcplus-connect",
+    "xmltvId": "AMC+ Connect",
+    "name": "AMC+ Connect",
+    "number": 162,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/AMC%2B%20Connect.png",
+    "streamUrl": "https://amcplus.es/",
+    "description": "Avances y series exclusivas del universo expandido de AMC+."
+  },
+  {
+    "id": "dviaje",
+    "xmltvId": "Dviaje",
+    "name": "Dviaje",
+    "number": 163,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Dviaje.png",
+    "streamUrl": "https://dviaje.tv/",
+    "description": "Rutas turísticas de ensueño, mochileros y expediciones por el planeta."
+  },
+  {
+    "id": "dpelis",
+    "xmltvId": "Dpelis",
+    "name": "Dpelis",
+    "number": 164,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Dpelis.png",
+    "streamUrl": "https://dpelis.tv/",
+    "description": "Reportajes sobre rodajes, making-of y anécdotas de Hollywood."
+  },
+  {
+    "id": "escapa-tv",
+    "xmltvId": "Escapa TV",
+    "name": "Escapa TV",
+    "number": 165,
+    "group": "documentales",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Escapa%20TV.png",
+    "streamUrl": "https://escapatv.com/",
+    "description": "Canal dedicado al turismo activo, senderismo y escapadas de fin de semana."
+  },
+  {
+    "id": "disney-channel",
+    "xmltvId": "Disney Channel",
+    "name": "Disney Channel",
+    "number": 166,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Disney%20Channel.png",
+    "streamUrl": "https://tv.disney.es/",
+    "description": "Magia Disney: series originales infantiles, películas animadas y comedia."
+  },
+  {
+    "id": "nickelodeon",
+    "xmltvId": "Nickelodeon HD",
+    "name": "Nickelodeon",
+    "number": 167,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Nickelodeon.png",
+    "streamUrl": "https://nickelodeon.es/",
+    "description": "El hogar de Bob Esponja, Loud House, Henry Danger y las mejores risas infantiles."
+  },
+  {
+    "id": "nick-jr",
+    "xmltvId": "Nick JR",
+    "name": "Nick Jr.",
+    "number": 168,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Nick%20JR.png",
+    "streamUrl": "https://nickjr.es/",
+    "description": "Contenidos preescolares educativos con La Patrulla Canina y Blaze."
+  },
+  {
+    "id": "dreamworks",
+    "xmltvId": "Dreamworks HD",
+    "name": "DreamWorks",
+    "number": 169,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Dreamworks.png",
+    "streamUrl": "https://dreamworks.com/",
+    "description": "Grandes aventuras animadas: Madagascar, Shrek, Cómo entrenar a tu dragón y Trolls."
+  },
+  {
+    "id": "baby-tv",
+    "xmltvId": "Baby TV",
+    "name": "Baby TV",
+    "number": 170,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Baby%20TV.png",
+    "streamUrl": "https://babytv.com/",
+    "description": "Canal pionero diseñado por expertos en desarrollo infantil para bebés y preescolares."
+  },
+  {
+    "id": "canal-pocoyo",
+    "xmltvId": "Pocoyó",
+    "name": "Canal Pocoyó",
+    "number": 171,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Pocoy%C3%B3.png",
+    "streamUrl": "https://pocoyo.com/",
+    "description": "Las divertidas y formativas aventuras de Pocoyó, Elly, Pato y Loula."
+  },
+  {
+    "id": "toon-goggles",
+    "xmltvId": "Toon Goggles",
+    "name": "Toon Goggles",
+    "number": 172,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Toon%20Goggles.png",
+    "streamUrl": "https://toongoggles.com/",
+    "description": "Series de animación segura y videojuegos educativos para niños."
+  },
+  {
+    "id": "gametoon",
+    "xmltvId": "Gametoon",
+    "name": "Gametoon",
+    "number": 173,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Gametoon.png",
+    "streamUrl": "https://gametoon.box/",
+    "description": "eSports, gaming y los títulos más populares de la comunidad jugadora."
+  },
+  {
+    "id": "lolly-kids",
+    "xmltvId": "Lolly Kids",
+    "name": "Lolly Kids",
+    "number": 174,
+    "group": "infantil",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Lolly%20Kids.png",
+    "streamUrl": "https://lollykids.tv/",
+    "description": "Música, talento infantil y concursos de jóvenes artistas."
+  },
+  {
+    "id": "mtv-espana",
+    "xmltvId": "MTV España",
+    "name": "MTV España",
+    "number": 175,
+    "group": "musica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/MTV%20Espa%C3%B1a.png",
+    "streamUrl": "https://mtv.es/",
+    "description": "Videoclips de los mayores éxitos mundiales, reality shows juveniles y los premios EMA."
+  },
+  {
+    "id": "sol-musica",
+    "xmltvId": "Sol Música",
+    "name": "Sol Música",
+    "number": 176,
+    "group": "musica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Sol%20M%C3%BAsica.png",
+    "streamUrl": "https://solmusica.com/",
+    "description": "El canal líder de la música en español: pop, rock, indie y entrevistas exclusivas."
+  },
+  {
+    "id": "mezzo",
+    "xmltvId": "Mezzo",
+    "name": "Mezzo",
+    "number": 177,
+    "group": "musica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Mezzo.png",
+    "streamUrl": "https://mezzo.tv/",
+    "description": "El canal de referencia de música clásica, ópera, danza contemporánea y jazz."
+  },
+  {
+    "id": "mezzo-live",
+    "xmltvId": "Mezzo Live HD",
+    "name": "Mezzo Live",
+    "number": 178,
+    "group": "musica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Mezzo%20Live.png",
+    "streamUrl": "https://mezzo.tv/",
+    "description": "Conciertos en directo desde las salas de ópera y filarmónicas más prestigiosas del mundo."
+  },
+  {
+    "id": "classica",
+    "xmltvId": "Classica HD",
+    "name": "Classica",
+    "number": 179,
+    "group": "musica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Classica.png",
+    "streamUrl": "https://classica.de/",
+    "description": "Las mejores orquestas, directores legendarios y recitales clásicos."
+  },
+  {
+    "id": "qello-concerts",
+    "xmltvId": "Qello concerts",
+    "name": "Qello Concerts",
+    "number": 180,
+    "group": "musica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Qello%20concerts.png",
+    "streamUrl": "https://qello.com/",
+    "description": "Los conciertos más memorables de la historia del rock, pop y leyendas de la música."
+  },
+  {
+    "id": "qwest-tv",
+    "xmltvId": "Qwest TV",
+    "name": "Qwest TV",
+    "number": 181,
+    "group": "musica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Qwest%20TV.png",
+    "streamUrl": "https://qwest.tv/",
+    "description": "Curado por Quincy Jones: jazz, soul, funk y ritmos globales."
+  },
+  {
+    "id": "trace-latina",
+    "xmltvId": "TRACE Latina",
+    "name": "TRACE Latina",
+    "number": 182,
+    "group": "musica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TRACE%20Latina.png",
+    "streamUrl": "https://trace.tv/",
+    "description": "Reggaetón, bachata, trap latino y ritmos urbanos."
+  },
+  {
+    "id": "trace-urban",
+    "xmltvId": "TRACE Urban",
+    "name": "TRACE Urban",
+    "number": 183,
+    "group": "musica",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/TRACE%20Urban.png",
+    "streamUrl": "https://trace.tv/",
+    "description": "Hip-hop, R&B y las tendencias más potentes de la música urbana global."
+  },
+  {
+    "id": "euronews",
+    "xmltvId": "EuroNews",
+    "name": "Euronews",
+    "number": 184,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/EuroNews.png",
+    "streamUrl": "https://es.euronews.com/",
+    "description": "La perspectiva europea de la actualidad mundial 24 horas al día en español."
+  },
+  {
+    "id": "bbc-news-europe",
+    "xmltvId": "BBC World News Europe HD",
+    "name": "BBC News Europe",
+    "number": 185,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/BBC%20World%20News%20Europe.png",
+    "streamUrl": "https://bbc.com/news",
+    "description": "El canal internacional de noticias líder de la BBC con corresponsales globales."
+  },
+  {
+    "id": "cnn-international",
+    "xmltvId": "CNN International Europe",
+    "name": "CNN International",
+    "number": 186,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/CNN%20International%20Europe.png",
+    "streamUrl": "https://edition.cnn.com/",
+    "description": "Líder global en información internacional y directos de última hora."
+  },
+  {
+    "id": "al-jazeera-english",
+    "xmltvId": "Al Jazeera English HD",
+    "name": "Al Jazeera English",
+    "number": 187,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Al%20Jazeera%20English.png",
+    "streamUrl": "https://aljazeera.com/",
+    "description": "Noticias internacionales con cobertura profunda del hemisferio sur y Oriente Medio."
+  },
+  {
+    "id": "france-24",
+    "xmltvId": "France 24 (en Francais)",
+    "name": "France 24",
+    "number": 188,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/France%2024%20(en%20Francais).png",
+    "streamUrl": "https://france24.com/",
+    "description": "Información global y análisis geopolítico desde París."
+  },
+  {
+    "id": "cnbc-europe",
+    "xmltvId": "CNBC Europe HD",
+    "name": "CNBC Europe",
+    "number": 189,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/CNBC%20Europe.png",
+    "streamUrl": "https://cnbc.com/",
+    "description": "Mercados financieros, economía global, tecnología y análisis bursátil."
+  },
+  {
+    "id": "bloomberg-tv",
+    "xmltvId": "Bloomberg TV Europe",
+    "name": "Bloomberg TV",
+    "number": 190,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Bloomberg%20TV%20Europe.png",
+    "streamUrl": "https://bloomberg.com/",
+    "description": "Líder indiscutible en información de mercados, cotizaciones y finanzas."
+  },
+  {
+    "id": "cgtn-espanol",
+    "xmltvId": "CGTN Español",
+    "name": "CGTN Español",
+    "number": 191,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/CGTN%20Espa%C3%B1ol.png",
+    "streamUrl": "https://espanol.cgtn.com/",
+    "description": "Noticias internacionales y cultura desde Pekín en español."
+  },
+  {
+    "id": "negocios-tv",
+    "xmltvId": "Negocios TV",
+    "name": "Negocios TV",
+    "number": 192,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Negocios%20TV.png",
+    "streamUrl": "https://negocios.es/",
+    "description": "Canal español de información económica, geopolítica y mercados en tiempo real."
+  },
+  {
+    "id": "el-toro-tv",
+    "xmltvId": "El Toro TV",
+    "name": "El Toro TV",
+    "number": 193,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/El%20Toro%20TV.png",
+    "streamUrl": "https://eltorotv.com/",
+    "description": "Canal de análisis político, opinión y actualidad nacional española."
+  },
+  {
+    "id": "canal-red",
+    "xmltvId": "Canal RED",
+    "name": "Canal RED",
+    "number": 194,
+    "group": "noticias",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Canal%20RED.png",
+    "streamUrl": "https://canalred.tv/",
+    "description": "Canal de televisión centrado en la actualidad sociopolítica y el debate."
+  },
+  {
+    "id": "runtime-cine",
+    "xmltvId": "Runtime Cine y Series",
+    "name": "Runtime Cine",
+    "number": 195,
+    "group": "fast",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Runtime%20Cine%20y%20Series.png",
+    "streamUrl": "https://runtime.tv/",
+    "description": "Canal FAST con películas taquilleras y series populares gratis."
+  },
+  {
+    "id": "runtime-accion",
+    "xmltvId": "Runtime Acción",
+    "name": "Runtime Acción",
+    "number": 196,
+    "group": "fast",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Runtime%20Acci%C3%B3n.png",
+    "streamUrl": "https://runtime.tv/",
+    "description": "Cine de acción, persecuciones y thrillers de alta intensidad."
+  },
+  {
+    "id": "runtime-comedia",
+    "xmltvId": "Runtime Comedia",
+    "name": "Runtime Comedia",
+    "number": 197,
+    "group": "fast",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Runtime%20Comedia.png",
+    "streamUrl": "https://runtime.tv/",
+    "description": "Comedias divertidas y risas garantizadas para toda la familia."
+  },
+  {
+    "id": "runtime-terror",
+    "xmltvId": "Runtime Thriller-Terror",
+    "name": "Runtime Terror",
+    "number": 198,
+    "group": "fast",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Runtime%20Thriller-Terror.png",
+    "streamUrl": "https://runtime.tv/",
+    "description": "Suspense psicológico, cine de miedo y misterio."
+  },
+  {
+    "id": "runtime-crimen",
+    "xmltvId": "Runtime Crimen",
+    "name": "Runtime Crimen",
+    "number": 199,
+    "group": "fast",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Runtime%20Crimen.png",
+    "streamUrl": "https://runtime.tv/",
+    "description": "Series policíacas e investigaciones criminales."
+  },
+  {
+    "id": "runtime-romance",
+    "xmltvId": "Runtime Romance",
+    "name": "Runtime Romance",
+    "number": 200,
+    "group": "fast",
+    "logo": "https://raw.githubusercontent.com/davidmuma/picons_dobleM/master/icon/Runtime%20Romance.png",
+    "streamUrl": "https://runtime.tv/",
+    "description": "Comedias románticas, dramas de amor y cine emotivo."
   }
 ]
