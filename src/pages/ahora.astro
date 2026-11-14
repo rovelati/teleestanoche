@@ -4,10 +4,22 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SpotlightHero from '../components/SpotlightHero.astro';
 import ChannelRow from '../components/ChannelRow.astro';
+import ProgramOverlay from '../components/ProgramOverlay.astro';
 import { getTonightPrimePrograms } from '../utils/epg';
 
 const items = getTonightPrimePrograms();
 const firstItem = items[0];
+
+const CATEGORY_FALLBACKS: Record<string, string> = {
+  movies: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80',
+  series: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=1200&q=80',
+  sports: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80',
+  news: 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1200&q=80',
+  kids: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&q=80',
+  entertainment: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80',
+  documentary: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+  music: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80'
+};
 
 const pageTitle = "Ahora en TV | ¿Qué echan ahora en directo en la tele? (200 Canales TDT España)";
 const pageDesc = "Consulta qué están emitiendo ahora mismo en la tele en España. Programas en directo minuto a minuto, informativos, series, fútbol y películas en emisión en 200 canales de la TDT y streaming.";
@@ -31,7 +43,187 @@ const jsonLd = {
 <BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
   <Header activeTab="now" />
 
-  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+  <!-- ======================================================== -->
+  <!-- 1. MOBILE EXPERIENCE: VERTICAL SNAP DOWN/UP (Zapping TV) -->
+  <!-- ======================================================== -->
+  <div class="block md:hidden w-full">
+    
+    <!-- Mobile Sub-Bar: Zapping Mode vs List Mode Switcher -->
+    <div class="sticky top-14 z-30 flex items-center justify-between gap-2 px-3 py-2 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-xs">
+      <div class="flex items-center gap-2 font-bold text-white">
+        <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+        <span id="mobile-mode-label">Zapping en Directo</span>
+      </div>
+
+      <div class="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 shadow-inner">
+        <button 
+          type="button" 
+          id="btn-mode-snap" 
+          class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-amber-400 text-slate-950 shadow-sm transition-all"
+        >
+          ⚡ Zapping
+        </button>
+        <button 
+          type="button" 
+          id="btn-mode-list" 
+          class="px-2.5 py-1 rounded-lg text-[11px] font-medium text-slate-400 hover:text-white transition-all"
+        >
+          📋 Lista
+        </button>
+      </div>
+    </div>
+
+    <!-- A. Fullscreen Vertical Snap Feed (Default Mobile View) -->
+    <div 
+      id="mobile-snap-viewport" 
+      class="h-[calc(100dvh-7.5rem)] overflow-y-scroll snap-y snap-mandatory no-scrollbar bg-slate-950 relative w-full"
+    >
+      {items.map((item, idx) => {
+        const prog = item.currentProgram || item.program;
+        const progPhoto = prog?.icon || (prog ? (CATEGORY_FALLBACKS[prog.category] || CATEGORY_FALLBACKS.entertainment) : CATEGORY_FALLBACKS.entertainment);
+
+        return (
+          <section 
+            class="mobile-snap-slide relative w-full h-[calc(100dvh-7.5rem)] snap-start snap-always shrink-0 overflow-hidden flex flex-col justify-between p-4"
+            data-channel-slug={item.channel.id}
+          >
+            <!-- Background Image covering the screen -->
+            <div class="absolute inset-0 z-0">
+              <img 
+                src={progPhoto} 
+                alt={prog?.title || item.channel.name} 
+                class="w-full h-full object-cover"
+                loading={idx < 4 ? "eager" : "lazy"}
+                onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS.entertainment}';`}
+              />
+              <!-- Dark gradient overlay for readability -->
+              <div class="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/30 to-slate-950/95 pointer-events-none"></div>
+            </div>
+
+            <!-- TOP OVERLAY: Channel Logo & Live Badges -->
+            <div class="relative z-10 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5 bg-slate-950/85 backdrop-blur-md px-3 py-1.5 rounded-2xl border border-slate-700/80 shadow-md">
+                <div class="w-8 h-8 rounded-lg bg-slate-900 p-1 flex items-center justify-center border border-slate-700 shrink-0">
+                  <img 
+                    src={item.channel.logo} 
+                    alt={item.channel.name} 
+                    class="max-h-full max-w-full object-contain"
+                  />
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded bg-slate-800 text-amber-400">
+                      #{item.channel.number}
+                    </span>
+                    <span class="text-xs font-bold text-white">
+                      {item.channel.name}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5">
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-red-600 text-white shadow-lg">
+                  <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                  <span>EN DIRECTO</span>
+                </span>
+                <span class="text-[10px] font-mono font-bold text-slate-300 bg-slate-950/85 backdrop-blur-md px-2 py-1 rounded-full border border-slate-700/80">
+                  {idx + 1}/200
+                </span>
+              </div>
+            </div>
+
+            <!-- CENTER OVERLAY: Big YouTube-style Play Button & Stream CTA -->
+            <div class="relative z-10 self-center flex flex-col items-center justify-center gap-2.5 my-auto">
+              <a 
+                href={item.channel.streamUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="flex flex-col items-center justify-center gap-2.5 group active:scale-95 transition-transform"
+                title={`Ver ${item.channel.name} en directo en su web oficial`}
+              >
+                <!-- Big Red YouTube Play Button -->
+                <div class="w-18 h-18 sm:w-20 sm:h-20 bg-red-600 hover:bg-red-500 rounded-2xl flex items-center justify-center shadow-[0_0_35px_rgba(220,38,38,0.7)] ring-4 ring-white/20 transition-all">
+                  <svg class="w-9 h-9 sm:w-10 sm:h-10 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+
+                <!-- CTA Pill below play button -->
+                <span class="px-4 py-1.5 rounded-full bg-slate-950/90 backdrop-blur-md border border-white/20 text-white text-xs font-bold shadow-xl flex items-center gap-1.5 group-hover:bg-red-600 transition-colors">
+                  <span>Ver directo en {item.channel.name}</span>
+                  <span class="text-xs">↗</span>
+                </span>
+              </a>
+
+              <!-- Swipe Hint -->
+              <div class="flex items-center gap-1 text-[10px] text-slate-400 font-mono bg-slate-950/70 backdrop-blur-sm px-2.5 py-0.5 rounded-full border border-slate-800">
+                <span>↓ Desliza para siguiente canal ↑</span>
+              </div>
+            </div>
+
+            <!-- BOTTOM OVERLAY: Program Info & Prominent Channel Page Link -->
+            <div class="relative z-10 space-y-2 bg-slate-950/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-800/90 shadow-2xl">
+              
+              <!-- Category & Schedule Time -->
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/30">
+                  {prog?.categoryEs || 'General'}
+                </span>
+
+                {prog && (
+                  <span class="font-mono text-xs font-bold text-slate-200">
+                    🕒 {prog.startMadrid} - {prog.stopMadrid} ({prog.durationMinutes} min)
+                  </span>
+                )}
+              </div>
+
+              <!-- Live Progress Bar -->
+              <div class="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+                <div 
+                  class="h-full bg-gradient-to-r from-amber-400 via-rose-500 to-pink-500 rounded-full"
+                  style={`width: ${item.progressPercent}%`}
+                ></div>
+              </div>
+
+              <!-- Title -->
+              <h2 class="text-base font-extrabold text-white leading-snug line-clamp-2">
+                {prog?.title || item.channel.name}
+              </h2>
+
+              <!-- Short Synopsis -->
+              {prog?.description && (
+                <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                  {prog.description}
+                </p>
+              )}
+
+              <!-- LINK TO INDIVIDUAL CHANNEL PAGE (User Request: "nella parte bassa il link al canale") -->
+              <a 
+                href={`/${item.channel.id}/`} 
+                class="w-full flex items-center justify-between py-2 px-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow-md transition-all active:scale-[0.99] mt-1"
+                title={`Ver programación completa de ${item.channel.name}`}
+              >
+                <span class="flex items-center gap-1.5">
+                  <span>📅</span>
+                  <span>Parrilla completa de {item.channel.name}</span>
+                </span>
+                <span class="text-xs font-bold">→</span>
+              </a>
+
+            </div>
+
+          </section>
+        );
+      })}
+    </div>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 2. DESKTOP EXPERIENCE: WIDE HORIZONTAL DASHBOARD (TF1+)   -->
+  <!-- ======================================================== -->
+  <main id="main-channels-layout" class="hidden md:block flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
     
     <!-- Top Intro Bar with Clock & Live Pulse -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5 pb-4 border-b border-slate-800/80">
@@ -192,11 +384,48 @@ const jsonLd = {
 
   </main>
 
+  <ProgramOverlay />
   <Footer />
 </BaseLayout>
 
 <script is:inline>
   (function() {
+    // 1. Mobile View Mode Switcher (Zapping Snap vs List)
+    const btnSnap = document.getElementById('btn-mode-snap');
+    const btnList = document.getElementById('btn-mode-list');
+    const snapViewport = document.getElementById('mobile-snap-viewport');
+    const mainLayout = document.getElementById('main-channels-layout');
+    const modeLabel = document.getElementById('mobile-mode-label');
+
+    if (btnSnap && btnList && snapViewport && mainLayout) {
+      btnSnap.addEventListener('click', () => {
+        snapViewport.classList.remove('hidden');
+        mainLayout.classList.add('hidden', 'md:block');
+        mainLayout.classList.remove('block');
+
+        btnSnap.classList.add('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+        btnSnap.classList.remove('text-slate-400', 'font-medium');
+        btnList.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+        btnList.classList.add('text-slate-400', 'font-medium');
+
+        if (modeLabel) modeLabel.textContent = 'Zapping en Directo';
+      });
+
+      btnList.addEventListener('click', () => {
+        snapViewport.classList.add('hidden');
+        mainLayout.classList.remove('hidden');
+        mainLayout.classList.add('block');
+
+        btnList.classList.add('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+        btnList.classList.remove('text-slate-400', 'font-medium');
+        btnSnap.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+        btnSnap.classList.add('text-slate-400', 'font-medium');
+
+        if (modeLabel) modeLabel.textContent = 'Lista de Canales';
+      });
+    }
+
+    // 2. Desktop Channel Row Click (Spotlight Hero update)
     window.handleChannelRowClick = function(el) {
       const row = el.closest('.channel-row');
       if (!row) return;
@@ -232,8 +461,9 @@ const jsonLd = {
       }
     };
 
+    // 3. Desktop Category Filters & Search
     const tabButtons = document.querySelectorAll('#category-tabs .cat-tab-btn');
-    const rows = document.querySelectorAll('.channel-row');
+    const rows = document.querySelectorAll('#channels-container .channel-row');
     const countEl = document.getElementById('filtered-channels-count');
     const noResults = document.getElementById('no-results-msg');
     const searchInput = document.getElementById('channel-search-input');

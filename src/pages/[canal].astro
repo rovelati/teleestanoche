@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BookmarkButton from '../components/BookmarkButton.astro';
+import ProgramOverlay from '../components/ProgramOverlay.astro';
 import { getAllChannels, getProgramsForChannel } from '../utils/epg';
 import type { Channel, Program } from '../types/epg';
 
@@ -64,6 +65,14 @@ const CATEGORY_FALLBACKS: Record<string, string> = {
 
 const heroImage = currentProgram?.icon || (currentProgram ? CATEGORY_FALLBACKS[currentProgram.category] : CATEGORY_FALLBACKS.entertainment);
 
+function getFranja(timeStr: string): string {
+  const hour = parseInt(timeStr.split(':')[0], 10) || 0;
+  if (hour >= 6 && hour < 14) return 'manana';
+  if (hour >= 14 && hour < 20) return 'tarde';
+  if (hour >= 20 || hour < 2) return 'noche';
+  return 'madrugada';
+}
+
 const pageTitle = `Programación ${channel.name} hoy en directo | Guía TV completa TDT`;
 const pageDesc = `Consulta qué están emitiendo ahora mismo en ${channel.name} y la programación completa de hoy en directo. Horarios de emisión, cine, series e informativos en la web oficial de ${channel.name}.`;
 const keywords = `programacion ${channel.name} hoy, que echan en ${channel.name}, horario ${channel.name} hoy, guia tv ${channel.name}, ver ${channel.name} en directo, ${channel.name} online gratis`;
@@ -88,97 +97,87 @@ const jsonLd = {
 ---
 
 <BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
-  <Header />
+  <Header activeTab="channels" />
 
   <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
     
     <!-- Breadcrumb -->
-    <nav class="flex items-center gap-2 text-xs text-slate-400 mb-4">
+    <nav class="flex items-center gap-2 text-xs text-slate-400 mb-5">
       <a href="/" class="hover:text-amber-400 transition-colors">Inicio</a>
       <span>›</span>
-      <a href="/ahora/" class="hover:text-amber-400 transition-colors">Ahora en TV</a>
+      <a href="/canales/" class="hover:text-amber-400 transition-colors">Canales TV</a>
       <span>›</span>
       <span class="text-white font-semibold">{channel.name}</span>
     </nav>
 
-    <!-- 1. HERO EN DIRECTO: Programa en emisión ahora con foto grande + Play YouTube CTA (Estilo TF1+) -->
-    {currentProgram ? (
-      <section 
-        id="channel-live-hero" 
-        class="relative mb-8 rounded-3xl bg-slate-900/90 border border-slate-800/90 shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-300"
-      >
-        <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[360px] sm:min-h-[420px]">
-          
-          <!-- LEFT: Big Cinematic Media Player / Poster Area with YouTube-style Play Button -->
-          <div class="lg:col-span-7 relative bg-slate-950 flex items-center justify-center overflow-hidden min-h-[260px] sm:min-h-[340px] lg:min-h-[420px] group/player">
+    <!-- HORIZONTAL DESKTOP LAYOUT (2 Columns) / VERTICAL ON MOBILE -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 lg:gap-8 items-start">
+      
+      <!-- LEFT COLUMN: STICKY LIVE PLAYER & CHANNEL HUB (Takes 5 cols on Desktop) -->
+      <aside class="lg:col-span-5 xl:col-span-5 lg:sticky lg:top-20 mb-8 lg:mb-0 space-y-4">
+        
+        {currentProgram ? (
+          <div class="rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden backdrop-blur-xl">
             
-            <!-- Program Image (Foto Grande) -->
-            <img 
-              id="live-hero-image"
-              src={heroImage} 
-              alt={currentProgram.title} 
-              class="w-full h-full object-cover transition-transform duration-500 group-hover/player:scale-105 will-change-transform"
-              loading="eager"
-              onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS[currentProgram.category] || CATEGORY_FALLBACKS.entertainment}';`}
-            />
+            <!-- 16:9 Cinematic Video Player Box with YouTube-style Play Button -->
+            <div class="relative aspect-video bg-slate-950 flex items-center justify-center overflow-hidden group/player">
+              
+              <!-- Background Image -->
+              <img 
+                id="live-hero-image"
+                src={heroImage} 
+                alt={currentProgram.title} 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover/player:scale-105 will-change-transform"
+                loading="eager"
+                onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS[currentProgram.category] || CATEGORY_FALLBACKS.entertainment}';`}
+              />
 
-            <!-- Dark Vignette Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent lg:bg-gradient-to-r lg:from-slate-950/40 lg:via-slate-950/20 lg:to-slate-950/90 pointer-events-none"></div>
+              <!-- Dark Vignette Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent pointer-events-none"></div>
 
-            <!-- Top Badges Overlay -->
-            <div class="absolute top-4 left-4 flex flex-wrap items-center gap-2 z-20 pointer-events-none">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-red-600 text-white shadow-lg backdrop-blur-md">
-                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                <span>EN EMISIÓN AHORA</span>
-              </span>
+              <!-- Top Badges Overlay -->
+              <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-20 pointer-events-none">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-red-600 text-white shadow-lg backdrop-blur-md">
+                  <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                  <span>EN DIRECTO</span>
+                </span>
 
-              <span id="live-hero-cat" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900/90 border border-slate-700/80 text-amber-300 shadow-md backdrop-blur-md">
-                {currentProgram.categoryEs}
-              </span>
-            </div>
-
-            <!-- YouTube-style Play Button & Call-to-action in the center of the image -->
-            <a 
-              href={channel.streamUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="absolute inset-0 flex flex-col items-center justify-center cursor-pointer z-10 p-4 text-center group/btn"
-              title={`Ver ${channel.name} en directo en su web oficial`}
-            >
-              <!-- Big YouTube Play Button -->
-              <div class="w-16 h-16 sm:w-20 sm:h-20 bg-red-600 hover:bg-red-500 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-300 group-hover/btn:scale-110 ring-4 ring-white/20 active:scale-95">
-                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
+                <span id="live-hero-cat" class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-900/90 border border-slate-700/80 text-amber-300 shadow-md backdrop-blur-md">
+                  {currentProgram.categoryEs}
+                </span>
               </div>
 
-              <!-- CTA pill below play button -->
-              <span class="mt-3 px-4 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow-xl group-hover/btn:bg-red-600 group-hover/btn:border-red-500 transition-all">
-                <span>Ver emisión en directo en {channel.name}</span>
-                <span class="text-xs">↗</span>
-              </span>
-            </a>
+              <!-- YouTube-style Big Play Button & CTA link -->
+              <a 
+                href={channel.streamUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="absolute inset-0 flex flex-col items-center justify-center cursor-pointer z-10 p-4 text-center group/btn"
+                title={`Ver ${channel.name} en directo en su web oficial`}
+              >
+                <!-- Big Red YouTube Play Button -->
+                <div class="w-16 h-16 sm:w-18 sm:h-18 bg-red-600 hover:bg-red-500 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-300 group-hover/btn:scale-110 ring-4 ring-white/20 active:scale-95">
+                  <svg class="w-8 h-8 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
 
-            <!-- Mobile Channel Watermark Badge -->
-            <div class="absolute bottom-3 left-4 lg:hidden z-20 flex items-center gap-2 pointer-events-none">
-              <div class="w-8 h-8 rounded-lg bg-slate-950/90 p-1 border border-slate-700/80 shrink-0 flex items-center justify-center">
-                <img src={channel.logo} alt={channel.name} class="max-h-full max-w-full object-contain" />
-              </div>
-              <span class="text-xs font-bold text-white shadow-sm">
-                {channel.name} en directo
-              </span>
+                <!-- CTA Pill below button -->
+                <span class="mt-3 px-4 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-white/20 text-white text-xs font-bold flex items-center gap-1.5 shadow-xl group-hover/btn:bg-red-600 group-hover/btn:border-red-500 transition-all">
+                  <span>Ver directo en {channel.name}</span>
+                  <span class="text-xs">↗</span>
+                </span>
+              </a>
+
             </div>
 
-          </div>
-
-          <!-- RIGHT: Channel Branding & Detailed Synopsis -->
-          <div class="lg:col-span-5 p-5 sm:p-7 lg:p-8 flex flex-col justify-between bg-gradient-to-b from-slate-900/95 to-slate-950/95 border-t lg:border-t-0 lg:border-l border-slate-800/80">
-            
-            <div>
+            <!-- Hub Details & Channel Branding -->
+            <div class="p-5 sm:p-6 space-y-4">
+              
               <!-- Channel Header Row -->
-              <div class="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800/80">
+              <div class="flex items-center justify-between gap-3 pb-3 border-b border-slate-800">
                 <div class="flex items-center gap-3">
-                  <div class="w-12 h-12 bg-slate-950 rounded-2xl p-2 flex items-center justify-center border border-slate-800 shrink-0 shadow-inner">
+                  <div class="w-11 h-11 bg-slate-950 rounded-xl p-1.5 flex items-center justify-center border border-slate-800 shrink-0 shadow-inner">
                     <img 
                       src={channel.logo} 
                       alt={channel.name} 
@@ -187,15 +186,15 @@ const jsonLd = {
                   </div>
                   <div>
                     <div class="flex items-center gap-2">
-                      <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-800 text-amber-400 font-mono">
+                      <span class="text-xs font-bold px-1.5 py-0.2 rounded bg-slate-800 text-amber-400 font-mono">
                         #{channel.number}
                       </span>
-                      <h2 class="font-bold text-white text-base sm:text-lg">
-                        {channel.name} en directo
+                      <h2 class="font-bold text-white text-sm sm:text-base">
+                        {channel.name}
                       </h2>
                     </div>
-                    <span class="text-xs text-slate-400 block mt-0.5">
-                      Señal oficial • TDT España
+                    <span class="text-[11px] text-slate-400 block mt-0.5">
+                      {channel.group === 'autonomica' ? 'Autonómica FORTA' : 'TDT España'}
                     </span>
                   </div>
                 </div>
@@ -205,30 +204,31 @@ const jsonLd = {
                 </div>
               </div>
 
-              <!-- Program Big Title -->
-              <h1 
-                id="live-hero-title"
-                class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-tight transition-colors"
-              >
-                {currentProgram.title}
-              </h1>
+              <!-- Program Title -->
+              <div>
+                <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">
+                  En emisión ahora:
+                </span>
+                <h1 
+                  id="live-hero-title"
+                  class="text-lg sm:text-xl font-extrabold text-white tracking-tight leading-snug"
+                >
+                  {currentProgram.title}
+                </h1>
+                
+                <!-- Short Synopsis -->
+                <p 
+                  id="live-hero-desc"
+                  class="text-xs text-slate-300 leading-relaxed mt-2 line-clamp-3"
+                >
+                  {currentProgram.description || channel.description}
+                </p>
+              </div>
 
-              <!-- Short Synopsis / Description -->
-              <p 
-                id="live-hero-desc"
-                class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-3 line-clamp-3 sm:line-clamp-4"
-              >
-                {currentProgram.description || channel.description}
-              </p>
-            </div>
-
-            <!-- Schedule, Progress & Actions Bar -->
-            <div class="mt-6 pt-4 border-t border-slate-800/80 space-y-4">
-              
-              <!-- Time Badge & Progress Bar Card -->
-              <div class="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-3.5 space-y-2">
+              <!-- Time Badge & Live Progress Bar -->
+              <div class="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-3 space-y-2">
                 <div class="flex items-center justify-between text-xs">
-                  <span class="inline-flex items-center gap-1.5 font-mono font-bold text-amber-300">
+                  <span class="inline-flex items-center gap-1.5 font-mono font-bold text-amber-300 text-xs">
                     <span>🕒</span>
                     <span id="live-hero-time" data-time-madrid={`${currentProgram.startMadrid} - ${currentProgram.stopMadrid}`} data-time-canarias={`${currentProgram.startCanarias} - ${currentProgram.stopCanarias}`}>
                       {currentProgram.startMadrid} - {currentProgram.stopMadrid}
@@ -238,7 +238,7 @@ const jsonLd = {
 
                   <span class="text-[11px] font-semibold text-rose-400 flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
-                    <span id="live-hero-percent">{progressPercent}% completado</span>
+                    <span id="live-hero-percent">{progressPercent}%</span>
                   </span>
                 </div>
 
@@ -253,24 +253,24 @@ const jsonLd = {
               </div>
 
               <!-- Action CTAs -->
-              <div class="flex flex-wrap items-center gap-3">
+              <div class="flex items-center gap-2 pt-1">
                 <a 
                   href={channel.streamUrl} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  class="flex-1 min-w-[180px] inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 transition-all shadow-lg shadow-amber-400/20 active:scale-95"
+                  class="flex-1 inline-flex items-center justify-center gap-2 text-xs font-bold py-2.5 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 transition-all shadow-md shadow-amber-400/20 active:scale-95"
                 >
                   <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-                  <span>Ver en directo en {channel.name}</span>
+                  <span>Ver en directo</span>
                   <span class="text-xs">↗</span>
                 </a>
 
                 <button 
                   type="button" 
-                  onclick="document.getElementById('channel-schedule-timeline')?.scrollIntoView({ behavior: 'smooth' })"
-                  class="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-colors border border-slate-700/80"
+                  onclick="document.getElementById('channel-schedule-section')?.scrollIntoView({ behavior: 'smooth' })"
+                  class="lg:hidden inline-flex items-center justify-center gap-1 text-xs font-semibold py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700/80"
                 >
-                  <span>Parrilla hoy</span>
+                  <span>Parrilla</span>
                   <span>↓</span>
                 </button>
               </div>
@@ -278,149 +278,221 @@ const jsonLd = {
             </div>
 
           </div>
+        ) : (
+          <!-- Fallback Channel Card -->
+          <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex items-center gap-4">
+            <div class="w-16 h-16 bg-slate-950 rounded-2xl p-2 flex items-center justify-center border border-slate-800 shrink-0">
+              <img src={channel.logo} alt={channel.name} class="max-h-full max-w-full object-contain" />
+            </div>
+            <div>
+              <h1 class="text-xl font-bold text-white">{channel.name}</h1>
+              <p class="text-xs text-slate-400 mt-1">{channel.description}</p>
+            </div>
+          </div>
+        )}
 
+      </aside>
+
+      <!-- RIGHT COLUMN: FULL DAY TIMELINE WITH TIME FILTERS (Takes 7 cols on Desktop) -->
+      <section class="lg:col-span-7 xl:col-span-7 space-y-4" id="channel-schedule-section">
+        
+        <!-- Header & Timezone Indicator -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+              <span>📅</span>
+              <span>Parrilla del Día • {channel.name}</span>
+            </h2>
+            <span class="text-xs text-slate-400 block mt-0.5">
+              {programs.length} emisiones programadas hoy
+            </span>
+          </div>
+
+          <span class="text-xs text-slate-400 font-mono self-start sm:self-auto bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800">
+            CET Península (Canarias -1h)
+          </span>
         </div>
-      </section>
-    ) : (
-      <!-- Fallback Channel Header if no programs -->
-      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 mb-8 flex items-center gap-4">
-        <div class="w-16 h-16 bg-slate-950 rounded-2xl p-2 flex items-center justify-center border border-slate-800 shrink-0">
-          <img src={channel.logo} alt={channel.name} class="max-h-full max-w-full object-contain" />
+
+        <!-- Franja Time Filter Tabs (Horarios del día) -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1" id="timeline-franja-tabs">
+          <button 
+            data-franja-filter="all" 
+            class="franja-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-400 text-slate-950 shadow-sm transition-all whitespace-nowrap active:scale-95"
+          >
+            ⭐ Todo el Día ({programs.length})
+          </button>
+          <button 
+            data-franja-filter="noche" 
+            class="franja-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+          >
+            🌙 Noche / Prime Time (20h - 02h)
+          </button>
+          <button 
+            data-franja-filter="tarde" 
+            class="franja-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+          >
+            ☀️ Tarde (14h - 20h)
+          </button>
+          <button 
+            data-franja-filter="manana" 
+            class="franja-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+          >
+            🌅 Mañana (06h - 14h)
+          </button>
+          <button 
+            data-franja-filter="madrugada" 
+            class="franja-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+          >
+            🌌 Madrugada (02h - 06h)
+          </button>
         </div>
-        <div>
-          <h1 class="text-2xl font-bold text-white">{channel.name}</h1>
-          <p class="text-xs text-slate-400 mt-1">{channel.description}</p>
-        </div>
-      </div>
-    )}
 
-    <!-- 2. SOTTO: PROGRAMMAZIONE AS USUAL (Full Day Timeline) -->
-    <div id="channel-schedule-timeline" class="space-y-4 scroll-mt-20">
-      
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-800 pb-3">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span>🕒</span>
-          <span>Parrilla del Día • {channel.name}</span>
-          <span class="text-xs font-normal text-slate-400">({programs.length} emisiones)</span>
-        </h2>
-        <span class="text-xs text-slate-400 font-mono">
-          Hora Peninsular (Canarias -1h)
-        </span>
-      </div>
+        <!-- Schedule Items List -->
+        {programs.length > 0 ? (
+          <div class="divide-y divide-slate-800/80 bg-slate-900/70 border border-slate-800 rounded-2xl overflow-hidden shadow-lg" id="timeline-list-container">
+            {programs.map((p) => {
+              const isLiveNow = currentProgram && currentProgram.id === p.id;
+              const itemPhoto = p.icon || (CATEGORY_FALLBACKS[p.category] || CATEGORY_FALLBACKS.entertainment);
+              const franja = getFranja(p.startMadrid);
 
-      {programs.length > 0 ? (
-        <div class="divide-y divide-slate-800/80 bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-lg">
-          {programs.map((p) => {
-            const isLiveNow = currentProgram && currentProgram.id === p.id;
-            const itemPhoto = p.icon || (CATEGORY_FALLBACKS[p.category] || CATEGORY_FALLBACKS.entertainment);
-
-            return (
-              <div 
-                class={`p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors hover:bg-slate-900/90 cursor-pointer group ${
-                  isLiveNow ? 'bg-sky-950/20 border-l-4 border-l-sky-400' : (p.isTonightPrime ? 'bg-amber-400/[0.04] border-l-4 border-l-amber-400' : '')
-                }`}
-                data-program-id={p.id}
-                data-start-time={p.startTime}
-                data-stop-time={p.stopTime}
-                data-channel-slug={channel.id}
-                data-channel-name={channel.name}
-                data-channel-logo={channel.logo}
-                data-title={p.title}
-                data-desc={p.description}
-                data-category={p.categoryEs}
-                data-start={p.startTime}
-                data-end={p.stopTime}
-                data-image={itemPhoto}
-                data-stream-url={channel.streamUrl}
-                onclick="openProgramModal(this)"
-                title="Toca para ver detalles completos y recordatorio"
-              >
-                
-                <!-- Left: Time + Status Badges -->
-                <div class="sm:w-36 shrink-0 space-y-1">
-                  <div class="flex items-center gap-1.5 font-mono text-sm font-bold text-amber-400">
-                    <span data-time-madrid={p.startMadrid} data-time-canarias={p.startCanarias}>
-                      {p.startMadrid}
-                    </span>
-                    <span class="text-xs text-slate-500" data-time-madrid={`- ${p.stopMadrid}`} data-time-canarias={`- ${p.stopCanarias}`}>
-                      - {p.stopMadrid}
-                    </span>
-                  </div>
+              return (
+                <div 
+                  class={`schedule-program-item p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors hover:bg-slate-850 cursor-pointer group ${
+                    isLiveNow ? 'bg-sky-950/20 border-l-4 border-l-sky-400' : (p.isTonightPrime ? 'bg-amber-400/[0.04] border-l-4 border-l-amber-400' : '')
+                  }`}
+                  data-franja={franja}
+                  data-program-id={p.id}
+                  data-start-time={p.startTime}
+                  data-stop-time={p.stopTime}
+                  data-channel-slug={channel.id}
+                  data-channel-name={channel.name}
+                  data-channel-logo={channel.logo}
+                  data-title={p.title}
+                  data-desc={p.description}
+                  data-category={p.categoryEs}
+                  data-start={p.startTime}
+                  data-end={p.stopTime}
+                  data-image={itemPhoto}
+                  data-stream-url={channel.streamUrl}
+                  onclick="openProgramModal(this)"
+                  title="Toca para ver detalles completos y recordatorio"
+                >
                   
-                  {isLiveNow ? (
-                    <span class="inline-flex items-center gap-1 text-[10px] font-extrabold text-sky-400 uppercase tracking-wider bg-sky-950/60 border border-sky-400/30 px-2 py-0.5 rounded-md">
-                      <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
-                      <span>En Emisión</span>
-                    </span>
-                  ) : p.isTonightPrime ? (
-                    <span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-400 uppercase tracking-wider bg-amber-400/10 px-2 py-0.5 rounded-md border border-amber-400/20">
-                      <span>🌙</span> Prime Time
-                    </span>
-                  ) : null}
-                </div>
-
-                <!-- Center: Details + 16:9 Thumbnail -->
-                <div class="flex-1 flex items-start gap-4 min-w-0">
-                  <!-- Thumbnail photo if available -->
-                  {itemPhoto && (
-                    <div class="w-20 sm:w-24 h-14 sm:h-16 rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shrink-0 relative group-hover:border-slate-700 transition-colors">
-                      <img 
-                        src={itemPhoto} 
-                        alt={p.title} 
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
-                        loading="lazy" 
-                        onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS[p.category] || CATEGORY_FALLBACKS.entertainment}';`}
-                      />
-                      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
-                    </div>
-                  )}
-
-                  <div class="space-y-1 min-w-0 flex-1">
-                    <div class="flex items-center gap-2">
-                      <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                        {p.categoryEs}
+                  <!-- Left: Time + Status Badges -->
+                  <div class="sm:w-36 shrink-0 space-y-1">
+                    <div class="flex items-center gap-1.5 font-mono text-sm font-bold text-amber-400">
+                      <span data-time-madrid={p.startMadrid} data-time-canarias={p.startCanarias}>
+                        {p.startMadrid}
                       </span>
-                      <span class="text-xs text-slate-500 font-mono">{p.durationMinutes} min</span>
+                      <span class="text-xs text-slate-500" data-time-madrid={`- ${p.stopMadrid}`} data-time-canarias={`- ${p.stopCanarias}`}>
+                        - {p.stopMadrid}
+                      </span>
                     </div>
-
-                    <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors truncate">
-                      {p.title}
-                    </h3>
-
-                    {p.description && (
-                      <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">
-                        {p.description}
-                      </p>
-                    )}
+                    
+                    {isLiveNow ? (
+                      <span class="inline-flex items-center gap-1 text-[10px] font-extrabold text-sky-400 uppercase tracking-wider bg-sky-950/60 border border-sky-400/30 px-2 py-0.5 rounded-md">
+                        <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+                        <span>En Emisión</span>
+                      </span>
+                    ) : p.isTonightPrime ? (
+                      <span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-400 uppercase tracking-wider bg-amber-400/10 px-2 py-0.5 rounded-md border border-amber-400/20">
+                        <span>🌙</span> Prime Time
+                      </span>
+                    ) : null}
                   </div>
-                </div>
 
-                <!-- Right: Action cue -->
-                <div class="hidden sm:flex items-center text-slate-500 group-hover:text-amber-400 text-xs font-semibold gap-1 shrink-0">
-                  <span>Ficha</span>
-                  <span>→</span>
-                </div>
+                  <!-- Center: Thumbnail + Info -->
+                  <div class="flex-1 flex items-start gap-3.5 min-w-0">
+                    {itemPhoto && (
+                      <div class="w-20 sm:w-24 h-14 sm:h-16 rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shrink-0 relative group-hover:border-slate-700 transition-colors">
+                        <img 
+                          src={itemPhoto} 
+                          alt={p.title} 
+                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                          loading="lazy" 
+                          onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS[p.category] || CATEGORY_FALLBACKS.entertainment}';`}
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
+                      </div>
+                    )}
 
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <div class="py-12 text-center text-slate-500 bg-slate-900/40 rounded-2xl border border-slate-800">
-          No hay programas registrados para hoy en este canal.
-        </div>
-      )}
+                    <div class="space-y-1 min-w-0 flex-1">
+                      <div class="flex items-center gap-2">
+                        <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                          {p.categoryEs}
+                        </span>
+                        <span class="text-xs text-slate-500 font-mono">{p.durationMinutes} min</span>
+                      </div>
+
+                      <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors truncate">
+                        {p.title}
+                      </h3>
+
+                      {p.description && (
+                        <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">
+                          {p.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <!-- Right: Action Arrow -->
+                  <div class="hidden sm:flex items-center text-slate-500 group-hover:text-amber-400 text-xs font-semibold gap-1 shrink-0">
+                    <span>Ficha</span>
+                    <span>→</span>
+                  </div>
+
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div class="py-12 text-center text-slate-500 bg-slate-900/40 rounded-2xl border border-slate-800">
+            No hay programas registrados para hoy en este canal.
+          </div>
+        )}
+
+      </section>
+
     </div>
 
   </main>
 
+  <ProgramOverlay />
   <Footer />
 </BaseLayout>
 
 <script is:inline>
   (function() {
-    // Client-side real-time checker: verifies current on-air program
-    const timelineRows = document.querySelectorAll('#channel-schedule-timeline [data-start-time]');
+    // 1. Franja Filter Tabs
+    const franjaBtns = document.querySelectorAll('.franja-filter-btn');
+    const programRows = document.querySelectorAll('.schedule-program-item');
+
+    franjaBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-franja-filter') || 'all';
+
+        franjaBtns.forEach(b => {
+          b.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+          b.classList.add('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800', 'border', 'border-slate-800');
+        });
+
+        btn.classList.add('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-sm');
+        btn.classList.remove('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800', 'border-slate-800');
+
+        programRows.forEach(row => {
+          const franja = row.getAttribute('data-franja');
+          if (filter === 'all' || franja === filter) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 2. Client-side real-time checker: verifies current on-air program
+    const timelineRows = document.querySelectorAll('.schedule-program-item[data-start-time]');
     if (!timelineRows || timelineRows.length === 0) return;
 
     function checkLiveStatus() {
@@ -430,22 +502,20 @@ const jsonLd = {
         const stop = new Date(row.getAttribute('data-stop-time')).getTime();
 
         if (now >= start && now < stop) {
-          // Highlight live item
           row.classList.add('bg-sky-950/20', 'border-l-4', 'border-l-sky-400');
 
-          // Update progress bar in hero if present
           const bar = document.getElementById('live-hero-bar');
           const percentLabel = document.getElementById('live-hero-percent');
           if (bar && stop > start) {
             const pct = Math.min(100, Math.max(0, Math.round(((now - start) / (stop - start)) * 100)));
             bar.style.width = pct + '%';
-            if (percentLabel) percentLabel.textContent = pct + '% completado';
+            if (percentLabel) percentLabel.textContent = pct + '%';
           }
         }
       });
     }
 
     checkLiveStatus();
-    setInterval(checkLiveStatus, 30000); // Check every 30s
+    setInterval(checkLiveStatus, 30000);
   })();
 </script>
