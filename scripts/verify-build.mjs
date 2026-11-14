@@ -13,6 +13,7 @@ if (!fs.existsSync(distDir)) {
 const requiredFiles = [
   'index.html',
   'ahora/index.html',
+  'canales/index.html',
   'peliculas-hoy/index.html',
   'deportes-hoy/index.html',
   'series-hoy/index.html',

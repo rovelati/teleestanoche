@@ -1,0 +1,316 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BookmarkButton from '../components/BookmarkButton.astro';
+import ProgramOverlay from '../components/ProgramOverlay.astro';
+import { getAllChannels } from '../utils/epg';
+
+const channels = getAllChannels();
+
+const pageTitle = "Canales de Televisión en España (200 Canales TDT) | Guía TV Completa";
+const pageDesc = "Directorio oficial y completo de los 200 canales de la TDT y televisión en España: canales nacionales, autonómicos de la FORTA, cine, deportes y series con su programación de hoy y emisión en directo.";
+const keywords = "canales tdt espana, lista de canales tv espana, programacion canales television, canales autonomicos forta, canales de cine tdt, canales tdt en directo";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Canales de Televisión TDT en España",
+  "description": pageDesc,
+  "url": "https://www.teleestanoche.es/canales/",
+  "numberOfItems": channels.length,
+  "itemListElement": channels.map((ch, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "name": ch.name,
+    "url": `https://www.teleestanoche.es/${ch.id}/`
+  }))
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} keywords={keywords} jsonLd={jsonLd}>
+  <Header activeTab="channels" />
+
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-400 mb-6">
+      <a href="/" class="hover:text-amber-400 transition-colors">Inicio</a>
+      <span>›</span>
+      <span class="text-white font-semibold">Canales TV</span>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="mb-8">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-3xl">📺</span>
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+          Todos los Canales de TV en España
+        </h1>
+      </div>
+      <p class="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
+        Directorio interactivo de los <strong class="text-amber-400">200 canales</strong> disponibles en España: generalistas nacionales de la TDT, cadenas autonómicas de la FORTA, canales temáticos de cine, deportes, documentales, infantiles y plataformas de emisión en directo. Selecciona cualquier canal para consultar su guía completa de 24 horas.
+      </p>
+    </div>
+
+    <!-- Filter & Search Controls -->
+    <div class="space-y-4 mb-8">
+      
+      <!-- Category Tabs (Horizontal Scroll) -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1" id="channel-cat-tabs">
+        <button 
+          data-group="all" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-bold bg-amber-400 text-slate-950 shadow-md transition-all whitespace-nowrap active:scale-95"
+        >
+          ⭐ Todos los Canales (200)
+        </button>
+        <button 
+          data-group="general" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          📺 Generalistas Nacionales
+        </button>
+        <button 
+          data-group="cine-series" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🍿 Cine & Series
+        </button>
+        <button 
+          data-group="deportes" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          ⚽ Deportes
+        </button>
+        <button 
+          data-group="autonomica" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🌍 Autonómicas & FORTA
+        </button>
+        <button 
+          data-group="documentales" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🦁 Documentales & Factual
+        </button>
+        <button 
+          data-group="infantil" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🎈 Infantil & Familia
+        </button>
+        <button 
+          data-group="noticias" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          📰 Noticias 24h
+        </button>
+        <button 
+          data-group="musica" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          🎵 Música
+        </button>
+        <button 
+          data-group="fast" 
+          class="channel-filter-btn px-4 py-2 rounded-2xl text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all whitespace-nowrap active:scale-95"
+        >
+          ⚡ FAST & Streaming
+        </button>
+      </div>
+
+      <!-- Search Input + Count Indicator -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3">
+        <div class="text-xs font-medium text-slate-400">
+          <span id="channels-count" class="font-bold text-white">Mostrando 200 canales</span>
+        </div>
+
+        <div class="relative w-full sm:w-80">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 text-xs">
+            🔍
+          </span>
+          <input 
+            type="text" 
+            id="channels-search" 
+            placeholder="Buscar canal por nombre o número..."
+            class="w-full pl-8 pr-4 py-2 rounded-xl text-xs bg-slate-950 border border-slate-800 focus:border-amber-400 focus:outline-none text-white placeholder-slate-500 transition-colors"
+          />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Channels Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="channels-directory-grid">
+      {channels.map((ch) => (
+        <div 
+          class="channel-directory-card group bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 flex flex-col justify-between transition-all duration-200 hover:bg-slate-850 shadow-md relative overflow-hidden"
+          data-channel-id={ch.id}
+          data-group={ch.group}
+          data-name={ch.name.toLowerCase()}
+          data-number={ch.number}
+        >
+          <div>
+            <!-- Top Bar: Logo, Number, Bookmark -->
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <a 
+                href={`/${ch.id}/`} 
+                class="flex items-center gap-2.5 min-w-0 group/link"
+                title={`Ver programación completa de ${ch.name}`}
+              >
+                <div class="w-12 h-12 bg-slate-950 rounded-xl p-1.5 flex items-center justify-center border border-slate-800 shrink-0 group-hover/link:border-amber-400 transition-colors shadow-inner">
+                  <img 
+                    src={ch.logo} 
+                    alt={ch.name} 
+                    class="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                    onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');"
+                  />
+                  <span class="hidden font-bold text-xs text-amber-400 font-mono">
+                    {ch.name.slice(0, 3)}
+                  </span>
+                </div>
+
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-slate-800 text-slate-400 font-mono">
+                      #{ch.number}
+                    </span>
+                    <h2 class="font-bold text-white text-sm truncate group-hover/link:text-amber-300 transition-colors">
+                      {ch.name}
+                    </h2>
+                  </div>
+                  <span class="text-[10px] text-slate-400 block truncate mt-0.5">
+                    {ch.group === 'autonomica' ? 'Autonómica FORTA' : (ch.group === 'cine-series' ? 'Cine & Series' : (ch.group === 'deportes' ? 'Deportes' : (ch.group === 'infantil' ? 'Infantil' : (ch.group === 'noticias' ? 'Noticias' : (ch.group === 'fast' ? 'FAST TV' : 'TDT España')))))}
+                  </span>
+                </div>
+              </a>
+
+              <div class="shrink-0">
+                <BookmarkButton channelSlug={ch.id} />
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">
+              {ch.description || `Guía y horarios de emisión completa de ${ch.name} en la TDT.`}
+            </p>
+          </div>
+
+          <!-- Bottom Action Buttons -->
+          <div class="pt-3 border-t border-slate-800/80 flex items-center gap-2">
+            <a 
+              href={`/${ch.id}/`}
+              class="flex-1 text-center text-xs font-bold py-2 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 transition-all shadow-sm flex items-center justify-center gap-1.5"
+              title={`Ver parrilla completa 24h de ${ch.name}`}
+            >
+              <span>Ver programación</span>
+              <span class="text-xs">→</span>
+            </a>
+
+            {ch.streamUrl && (
+              <a 
+                href={ch.streamUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-semibold py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors border border-slate-700/80 flex items-center gap-1"
+                title={`Ver ${ch.name} en directo oficial`}
+              >
+                <span>Directo</span>
+                <span class="text-[10px]">↗</span>
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Empty Results Fallback -->
+    <div id="no-channels-msg" class="hidden text-center py-16 bg-slate-900/40 rounded-3xl border border-slate-800/80 mt-6">
+      <div class="text-4xl mb-3">🔍</div>
+      <h3 class="text-lg font-bold text-white mb-1">No se encontraron canales</h3>
+      <p class="text-xs text-slate-400">Prueba con otro término de búsqueda o cambia la categoría seleccionada.</p>
+    </div>
+
+    <!-- SEO Informational Block -->
+    <section class="mt-16 bg-slate-900/50 border border-slate-800 rounded-3xl p-6 sm:p-8">
+      <h2 class="text-xl font-bold text-white mb-3">
+        Guía de Canales de la Televisión Digital Terrestre (TDT) en España
+      </h2>
+      <div class="text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed">
+        <p>
+          En <strong>teleestanoche.es</strong> ofrecemos la cobertura más completa y actualizada de la parrilla televisiva española. Nuestra base de datos sincroniza diariamente los horarios de emisión de más de 200 cadenas: desde las emisoras públicas estatales de <strong>RTVE</strong> (La 1, La 2, Teledeporte, Clan, Canal 24 Horas) y los grandes grupos privados (<strong>Atresmedia</strong> con Antena 3, laSexta, Neox, Nova, Mega, Atreseries; y <strong>Mediaset España</strong> con Telecinco, Cuatro, FDF, Divinity, Energy, Be Mad, Boing), hasta los canales de la <strong>FORTA</strong> en cada comunidad autónoma (TV3, Telemadrid, Canal Sur, ETB, TVG, À Punt, Aragón TV, CMM, IB3, TV Canaria, La 7RM).
+        </p>
+        <p>
+          Haz clic en cualquiera de los canales de la lista superior para acceder a su ficha detallada, consultar el programa que se está emitiendo ahora mismo en directo, conocer el avance de la noche (Prime Time de las 22:00) y acceder a la señal oficial de streaming en abierto.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <ProgramOverlay />
+  <Footer />
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const tabs = document.querySelectorAll('.channel-filter-btn');
+    const cards = document.querySelectorAll('.channel-directory-card');
+    const searchInput = document.getElementById('channels-search');
+    const countEl = document.getElementById('channels-count');
+    const noResults = document.getElementById('no-channels-msg');
+
+    let currentGroup = 'all';
+
+    function filterChannels() {
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const group = card.getAttribute('data-group');
+        const name = card.getAttribute('data-name') || '';
+        const number = card.getAttribute('data-number') || '';
+        const text = card.textContent.toLowerCase();
+
+        const matchesGroup = (currentGroup === 'all' || group === currentGroup);
+        const matchesQuery = !query || name.includes(query) || number.includes(query) || text.includes(query);
+
+        if (matchesGroup && matchesQuery) {
+          card.style.display = '';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (countEl) {
+        countEl.textContent = `Mostrando ${visible} canales`;
+      }
+      if (noResults) {
+        noResults.classList.toggle('hidden', visible > 0);
+      }
+    }
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentGroup = btn.getAttribute('data-group') || 'all';
+
+        tabs.forEach(b => {
+          b.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-md');
+          b.classList.add('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800', 'border', 'border-slate-800');
+        });
+
+        btn.classList.add('bg-amber-400', 'text-slate-950', 'font-bold', 'shadow-md');
+        btn.classList.remove('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800', 'border-slate-800');
+
+        filterChannels();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', filterChannels);
+    }
+  })();
+</script>

@@ -8,10 +8,13 @@ export const GET: APIRoute = async () => {
   const staticRoutes = [
     { url: 'https://www.teleestanoche.es/', changefreq: 'hourly', priority: '1.0' },
     { url: 'https://www.teleestanoche.es/ahora/', changefreq: 'always', priority: '0.9' },
+    { url: 'https://www.teleestanoche.es/canales/', changefreq: 'daily', priority: '0.9' },
     { url: 'https://www.teleestanoche.es/peliculas-hoy/', changefreq: 'hourly', priority: '0.8' },
     { url: 'https://www.teleestanoche.es/series-hoy/', changefreq: 'hourly', priority: '0.8' },
     { url: 'https://www.teleestanoche.es/deportes-hoy/', changefreq: 'hourly', priority: '0.8' },
     { url: 'https://www.teleestanoche.es/manana/', changefreq: 'daily', priority: '0.8' },
+    { url: 'https://www.teleestanoche.es/sobre-nosotros/', changefreq: 'monthly', priority: '0.4' },
+    { url: 'https://www.teleestanoche.es/contacto/', changefreq: 'monthly', priority: '0.4' },
     { url: 'https://www.teleestanoche.es/aviso-legal/', changefreq: 'monthly', priority: '0.3' },
     { url: 'https://www.teleestanoche.es/politica-de-privacidad/', changefreq: 'monthly', priority: '0.3' },
   ];

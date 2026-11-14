@@ -1,6 +1,6 @@
 ---
 interface Props {
-  activeTab?: 'tonight' | 'now' | 'movies' | 'sports' | 'shows' | 'tomorrow';
+  activeTab?: 'tonight' | 'now' | 'movies' | 'sports' | 'shows' | 'tomorrow' | 'channels';
 }
 
 const { activeTab = 'tonight' } = Astro.props;
@@ -45,6 +45,16 @@ const { activeTab = 'tonight' } = Astro.props;
         >
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           Ahora en TV
+        </a>
+        <a 
+          href="/canales/" 
+          class={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 ${
+            activeTab === 'channels' 
+              ? 'bg-amber-400 text-slate-950 font-bold shadow-sm' 
+              : 'text-slate-300 hover:text-white hover:bg-slate-800'
+          }`}
+        >
+          <span>📺</span> Canales TV
         </a>
         <a 
           href="/peliculas-hoy/" 
@@ -146,6 +156,14 @@ const { activeTab = 'tonight' } = Astro.props;
       >
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
         Ahora
+      </a>
+      <a 
+        href="/canales/" 
+        class={`px-2.5 py-1.5 rounded-md whitespace-nowrap flex items-center gap-1 ${
+          activeTab === 'channels' ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300'
+        }`}
+      >
+        <span>📺</span> Canales
       </a>
       <a 
         href="/peliculas-hoy/" 
