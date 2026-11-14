@@ -48,7 +48,7 @@ const initialImage = featuredProg?.icon || (featuredProg ? CATEGORY_FALLBACKS[fe
         id="hero-image"
         src={initialImage} 
         alt={featuredProg?.title || initialChannel.name} 
-        class="w-full h-full object-cover transition-opacity duration-500 will-change-transform"
+        class="w-full h-full object-cover object-top transition-opacity duration-500 will-change-transform"
         loading="eager"
         onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS.entertainment}';`}
       />

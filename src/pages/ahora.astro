@@ -92,7 +92,7 @@ const jsonLd = {
               <img 
                 src={progPhoto} 
                 alt={prog?.title || item.channel.name} 
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover object-top"
                 loading={idx < 4 ? "eager" : "lazy"}
                 onerror={`this.onerror=null; this.src='${CATEGORY_FALLBACKS.entertainment}';`}
               />
