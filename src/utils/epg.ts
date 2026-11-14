@@ -131,55 +131,81 @@ export function getOnNowPrograms(referenceDate = new Date()): { channel: Channel
 }
 
 /**
- * Filter all programs categorized as Movies
+ * Filter all programs categorized as Movies (deduplicated by channel & title)
  */
 export function getMoviesToday(): { channel: Channel; program: Program }[] {
   const allProgs = getAllPrograms();
   const channelsMap = new Map(getAllChannels().map(c => [c.id, c]));
+  const seen = new Set<string>();
 
   return allProgs
     .filter(p => p.category === 'movies')
+    .filter(p => {
+      const key = `${p.channelId}-${p.title.trim().toLowerCase()}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
     .map(program => ({
       channel: channelsMap.get(program.channelId)!,
       program
     }))
-    .filter(item => item.channel !== undefined);
+    .filter(item => item.channel !== undefined)
+    .slice(0, 150);
 }
 
 /**
- * Filter all programs categorized as Sports
+ * Filter all programs categorized as Sports (deduplicated repeat broadcasts)
  */
 export function getSportsToday(): { channel: Channel; program: Program }[] {
   const allProgs = getAllPrograms();
   const channelsMap = new Map(getAllChannels().map(c => [c.id, c]));
+  const seen = new Set<string>();
 
   return allProgs
     .filter(p => p.category === 'sports')
+    .filter(p => {
+      const baseTitle = p.title.split('·')[0].split('-')[0].trim().toLowerCase();
+      const key = `${p.channelId}-${baseTitle}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
     .map(program => ({
       channel: channelsMap.get(program.channelId)!,
       program
     }))
-    .filter(item => item.channel !== undefined);
+    .filter(item => item.channel !== undefined)
+    .slice(0, 120);
 }
 
 /**
- * Filter all programs categorized as Series
+ * Filter all programs categorized as Series (deduplicated repeat episodes per channel)
  */
 export function getSeriesToday(): { channel: Channel; program: Program }[] {
   const allProgs = getAllPrograms();
   const channelsMap = new Map(getAllChannels().map(c => [c.id, c]));
+  const seen = new Set<string>();
 
   return allProgs
     .filter(p => p.category === 'series')
+    .filter(p => {
+      const baseTitle = p.title.split(' T')[0].split('·')[0].split('-')[0].trim().toLowerCase();
+      const key = `${p.channelId}-${baseTitle}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
     .map(program => ({
       channel: channelsMap.get(program.channelId)!,
       program
     }))
-    .filter(item => item.channel !== undefined);
+    .filter(item => item.channel !== undefined)
+    .slice(0, 120);
 }
 
 /**
- * Programs for tomorrow
+ * Programs for tomorrow (Prime Time estelar por canal)
  */
 export function getTomorrowPrograms(): { channel: Channel; program: Program }[] {
   const allProgs = getAllPrograms();
@@ -189,7 +215,13 @@ export function getTomorrowPrograms(): { channel: Channel; program: Program }[] 
   tomorrow.setDate(tomorrow.getDate() + 1);
   const tomorrowDateStr = tomorrow.toISOString().split('T')[0];
 
-  const tomorrowProgs = allProgs.filter(p => p.startTime.startsWith(tomorrowDateStr) && p.isTonightPrime);
+  const seen = new Set<string>();
+  const tomorrowProgs = allProgs.filter(p => {
+    if (!p.startTime.startsWith(tomorrowDateStr) || !p.isTonightPrime) return false;
+    if (seen.has(p.channelId)) return false;
+    seen.add(p.channelId);
+    return true;
+  });
 
   return tomorrowProgs.map(program => ({
     channel: channelsMap.get(program.channelId)!,

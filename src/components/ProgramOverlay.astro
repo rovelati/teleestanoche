@@ -336,4 +336,42 @@
       if (e.target === modalBackdrop) closeProgramModal();
     });
   }
+
+  // Global bookmark channels handler
+  function initBookmarks() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('teleestanoche_fav_channels') || '[]');
+      document.querySelectorAll('.bookmark-btn').forEach(btn => {
+        const slug = btn.getAttribute('data-channel-slug');
+        if (saved.includes(slug)) {
+          btn.classList.add('text-amber-400');
+          btn.classList.remove('text-slate-500');
+        } else {
+          btn.classList.remove('text-amber-400');
+          btn.classList.add('text-slate-500');
+        }
+
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          let current = JSON.parse(localStorage.getItem('teleestanoche_fav_channels') || '[]');
+          if (current.includes(slug)) {
+            current = current.filter(s => s !== slug);
+            btn.classList.remove('text-amber-400');
+            btn.classList.add('text-slate-500');
+          } else {
+            current.push(slug);
+            btn.classList.add('text-amber-400');
+            btn.classList.remove('text-slate-500');
+          }
+          localStorage.setItem('teleestanoche_fav_channels', JSON.stringify(current));
+        };
+      });
+    } catch (e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBookmarks);
+  } else {
+    initBookmarks();
+  }
 </script>
