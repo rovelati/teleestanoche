@@ -6,6 +6,11 @@ echo "[$(date '+%Y-%m-%d %H:%M:%S')] Starting TeleEstaNoche.es Rebuild & Ingesti
 
 cd /var/www/teleestanoche.es
 
+# 0. Sync latest code from git repository
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Pulling latest changes from git..." | tee -a "$LOG"
+git fetch origin main 2>&1 | tee -a "$LOG" || true
+git reset --hard origin/main 2>&1 | tee -a "$LOG" || true
+
 # 1. Fetch XMLTV and refresh cache
 python3 scripts/fetch-epg-spain.py 2>&1 | tee -a "$LOG"
 
